@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Halaman Tidak Ditemukan — Penerbit Quran">
+
+  <div class="bg-gradient-to-br from-emerald to-emerald-dark relative overflow-hidden min-h-[calc(100vh-72px-300px)]
+              flex items-center justify-center py-20">
+    <div class="absolute inset-0 iso-pattern-white"></div>
+
+    <div class="relative z-10 text-center max-w-[600px] mx-auto px-7">
+
+      <!-- Decorative book icon -->
+      <div class="mb-8 inline-flex items-center justify-center w-28 h-28 rounded-full
+                  bg-white/[.07] border border-white/[.09] backdrop-blur-sm">
+        <span class="text-[54px] leading-none select-none" aria-hidden="true">📖</span>
+      </div>
+
+      <!-- 404 number -->
+      <p class="font-display text-gold text-[clamp(72px,14vw,120px)] font-black leading-none mb-2
+                drop-shadow-[0_2px_12px_rgba(200,146,42,.25)]">
+        404
+      </p>
+
+      <h1 class="text-white text-[clamp(22px,4vw,32px)] font-bold mb-3">
+        Halaman Tidak Ditemukan
+      </h1>
+
+      <p class="text-white/55 text-[15px] font-sans leading-relaxed mb-4 max-w-[440px] mx-auto">
+        Maaf, halaman yang Anda cari tidak tersedia atau telah dipindahkan.
+      </p>
+
+      <!-- Quranic verse -->
+      <div class="mb-10 px-6 py-4 rounded-xl bg-white/[.05] border border-white/[.08] max-w-[460px] mx-auto">
+        <p class="font-arabic text-gold-light text-[22px] leading-[1.8] mb-2" dir="rtl" lang="ar">
+          فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا
+        </p>
+        <p class="text-white/40 text-[13px] font-sans">
+          "Maka sesungguhnya bersama kesulitan ada kemudahan." — QS. Al-Insyirah: 5
+        </p>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/"
+           class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[10px]
+                  bg-gold text-white font-sans font-semibold text-[15px]
+                  hover:bg-gold-light hover:-translate-y-0.5
+                  transition-all duration-200 shadow-medium">
+          ← Kembali ke Beranda
+        </a>
+        <a href="/katalog"
+           class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[10px]
+                  bg-white/10 text-white font-sans font-semibold text-[15px]
+                  border border-white/15
+                  hover:bg-white/[.15] hover:-translate-y-0.5
+                  transition-all duration-200">
+          Lihat Katalog
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</Base>
