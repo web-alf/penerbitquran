@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import BookCard from '../../components/BookCard.astro';
+import NKBookCard from '../../components/NKBookCard.astro';
+import { books } from '../../data/books';
+---
+
+<Base title="Katalog Buku — Penerbit Quran">
+
+<PageHero
+  title="Katalog Buku"
+  subtitle="Koleksi terbaik — termasuk seri premium NUURKIDS"
+  breadcrumb="Katalog Buku"
+/>
+
+<section class="py-[88px]">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <!-- Search -->
+    <div class="flex gap-2.5 mb-[26px]">
+      <input
+        type="text"
+        id="search-input"
+        class="flex-1 px-4 py-2.5 border border-surface-2 rounded font-sans text-sm outline-none focus:border-emerald focus:shadow-[0_0_0_3px_rgba(11,82,51,.07)] transition-all"
+        placeholder="Cari judul, penulis, atau kategori..."
+      />
+      <select id="sort-select" class="w-[180px] px-3.5 py-2.5 border border-surface-2 rounded font-sans text-sm outline-none">
+        <option>Terbaru</option>
+        <option>Populer</option>
+        <option>A–Z</option>
+      </select>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap gap-2 mb-6" id="filter-buttons">
+      <button class="filter-btn on px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-emerald !border-emerald text-white font-sans transition-all duration-200" data-cat="Semua">Semua</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-white text-surface-5 font-sans transition-all duration-200 hover:bg-emerald hover:border-emerald hover:text-white" data-cat="Al-Quran">Al-Qur'an</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-white text-surface-5 font-sans transition-all duration-200 hover:bg-emerald hover:border-emerald hover:text-white" data-cat="Tahfidz">Tahfidz</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-white text-surface-5 font-sans transition-all duration-200 hover:bg-emerald hover:border-emerald hover:text-white" data-cat="Parenting">Parenting</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-white text-surface-5 font-sans transition-all duration-200 hover:bg-emerald hover:border-emerald hover:text-white" data-cat="Sirah">Sirah</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-white text-surface-5 font-sans transition-all duration-200 hover:bg-emerald hover:border-emerald hover:text-white" data-cat="Motivasi">Motivasi Islami</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-surface-2 bg-white text-surface-5 font-sans transition-all duration-200 hover:bg-emerald hover:border-emerald hover:text-white" data-cat="Fiqih">Fiqih</button>
+      <button class="filter-btn px-4 py-[7px] rounded-full text-[13px] font-medium cursor-pointer border-[1.5px] border-gold/35 bg-white text-gold font-sans transition-all duration-200 hover:bg-nk-night hover:border-nk-night hover:text-nk-gold" data-cat="NUURKIDS">✦ NUURKIDS Collection</button>
+    </div>
+
+    <!-- Book Grid -->
+    <div id="book-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px]">
+      {books.map(book => (
+        <div class="book-item" data-cat={book.cat} data-title={book.t.toLowerCase()} data-author={book.a.toLowerCase()}>
+          {book.nk ? <NKBookCard book={book} variant="catalog" /> : <BookCard book={book} />}
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden col-span-full text-center py-[60px] text-surface-4">
+      <div class="text-4xl mb-3">📚</div>
+      <div class="font-display text-lg">Tidak ada buku ditemukan.</div>
+    </div>
+  </div>
+</section>
+
+</Base>
+
+<script>
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const bookItems = document.querySelectorAll('.book-item') as NodeListOf<HTMLElement>;
+  const emptyState = document.getElementById('empty-state');
+  const bookGrid = document.getElementById('book-grid');
+
+  let currentFilter = 'Semua';
+
+  function applyFilter() {
+    const query = searchInput?.value.toLowerCase() || '';
+    let visibleCount = 0;
+
+    bookItems.forEach(item => {
+      const cat = item.dataset.cat || '';
+      const title = item.dataset.title || '';
+      const author = item.dataset.author || '';
+
+      const matchFilter = currentFilter === 'Semua' || cat === currentFilter;
+      const matchSearch = !query || title.includes(query) || author.includes(query) || cat.toLowerCase().includes(query);
+
+      if (matchFilter && matchSearch) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    if (emptyState) {
+      emptyState.classList.toggle('hidden', visibleCount > 0);
+    }
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentFilter = (btn as HTMLElement).dataset.cat || 'Semua';
+
+      filterButtons.forEach(b => {
+        b.classList.remove('bg-emerald', '!border-emerald', 'text-white', 'bg-nk-night', '!border-nk-night', 'text-nk-gold', 'on');
+        b.classList.add('bg-white', 'text-surface-5');
+        if ((b as HTMLElement).dataset.cat === 'NUURKIDS') {
+          b.classList.remove('text-surface-5');
+          b.classList.add('text-gold');
+        }
+      });
+
+      btn.classList.add('on');
+      btn.classList.remove('bg-white', 'text-surface-5', 'text-gold');
+      if (currentFilter === 'NUURKIDS') {
+        btn.classList.add('bg-nk-night', '!border-nk-night', 'text-nk-gold');
+      } else {
+        btn.classList.add('bg-emerald', '!border-emerald', 'text-white');
+      }
+
+      applyFilter();
+    });
+  });
+
+  searchInput?.addEventListener('input', applyFilter);
+
+  const params = new URLSearchParams(window.location.search);
+  const filterParam = params.get('filter');
+  if (filterParam) {
+    const targetBtn = document.querySelector(`.filter-btn[data-cat="${filterParam}"]`) as HTMLElement;
+    targetBtn?.click();
+  }
+</script>

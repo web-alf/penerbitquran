@@ -1,0 +1,291 @@
+---
+import Base from '../layouts/Base.astro';
+import BookCard from '../components/BookCard.astro';
+import NKBookCard from '../components/NKBookCard.astro';
+import { getNonNKBooks, getNKBooks } from '../data/books';
+
+const regularBooks = getNonNKBooks().slice(0, 8);
+const nkBooks = getNKBooks().slice(0, 5);
+---
+
+<Base title="Penerbit Quran — Penerbit Buku Islami Profesional">
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center overflow-hidden relative bg-gradient-to-br from-bg via-[#e2f0e8] to-[#f5ede0]">
+  <div class="absolute inset-0 iso-pattern"></div>
+  <div class="max-w-[1180px] mx-auto px-7 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-[72px] min-h-[calc(100vh-72px)] py-[100px] pb-20">
+      <div>
+        <div class="text-xs font-semibold tracking-[.14em] uppercase text-gold flex items-center gap-2.5 mb-[22px] font-sans">
+          <span class="w-7 h-[1.5px] bg-gold"></span>
+          Penerbit Buku Islami Nasional
+        </div>
+        <h1 class="text-[clamp(32px,5vw,56px)] font-black text-surface-6 leading-[1.12] mb-5">
+          Menerbitkan Buku yang <em class="not-italic text-emerald">Menginspirasi</em> dan Mendidik
+        </h1>
+        <p class="font-sans text-base text-surface-4 max-w-[480px] mb-[34px] leading-[1.88]">
+          Penerbit profesional untuk buku Islami, pendidikan, Al-Qur'an, dan karya terbaik untuk generasi muslim Indonesia.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/katalog" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-emerald text-white text-sm font-semibold font-sans hover:bg-emerald-light hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300">Lihat Katalog</a>
+          <a href="/tentang" class="inline-flex items-center gap-2 px-[26px] py-3 rounded text-emerald text-sm font-semibold font-sans border-[1.5px] border-emerald hover:bg-emerald hover:text-white hover:-translate-y-0.5 transition-all duration-300">Tentang Kami</a>
+        </div>
+        <div class="flex gap-9 mt-9 pt-8 border-t border-surface-2 flex-wrap">
+          <div><div class="font-display text-[32px] font-bold text-emerald leading-none">24+</div><div class="text-xs text-surface-4 mt-[3px] font-sans">Judul Diterbitkan</div></div>
+          <div><div class="font-display text-[32px] font-bold text-emerald leading-none">12+</div><div class="text-xs text-surface-4 mt-[3px] font-sans">Penulis Bergabung</div></div>
+          <div><div class="font-display text-[22px] font-bold text-emerald leading-none">2024</div><div class="text-xs text-surface-4 mt-[3px] font-sans">Tahun Berdiri</div></div>
+          <div><div class="font-display text-[32px] font-bold text-emerald leading-none">15</div><div class="text-xs text-surface-4 mt-[3px] font-sans">Kota Distribusi</div></div>
+        </div>
+      </div>
+      <div class="hidden lg:flex justify-center items-center">
+        <div class="flex flex-col items-center animate-float">
+          <div class="w-[195px] rounded-[14px] overflow-hidden shadow-heavy -rotate-[7deg] -translate-x-[22px] z-[1]">
+            <div class="h-[256px] flex flex-col items-center justify-center p-[18px] text-center" style="background:#0b5233">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><polygon points="18,2 21,12 32,12 24,19 27,30 18,23 9,30 12,19 4,12 15,12" fill="rgba(255,255,255,.22)"/></svg>
+              <div class="text-white/90 font-display text-[13px] font-bold mt-2.5 leading-snug">Panduan Tahfidz Anak</div>
+            </div>
+          </div>
+          <div class="w-[195px] rounded-[14px] overflow-hidden shadow-heavy rotate-[2deg] z-[3] -mt-[130px]">
+            <div class="h-[256px] flex flex-col items-center justify-center p-[18px] text-center" style="background:#2A1C0A">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="5" y="5" width="26" height="26" fill="none" stroke="rgba(200,146,42,.55)" stroke-width="2" transform="rotate(45 18 18)"/><circle cx="18" cy="18" r="4.5" fill="rgba(200,146,42,.38)"/></svg>
+              <div class="text-nk-soft font-display text-[13px] font-bold mt-2.5 leading-snug">Mengenal Nabi Muhammad ﷺ</div>
+              <div class="text-[9px] text-gold/60 mt-[3px] font-sans">NUURKIDS</div>
+            </div>
+          </div>
+          <div class="w-[195px] rounded-[14px] overflow-hidden shadow-heavy rotate-[6deg] translate-x-[22px] z-[2] -mt-[130px]">
+            <div class="h-[256px] flex flex-col items-center justify-center p-[18px] text-center" style="background:#1a3a5c">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="18" cy="18" r="6" fill="rgba(255,255,255,.12)"/></svg>
+              <div class="text-white/90 font-display text-[13px] font-bold mt-2.5 leading-snug">Parenting Islami Era Digital</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="bg-emerald py-[52px]">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { n: '24+', l: 'Judul Diterbitkan' },
+        { n: '12+', l: 'Penulis Bergabung' },
+        { n: '2024', l: 'Tahun Berdiri', small: true },
+        { n: '15', l: 'Kota Distribusi' },
+      ].map((s, i) => (
+        <div class:list={['text-center py-5', i < 3 && 'border-b sm:border-b-0 sm:border-r border-white/10']}>
+          <div class:list={['font-display font-bold text-white leading-none', s.small ? 'text-[34px]' : 'text-[46px]']}>
+            {s.n.includes('+') ? <>{s.n.replace('+', '')}<span class="text-[26px] text-gold/75">+</span></> : s.n}
+          </div>
+          <div class="text-[13px] text-white/55 mt-[5px] font-sans">{s.l}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- KATALOG UNGGULAN -->
+<section class="py-[88px] iso-pattern">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="flex justify-between items-end flex-wrap gap-4 mb-10">
+      <div>
+        <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-emerald-medium bg-emerald-pale mb-4">Katalog Buku</span>
+        <h2 class="text-[clamp(24px,4vw,38px)] font-black text-surface-6">Buku <span class="text-emerald">Unggulan</span> Kami</h2>
+      </div>
+      <a href="/katalog" class="inline-flex items-center gap-2 px-[26px] py-3 rounded text-emerald text-sm font-semibold font-sans border-[1.5px] border-emerald hover:bg-emerald hover:text-white hover:-translate-y-0.5 transition-all duration-300">Lihat Semua Buku</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px]">
+      {regularBooks.map(book => <BookCard book={book} />)}
+    </div>
+  </div>
+</section>
+
+<!-- NUURKIDS HOME SECTION -->
+<section class="bg-nk-cream relative overflow-hidden py-[100px]">
+  <div class="absolute inset-0 iso-pattern-gold"></div>
+  <div class="absolute -top-[60px] -right-[60px] w-[360px] h-[360px] rounded-full bg-[radial-gradient(circle,rgba(200,146,42,.12)_0%,transparent_70%)] pointer-events-none"></div>
+  <div class="max-w-[1180px] mx-auto px-7 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+      <div>
+        <div class="font-sans text-[11px] font-semibold tracking-[.18em] uppercase text-nk-gold flex items-center gap-2.5 mb-3.5">
+          <span class="w-6 h-px bg-nk-gold"></span>
+          Islamic Kids Collection
+        </div>
+        <div class="mb-4">
+          <div class="font-display text-[48px] font-black leading-[.95] tracking-wide"><span class="text-gray-400">NUUR</span><span class="text-nk-gold">KIDS</span></div>
+          <div class="font-sans text-[10px] tracking-[.2em] uppercase text-nk-brown/40 mt-1.5">ANAK ADALAH AMANAH</div>
+        </div>
+        <h2 class="font-display text-[clamp(28px,5vw,48px)] font-black text-nk-brown leading-[1.15] mb-3">
+          Cahaya untuk <em class="italic text-nk-gold">Generasi Terbaik.</em>
+        </h2>
+        <p class="font-sans text-base text-nk-brown/60 max-w-[520px] leading-[1.9]">
+          Buku premium islami yang hadir sebagai jembatan cinta antara hati kecil anak-anak dan nilai-nilai Islam yang indah.
+        </p>
+        <div class="inline-block my-5 px-6 py-3.5 border border-gold/30 rounded bg-gold/5">
+          <span class="font-display text-lg font-black text-nk-gold block tracking-wide">Anak Adalah Amanah.</span>
+          <span class="font-arabic text-[15px] text-gold/55 block mt-1 italic" dir="rtl">الْأَوْلَادُ أَمَانَةٌ</span>
+          <div class="font-sans text-[11px] text-nk-brown/40 italic mt-[3px]">Al-awlādu amānah</div>
+        </div>
+        <p class="font-sans text-sm text-nk-brown/55 leading-[1.88] max-w-[440px] mb-7">
+          Yuk kenalkan si kecil dengan Nabi kesayangan kita. Dirancang bersama ahli pendidikan usia dini, setiap buku adalah cahaya yang menerangi tumbuh kembang mereka.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/nuurkids" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-nk-gold text-white font-display text-sm font-bold hover:bg-[#b8822a] hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(200,146,42,.3)] transition-all duration-300">Jelajahi NUURKIDS</a>
+          <a href="/katalog?filter=NUURKIDS" class="inline-flex items-center gap-2 px-[26px] py-3 rounded text-nk-brown text-sm font-semibold font-sans border-[1.5px] border-nk-brown/25 hover:bg-nk-brown/5 transition-all duration-300">Lihat Koleksi</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-4">
+        {nkBooks.map(book => <NKBookCard book={book} variant="mini" />)}
+      </div>
+    </div>
+
+    <!-- Other Series -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {[
+        { num: 'SERI 2', title: 'Seri Akhlak Mulia', desc: 'Nilai-nilai akhlak Islam: jujur, sabar, dermawan, bersih — dikemas dalam cerita anak yang menggemaskan.' },
+        { num: 'SERI 3', title: 'Seri Ibadah Si Kecil', desc: 'Sholat, puasa, sedekah, doa — dijelaskan dengan bahasa anak 3–6 tahun yang hangat dan visual premium.' },
+        { num: 'SERI 4', title: 'Seri Sahabat Nabi', desc: 'Kisah inspiratif Abu Bakar, Umar, Utsman, Ali — teladan hidup terbaik untuk generasi kecil.' },
+      ].map(s => (
+        <div class="p-5 border border-gold/20 rounded bg-white/60">
+          <div class="font-sans text-[10px] font-bold text-nk-gold tracking-[.12em] uppercase mb-2">{s.num}</div>
+          <div class="font-display text-base font-bold text-nk-brown mb-1.5">{s.title}</div>
+          <div class="font-sans text-xs text-nk-brown/55 leading-relaxed">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Quote -->
+    <div class="text-center mt-16 p-10 bg-white/55 rounded-lg border border-gold/20 relative">
+      <div class="mb-4">
+        <span class="font-display text-[22px] font-black"><span class="text-gray-400">NUUR</span><span class="text-nk-gold">KIDS</span></span>
+        <span class="font-sans text-[10px] text-nk-brown/40 tracking-[.18em] uppercase ml-3">ANAK ADALAH AMANAH</span>
+      </div>
+      <div class="font-display text-[clamp(16px,2.5vw,22px)] italic text-nk-brown leading-relaxed mb-2">
+        "Setiap buku yang kamu berikan adalah cahaya yang akan menerangi hidupnya."
+      </div>
+      <div class="font-sans text-[11px] text-nk-gold uppercase tracking-[.14em]">NUURKIDS · Premium · Islami · Anak</div>
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG SINGKAT -->
+<section class="py-[88px] bg-surface-1">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="h-[400px] bg-gradient-to-br from-emerald to-emerald-light rounded-lg flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0" style="background:url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='.06'%3E%3Cpath d='M30 30L15 15v30l15-15zm0 0l15-15v30L30 30z'/%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+        <div class="text-center relative z-10 p-8">
+          <div class="w-[68px] h-[68px] rounded-full bg-white/10 mx-auto mb-4 flex items-center justify-center text-[28px]">📖</div>
+          <p class="text-white/90 font-display text-[17px] italic max-w-[240px] leading-relaxed">"Iqra' — Bacalah dengan menyebut nama Tuhanmu"</p>
+          <p class="text-white/40 text-xs mt-2 font-sans">Q.S. Al-'Alaq: 1</p>
+        </div>
+        <div class="absolute -bottom-[18px] -right-[18px] bg-white rounded-lg px-[22px] py-[18px] shadow-heavy border border-surface-2/50">
+          <div class="font-display text-[26px] font-bold text-emerald">2024</div>
+          <div class="text-[11px] text-surface-4 font-sans">Tahun Berdiri</div>
+        </div>
+      </div>
+      <div>
+        <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-emerald-medium bg-emerald-pale mb-4">Tentang Kami</span>
+        <h2 class="text-[clamp(24px,3.5vw,36px)] font-black text-surface-6 mb-3.5">
+          Penerbit dengan <span class="text-emerald">Misi Mulia</span>
+        </h2>
+        <p class="text-surface-4 text-[15px] leading-[1.88] mb-3.5 font-sans">
+          PT Penerbit Quran Indonesia adalah perusahaan penerbitan buku Islami profesional yang berdiri pada 2024 di Semarang, Jawa Tengah. Kami hadir dengan tekad menjadi penerbit terpercaya yang menghadirkan karya-karya berkualitas tinggi untuk umat.
+        </p>
+        <p class="text-surface-4 text-[15px] leading-[1.88] mb-[22px] font-sans">
+          Di bawah naungan kami, lahir <span class="font-display font-bold"><span class="text-gray-400">NUUR</span><span class="text-nk-gold">KIDS</span></span> — lini buku anak premium islami sebagai cahaya untuk generasi terbaik Indonesia.
+        </p>
+        <div class="flex flex-col gap-[13px] mt-5">
+          <div class="p-[13px] px-[17px] bg-surface-1 rounded border-l-[3px] border-emerald">
+            <h4 class="text-xs font-bold text-emerald uppercase tracking-wider font-sans mb-[3px]">Visi</h4>
+            <p class="text-[13px] text-surface-5 leading-relaxed font-sans">Menjadi penerbit buku Islami terdepan yang memberikan manfaat nyata bagi umat dalam meningkatkan literasi dan keimanan.</p>
+          </div>
+          <div class="p-[13px] px-[17px] bg-surface-1 rounded border-l-[3px] border-emerald">
+            <h4 class="text-xs font-bold text-emerald uppercase tracking-wider font-sans mb-[3px]">Misi</h4>
+            <p class="text-[13px] text-surface-5 leading-relaxed font-sans">Menerbitkan karya berkualitas, mendukung penulis Muslim, dan menyebarkan ilmu bermanfaat ke seluruh nusantara.</p>
+          </div>
+        </div>
+        <a href="/tentang" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-emerald text-white text-sm font-semibold font-sans hover:bg-emerald-light hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300 mt-[22px]">Selengkapnya →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEUNGGULAN -->
+<section class="py-[88px] iso-pattern">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="text-center mb-11">
+      <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-emerald-medium bg-emerald-pale mb-4">Keunggulan</span>
+      <h2 class="text-[clamp(24px,3.5vw,36px)] font-black text-surface-6">Mengapa <span class="text-emerald">Penerbit Quran?</span></h2>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-[18px]">
+      {[
+        { ic: '✏️', t: 'Editing Profesional', d: 'Tim editor memastikan naskah Anda sempurna sebelum diterbitkan.' },
+        { ic: '🎨', t: 'Desain Berkualitas', d: 'Layout dan cover buku yang estetis sesuai karakter konten.' },
+        { ic: '🚚', t: 'Distribusi Nasional', d: 'Jaringan distribusi ke berbagai kota di seluruh Indonesia.' },
+        { ic: '🖨️', t: 'Cetak Premium', d: 'Percetakan modern menghasilkan buku berkualitas tinggi.' },
+        { ic: '👥', t: 'Tim Berpengalaman', d: 'Didukung tim profesional berpengalaman di dunia penerbitan.' },
+      ].map(f => (
+        <div class="p-[26px] px-[22px] bg-white rounded-lg border border-surface-2/50 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-medium">
+          <div class="w-[50px] h-[50px] bg-emerald-pale rounded-xl mx-auto mb-3.5 flex items-center justify-center text-xl">{f.ic}</div>
+          <div class="text-sm font-bold text-surface-6 mb-1.5 font-display">{f.t}</div>
+          <div class="text-xs text-surface-4 leading-relaxed font-sans">{f.d}</div>
+        </div>
+      ))}
+      <a href="/nuurkids" class="p-[26px] px-[22px] bg-nk-cream rounded-lg border border-gold/20 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-medium cursor-pointer block">
+        <div class="w-[50px] h-[50px] bg-gold/10 rounded-xl mx-auto mb-3.5 flex items-center justify-center">
+          <span class="font-display font-black text-sm"><span class="text-gray-400">NK</span></span>
+        </div>
+        <div class="text-sm font-bold text-nk-brown mb-1.5 font-display">NUURKIDS</div>
+        <div class="text-xs text-nk-brown/50 leading-relaxed font-sans">Lini buku anak muslim premium berkualitas internasional.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="py-[88px] bg-surface-1">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="text-center mb-10">
+      <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-emerald-medium bg-emerald-pale mb-4">Testimoni</span>
+      <h2 class="text-[clamp(22px,3.5vw,34px)] font-black text-surface-6">Apa Kata <span class="text-emerald">Mereka</span></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[22px]">
+      {[
+        { txt: '"Penerbit Quran sangat profesional dan responsif. Proses penerbitan berjalan lancar. Barakallahu fiikum!"', nm: 'Ust. Ahmad Hidayat, M.Pd.I', rl: 'Penulis – Buku Tahfidz, Semarang', av: 'AH', bg: 'bg-emerald' },
+        { txt: '"Buku NUURKIDS anak saya langsung suka! Tiap malam minta dibacakan. Narasi yang lembut seperti pelukan hangat."', nm: 'Ummu Raihana', rl: 'Ibu Rumah Tangga, Semarang', av: 'RA', bg: 'bg-[#8b5e3c]' },
+        { txt: '"Desain cover sangat memuaskan. Tim kreatif penuh dedikasi. Sangat merekomendasikan Penerbit Quran!"', nm: 'Fatimah Aini, S.Pd', rl: 'Penulis – Parenting Islami', av: 'FA', bg: 'bg-[#1a6b6b]' },
+      ].map(t => (
+        <div class="bg-white rounded-lg p-[26px] border border-surface-2/50 relative">
+          <div class="absolute top-3 right-[18px] font-display text-[56px] text-emerald-pale leading-none">"</div>
+          <div class="flex gap-[3px] text-gold mb-3 text-sm">★★★★★</div>
+          <p class="font-sans text-[13px] text-surface-5 leading-[1.88] italic mb-4">{t.txt}</p>
+          <div class="flex items-center gap-2.5">
+            <div class:list={['w-[38px] h-[38px] rounded-full flex items-center justify-center font-bold text-[13px] text-white flex-shrink-0 font-display', t.bg]}>{t.av}</div>
+            <div>
+              <div class="text-[13px] font-bold text-surface-6 font-display">{t.nm}</div>
+              <div class="text-[11px] text-surface-4 font-sans">{t.rl}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-gradient-to-br from-emerald to-emerald-dark py-20 relative overflow-hidden">
+  <div class="absolute inset-0 iso-pattern-white"></div>
+  <div class="max-w-[1180px] mx-auto px-7 text-center relative z-10">
+    <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-gold bg-gold-pale mb-[18px]">Untuk Para Penulis</span>
+    <h2 class="font-display text-[clamp(22px,4vw,36px)] text-white mb-3.5">Terbitkan Buku Anda Bersama Penerbit Quran</h2>
+    <p class="font-sans text-white/60 text-[15px] max-w-[500px] mx-auto mb-8">Miliki karya buku yang profesional, elegan, dan terdistribusi nasional.</p>
+    <div class="flex justify-center flex-wrap gap-3">
+      <a href="/penulis" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-gold text-[#160900] text-sm font-bold font-sans hover:bg-gold-light hover:-translate-y-0.5 transition-all duration-300">Ajukan Naskah Sekarang</a>
+      <a href="/kontak" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-white/10 text-white text-sm font-semibold font-sans border border-white/20 hover:bg-white/20 transition-all duration-300">Hubungi Kami</a>
+    </div>
+  </div>
+</section>
+
+</Base>

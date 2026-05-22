@@ -1,0 +1,263 @@
+---
+import Base from '../layouts/Base.astro';
+import NKBookCard from '../components/NKBookCard.astro';
+import { getNKBooks } from '../data/books';
+import { series } from '../data/series';
+
+const nkBooks = getNKBooks();
+const heroBooks = nkBooks.slice(0, 4);
+---
+
+<Base title="NUURKIDS — Cahaya untuk Generasi Terbaik">
+
+<!-- HERO — Light Desert Cream -->
+<section class="min-h-screen bg-nk-cream flex items-center relative overflow-hidden pt-[72px]">
+  <div class="absolute inset-0 iso-pattern-gold"></div>
+  <div class="absolute -top-20 -left-20 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(200,146,42,.09)_0%,transparent_65%)] pointer-events-none"></div>
+  <div class="max-w-[1180px] mx-auto px-7 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-16 min-h-[calc(100vh-72px)] py-20">
+      <div>
+        <div class="font-sans text-[11px] font-semibold tracking-[.18em] uppercase text-nk-gold flex items-center gap-2.5 mb-3.5">
+          <span class="w-6 h-px bg-nk-gold"></span>
+          Premium Islamic Kids Publisher
+        </div>
+        <div class="mb-4">
+          <div class="font-display text-[52px] font-black leading-[.95] tracking-wide"><span class="text-gray-400">NUUR</span><span class="text-nk-gold">KIDS</span></div>
+          <div class="font-arabic text-base text-gold/50 mt-1.5 italic" dir="rtl">نُـوْر كِـيـدْز</div>
+        </div>
+        <h1 class="font-display text-[clamp(30px,5.5vw,54px)] font-black text-nk-brown leading-[1.14] mb-[18px]">
+          Cahaya Islam untuk <em class="italic text-nk-gold">Hati Si Kecil</em>
+        </h1>
+        <div class="mb-5">
+          <div class="font-display text-xl font-black text-nk-gold">Anak Adalah Amanah.</div>
+          <div class="font-arabic text-[15px] text-gold/50 mt-[3px]" dir="rtl">الْأَوْلَادُ أَمَانَةٌ</div>
+        </div>
+        <p class="font-sans text-[15px] text-nk-brown/60 max-w-[460px] leading-[1.9] mb-7">
+          NUURKIDS hadir sebagai sumber cahaya (nuur) yang menerangi perjalanan tumbuh kembang anak-anak Muslim Indonesia. Dirancang bersama ahli pendidikan usia dini, setiap buku adalah jembatan cinta untuk si kecil.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/katalog?filter=NUURKIDS" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-nk-gold text-white font-display text-sm font-bold hover:bg-[#b8822a] hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(200,146,42,.3)] transition-all duration-300">Lihat Koleksi Buku</a>
+          <a href="/kontak" class="inline-flex items-center gap-2 px-[26px] py-3 rounded text-nk-brown text-sm font-semibold font-sans border-[1.5px] border-nk-brown/25 hover:bg-nk-brown/5 transition-all duration-300">Hubungi Kami</a>
+        </div>
+        <div class="flex gap-8 mt-9 pt-7 border-t border-gold/20 flex-wrap">
+          {[
+            { n: '4', l: 'Seri Aktif' },
+            { n: '25', l: 'Judul / Seri' },
+            { n: '3–6', l: 'Usia Target' },
+            { n: '2025', l: 'Cetakan Pertama' },
+          ].map(s => (
+            <div>
+              <div class="font-display text-[28px] font-bold text-nk-brown leading-none">{s.n}</div>
+              <div class="text-[11px] text-nk-brown/45 mt-[3px] font-sans">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3.5">
+        {heroBooks.map(book => <NKBookCard book={book} variant="hero" />)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY — Dark -->
+<section class="bg-nk-night py-[88px] relative overflow-hidden">
+  <div class="absolute inset-0 iso-pattern-gold-dark"></div>
+  <div class="absolute -top-[60px] -right-[60px] w-[380px] h-[380px] rounded-full bg-[radial-gradient(circle,rgba(200,146,42,.09)_0%,transparent_68%)]"></div>
+  <div class="max-w-[1180px] mx-auto px-7 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-nk-gold bg-gold/15 mb-4">Filosofi Brand</span>
+        <div class="font-display text-[clamp(20px,3.5vw,28px)] text-nk-soft leading-[1.52] italic pl-6 border-l-[3px] border-nk-gold mt-4">
+          "NUURKIDS hadir sebagai sumber cahaya (nuur) yang menerangi perjalanan tumbuh kembang anak-anak Muslim Indonesia. Setiap buku yang kami hadirkan adalah jembatan cinta antara hati kecil anak-anak dan nilai-nilai Islam yang indah."
+        </div>
+        <p class="font-sans text-sm text-nk-soft/55 leading-[1.92] mt-[18px]">
+          Kata <em class="text-nk-gold">Nuur</em> berarti cahaya. Sebuah nama yang bukan sekadar merek — ia adalah misi: menghadirkan cahaya dalam setiap tahap tumbuh kembang anak muslim Indonesia.
+        </p>
+        <p class="font-sans text-sm text-nk-soft/55 leading-[1.92] mt-3">
+          Anak belajar paling baik ketika merasa dicintai dan aman. Itulah mengapa semua konten NUURKIDS dibalut kasih sayang, narasi yang lembut, dan visual yang hangat.
+        </p>
+        <div class="mt-[22px] p-[18px] bg-gold/10 border border-gold/15 rounded">
+          <div class="font-sans text-[11px] font-bold text-nk-gold uppercase tracking-wider mb-1.5">Dirancang bersama ahli</div>
+          <p class="font-sans text-[13px] text-nk-soft/55 leading-[1.75]">Setiap buku dikembangkan bersama ahli pendidikan usia dini, ilustrator premium, dan ulama yang memahami psikologi anak.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        {[
+          { ic: '✨', t: '١ Nuur — Cahaya', d: 'Setiap buku adalah cahaya yang menerangi akal dan hati anak. Konten yang jernih dan bercahaya.' },
+          { ic: '🤲', t: '٢ Amanah', d: 'Anak adalah titipan Allah. Kami hadir membantu orang tua menunaikan amanah mulia ini.' },
+          { ic: '❤️', t: '٣ Cinta', d: 'Semua konten dibalut kasih sayang. Anak belajar paling baik ketika merasa dicintai.' },
+          { ic: '🏆', t: '٤ Premium', d: 'Standar internasional dalam setiap halaman. Anak-anak Indonesia berhak mendapat yang terbaik.' },
+        ].map(p => (
+          <div class="p-4 bg-gold/5 border border-gold/15 rounded text-center">
+            <div class="text-xl mb-1.5">{p.ic}</div>
+            <div class="text-xs font-bold text-nk-gold font-display">{p.t}</div>
+            <div class="text-[11px] text-nk-soft/40 mt-[3px] leading-snug font-sans">{p.d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KOLEKSI — Light -->
+<section class="bg-nk-cream py-[88px] relative overflow-hidden">
+  <div class="absolute inset-0 iso-pattern-gold"></div>
+  <div class="max-w-[1180px] mx-auto px-7 relative z-10">
+    <div class="text-center mb-11">
+      <div class="font-sans text-[11px] font-semibold tracking-[.18em] uppercase text-nk-gold flex items-center justify-center gap-2.5 mb-3.5">
+        <span class="w-6 h-px bg-nk-gold"></span>
+        Koleksi Premium
+        <span class="w-6 h-px bg-nk-gold"></span>
+      </div>
+      <h2 class="font-display text-[clamp(22px,4vw,34px)] font-black text-nk-brown mb-2.5">
+        Seri <em class="text-nk-gold">Kisah Para Nabi</em>
+      </h2>
+      <div class="font-sans text-[11px] tracking-[.16em] uppercase text-nk-brown/45 mb-1">UNTUK SI KECIL · 25 BUKU · KOLEKSI LENGKAP</div>
+      <p class="font-sans text-sm text-nk-brown/55 max-w-[500px] mx-auto mb-7">
+        Satu seri, 25 kisah Nabi yang menakjubkan. Dirancang premium untuk anak usia 3–6 tahun dengan ilustrasi berkualitas internasional dan narasi penuh kasih sayang.
+      </p>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap gap-2 mb-7 justify-center" id="seri-tabs">
+        {series.map((s, i) => (
+          <button
+            class:list={[
+              'seri-tab px-5 py-2 rounded-full text-[13px] font-medium cursor-pointer border font-sans transition-all duration-200',
+              i === 0 ? 'bg-nk-gold border-nk-gold text-white' : 'border-gold/30 bg-transparent text-nk-brown/55 hover:bg-nk-gold hover:border-nk-gold hover:text-white',
+            ]}
+            data-seri={s.key}
+          >
+            {s.name}
+          </button>
+        ))}
+      </div>
+      <div id="seri-desc" class="font-sans text-sm text-nk-brown/55 text-center max-w-[520px] mx-auto mb-7 leading-[1.7]">
+        {series[0].desc}
+      </div>
+    </div>
+
+    <!-- Series Grid -->
+    <div id="seri-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {series[0].books.map((book, i) => (
+        <div class="seri-card rounded-lg overflow-hidden shadow-nk border border-gold/15 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-nk-heavy">
+          <div class="h-[200px] flex flex-col items-center justify-center p-4 text-center relative" style={`background:${book.bg}`}>
+            <div class="text-[9px] font-bold tracking-[.12em] uppercase text-white/55 font-sans mb-1">NUURKIDS</div>
+            <div class="text-[9px] tracking-wider uppercase text-white/40 font-sans mb-2">SERI KISAH PARA NABI</div>
+            <div class="text-[28px]">{book.ic}</div>
+            <div class="font-display text-xs font-bold text-white/90 mt-2 leading-snug">{book.t}</div>
+            {book.al && <div class="font-arabic text-xs text-gold/70 mt-1" dir="rtl">{book.al}</div>}
+          </div>
+          <div class="px-3.5 py-2.5 bg-white">
+            <div class="text-[9px] text-nk-gold font-bold uppercase tracking-wider font-sans">SERI 1</div>
+            <div class="text-[11px] text-nk-brown mt-0.5 font-display">{book.t}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-9">
+      <a href="/katalog?filter=NUURKIDS" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-nk-gold text-white font-display text-sm font-bold hover:bg-[#b8822a] hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(200,146,42,.3)] transition-all duration-300">
+        Lihat Semua Koleksi NUURKIDS
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTI -->
+<section class="bg-white py-20 border-t border-gold/10">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="text-center mb-9">
+      <div class="font-sans text-[11px] font-semibold tracking-[.18em] uppercase text-nk-gold flex items-center justify-center gap-2.5 mb-3.5">
+        <span class="w-6 h-px bg-nk-gold"></span>
+        Kata Orang Tua
+        <span class="w-6 h-px bg-nk-gold"></span>
+      </div>
+      <h2 class="font-display text-[26px] font-bold text-nk-brown">Mereka yang Merasakan <em class="text-nk-gold">Manfaatnya</em></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[22px]">
+      {[
+        { txt: '"Anak saya usia 4 tahun langsung jatuh cinta! Setiap malam minta dibacakan kisah Nabi. Narasi yang lembut seperti pelukan hangat untuk hati kecilnya."', nm: 'Ummu Syafira Ramadhani', rl: 'Ibu 2 anak, Semarang', av: 'SR' },
+        { txt: '"Ilustrasinya sangat indah. Si kecil betah mendengarkan kisah Nabi Yusuf sampai habis. Alhamdulillah, buku yang benar-benar menerangi hatinya."', nm: 'Bunda Fatimah Al-Anshari', rl: 'Ibu 3 anak, Yogyakarta', av: 'FA' },
+        { txt: '"Kami rekomendasikan NUURKIDS ke semua orang tua di komunitas kami. Buku ini benar-benar menanamkan cinta Islam sejak dini dengan cara yang indah."', nm: 'Ustadzah Maisyarah Zahra', rl: 'Guru TK Islam, Semarang', av: 'MZ' },
+      ].map(t => (
+        <div class="bg-nk-cream rounded-lg p-6 border border-gold/15 relative">
+          <div class="flex gap-[3px] text-nk-gold mb-2.5 text-sm">★★★★★</div>
+          <p class="font-sans text-[13px] text-nk-brown/65 leading-[1.9] italic mb-4">{t.txt}</p>
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-nk-gold flex items-center justify-center font-bold text-xs text-white font-display">{t.av}</div>
+            <div>
+              <div class="text-[13px] font-bold text-nk-brown font-display">{t.nm}</div>
+              <div class="text-[11px] text-nk-brown/45 font-sans">{t.rl}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING — Dark -->
+<section class="bg-nk-night py-20 text-center relative overflow-hidden">
+  <div class="absolute inset-0 iso-pattern-gold-dark"></div>
+  <div class="max-w-[1180px] mx-auto px-7 relative z-10">
+    <div class="mb-6">
+      <div class="font-display text-[clamp(28px,4vw,36px)] font-black leading-none"><span class="text-white/45">NUUR</span><span class="text-nk-gold">KIDS</span></div>
+      <div class="font-sans text-[10px] tracking-[.2em] uppercase text-nk-soft/35 mt-1">ANAK ADALAH AMANAH</div>
+    </div>
+    <div class="font-arabic text-[28px] text-nk-gold/60 block mb-5" dir="rtl">الْأَوْلَادُ أَمَانَةٌ</div>
+    <h2 class="font-display text-[clamp(22px,4vw,36px)] font-black text-nk-soft mb-3.5">
+      Anak adalah amanah terbesar <br class="hidden sm:block"/>yang Allah titipkan kepada kita.
+    </h2>
+    <p class="font-sans text-[15px] text-nk-soft/50 max-w-[480px] mx-auto mb-8 leading-[1.88]">
+      Berikan yang terbaik. Hadirkan NUURKIDS sebagai teman perjalanan si kecil mengenal Islam.
+    </p>
+    <div class="flex justify-center gap-3 flex-wrap">
+      <a href="/katalog?filter=NUURKIDS" class="inline-flex items-center gap-2 px-[26px] py-3 rounded bg-nk-gold text-nk-night font-display text-sm font-bold hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(200,146,42,.35)] transition-all duration-300">Jelajahi Koleksi NUURKIDS</a>
+      <a href="/kontak" class="inline-flex items-center gap-2 px-[26px] py-3 rounded text-nk-soft border-[1.5px] border-nk-soft/30 text-sm font-semibold font-sans hover:bg-nk-soft/5 transition-all duration-300">Hubungi Kami</a>
+    </div>
+  </div>
+</section>
+
+</Base>
+
+<script>
+  import { series } from '../data/series';
+
+  const tabs = document.querySelectorAll('.seri-tab');
+  const descEl = document.getElementById('seri-desc');
+  const gridEl = document.getElementById('seri-grid');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = parseInt(tab.getAttribute('data-seri') || '0');
+      const s = series[idx];
+
+      tabs.forEach(t => {
+        t.classList.remove('bg-nk-gold', 'border-nk-gold', 'text-white');
+        t.classList.add('border-gold/30', 'bg-transparent', 'text-nk-brown/55');
+      });
+      tab.classList.add('bg-nk-gold', 'border-nk-gold', 'text-white');
+      tab.classList.remove('border-gold/30', 'bg-transparent', 'text-nk-brown/55');
+
+      if (descEl) descEl.textContent = s.desc;
+      if (gridEl) {
+        gridEl.innerHTML = s.books.map((b, i) => `
+          <div class="seri-card rounded-lg overflow-hidden shadow-nk border border-gold/15 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-nk-heavy">
+            <div class="h-[200px] flex flex-col items-center justify-center p-4 text-center relative" style="background:${b.bg}">
+              <div class="text-[9px] font-bold tracking-[.12em] uppercase text-white/55 font-sans mb-1">NUURKIDS</div>
+              <div class="text-[9px] tracking-wider uppercase text-white/40 font-sans mb-2">${s.name.toUpperCase()}</div>
+              <div class="text-[28px]">${b.ic}</div>
+              <div class="font-display text-xs font-bold text-white/90 mt-2 leading-snug">${b.t}</div>
+              ${b.al ? `<div class="font-arabic text-xs text-gold/70 mt-1" dir="rtl">${b.al}</div>` : ''}
+            </div>
+            <div class="px-3.5 py-2.5 bg-white">
+              <div class="text-[9px] text-nk-gold font-bold uppercase tracking-wider font-sans">SERI ${idx + 1}</div>
+              <div class="text-[11px] text-nk-brown mt-0.5 font-display">${b.t}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  });
+</script>

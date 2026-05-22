@@ -1,0 +1,108 @@
+---
+interface Props {
+  currentPath: string;
+}
+const { currentPath } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Beranda', id: 'home' },
+  { href: '/tentang', label: 'Tentang', id: 'tentang' },
+  { href: '/katalog', label: 'Katalog', id: 'katalog' },
+  { href: '/layanan', label: 'Layanan', id: 'layanan' },
+  { href: '/kontak', label: 'Kontak', id: 'kontak' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav id="nav" class="sticky top-0 z-[999] bg-white/97 backdrop-blur-md border-b border-surface-2/50 transition-shadow duration-300">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="flex items-center justify-between h-[72px]">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-[42px] h-[42px] bg-emerald rounded-[10px] relative overflow-hidden flex-shrink-0">
+          <div class="absolute w-[22px] h-[22px] border-[2.5px] border-white/80 rounded-[3px] rotate-45 top-1/2 left-1/2 -mt-[11px] -ml-[11px]"></div>
+          <div class="absolute w-[7px] h-[7px] bg-gold rounded-full top-[9px] right-[9px]"></div>
+        </div>
+        <div>
+          <div class="font-display text-[17px] font-bold text-emerald leading-none">Penerbit Quran</div>
+          <div class="text-[10px] text-surface-4 tracking-wider font-sans">penerbitquran.com</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-0.5">
+        {links.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'px-3.5 py-2 rounded-lg text-sm font-medium font-sans transition-all duration-200',
+              isActive(link.href) ? 'text-emerald bg-emerald-pale' : 'text-surface-5 hover:text-emerald hover:bg-emerald-pale',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/nuurkids"
+          class:list={[
+            'flex items-center gap-0.5 px-3.5 py-2 rounded-lg cursor-pointer border transition-all duration-200',
+            isActive('/nuurkids')
+              ? 'border-gold bg-nk-cream'
+              : 'border-gold/30 bg-transparent hover:bg-nk-cream hover:border-gold/50',
+          ]}
+        >
+          <span class="font-display text-sm font-bold text-gray-400 tracking-wide">NUUR</span>
+          <span class="font-display text-sm font-bold text-nk-gold tracking-wide">KIDS</span>
+        </a>
+      </div>
+
+      <!-- Desktop CTA + Mobile Toggle -->
+      <div class="flex items-center gap-2.5">
+        <a href="/penulis" class="hidden md:inline-flex items-center gap-2 px-[18px] py-[9px] rounded bg-emerald text-white text-[13px] font-semibold font-sans hover:bg-emerald-light hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300">
+          Ajukan Naskah
+        </a>
+        <button id="mobile-toggle" class="flex md:hidden flex-col gap-[5px] p-1.5 border-none bg-none cursor-pointer" aria-label="Menu">
+          <span class="w-[22px] h-0.5 bg-surface-5 rounded-sm block"></span>
+          <span class="w-[22px] h-0.5 bg-surface-5 rounded-sm block"></span>
+          <span class="w-[22px] h-0.5 bg-surface-5 rounded-sm block"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-white border-t border-surface-2/50 px-3.5 py-3 flex-col gap-1">
+  {links.map(link => (
+    <a href={link.href} class="block px-3.5 py-2 rounded-lg text-sm font-medium text-surface-5 hover:text-emerald hover:bg-emerald-pale font-sans transition-all duration-200">
+      {link.label}
+    </a>
+  ))}
+  <a href="/nuurkids" class="flex items-center gap-0.5 w-fit mx-0 my-1 px-4 py-3 rounded-lg border border-gold/30 hover:bg-nk-cream">
+    <span class="font-display text-sm font-bold text-gray-400 tracking-wide">NUUR</span>
+    <span class="font-display text-sm font-bold text-nk-gold tracking-wide">KIDS</span>
+  </a>
+  <a href="/penulis" class="block px-3.5 py-2 rounded-lg text-sm font-medium text-surface-5 hover:text-emerald hover:bg-emerald-pale font-sans">
+    Ajukan Naskah
+  </a>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex');
+  });
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (nav) {
+      nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(11,82,51,.1)' : 'none';
+    }
+  });
+</script>

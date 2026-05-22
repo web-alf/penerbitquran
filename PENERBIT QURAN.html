@@ -1,0 +1,1204 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+/* Penerbit Quran — Emerald Corporate */
+--e:#0b5233;--el:#157244;--em:#1d9456;--ep:#e3f2ea;--ed:#062d1c;
+/* Gold */
+--g:#C8922A;--gl:#d9a53e;--gp:#fdf4e0;
+/* NUURKIDS — exact brand PDF */
+--nk-night:#2A1C0A;     /* Makkah Night */
+--nk-green:#2E6B4A;     /* Madinah Green */
+--nk-cream:#FDF8F0;     /* Desert Cream */
+--nk-gold:#C8922A;      /* Nuur Gold */
+--nk-soft:#F5DFA0;      /* Soft Gold */
+--nk-brown:#4A3520;     /* warm brown for light bg text */
+/* Neutrals */
+--w:#fff;--bg:#f9f9f6;--s1:#f4f4f0;--s2:#e8e8e2;--s3:#d0d0c8;--s4:#888880;--s5:#4a4a42;--s6:#222220;
+/* Shadows */
+--sh1:0 2px 12px rgba(11,82,51,.07);--sh2:0 8px 32px rgba(11,82,51,.12);--sh3:0 24px 64px rgba(11,82,51,.18);
+--nsh:0 12px 40px rgba(74,53,32,.18);--nsh2:0 24px 64px rgba(74,53,32,.22);
+/* Fonts */
+--pf:'Playfair Display',Georgia,serif;
+--ps:'DM Sans','Segoe UI',system-ui,sans-serif;
+--pa:'Amiri',Georgia,serif;
+--r:10px;--rl:16px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--ps);background:var(--bg);color:var(--s6);overflow-x:hidden;line-height:1.65}
+h1,h2,h3,h4{font-family:var(--pf);line-height:1.25}
+.c{max-width:1180px;margin:0 auto;padding:0 28px}
+.s{padding:88px 0}.sa{background:var(--s1)}
+.iso{background:url("data:image/svg+xml,%3Csvg width='68' height='68' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230b5233' fill-opacity='.028'%3E%3Cpath d='M34 34L17 17v34l17-17zm0 0L51 17v34L34 34z'/%3E%3C/g%3E%3C/svg%3E")}
+
+/* ── LAYOUT ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(186px,1fr));gap:18px}
+.gbks{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:22px}
+
+/* ── LABEL TAGS ── */
+.lbl{display:inline-block;font-family:var(--ps);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:16px}
+.le{color:var(--em);background:var(--ep)}
+.lg{color:var(--g);background:var(--gp)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:var(--r);font-family:var(--ps);font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .28s cubic-bezier(.4,0,.2,1)}
+.bp{background:var(--e);color:#fff}.bp:hover{background:var(--el);transform:translateY(-2px);box-shadow:var(--sh2)}
+.bo{background:transparent;color:var(--e);border:1.5px solid var(--e)}.bo:hover{background:var(--e);color:#fff;transform:translateY(-2px)}
+.bg2{background:var(--g);color:#160900;font-weight:700}.bg2:hover{background:var(--gl);transform:translateY(-2px)}
+/* NUURKIDS CTA button — light variant (on cream bg) */
+.bnk-light{background:var(--nk-gold);color:#fff;font-family:var(--pf);font-weight:700}.bnk-light:hover{background:#b8822a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,146,42,.3)}
+.bnk-outline{background:transparent;color:var(--nk-brown);border:1.5px solid rgba(74,53,32,.25)}.bnk-outline:hover{background:rgba(74,53,32,.06)}
+/* NUURKIDS CTA — dark variant */
+.bnk-dark{background:var(--nk-gold);color:var(--nk-night);font-family:var(--pf);font-weight:700}.bnk-dark:hover{background:#d9a53e;transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,146,42,.35)}
+.bnk-ghost{background:transparent;color:var(--nk-soft);border:1.5px solid rgba(245,223,160,.3)}.bnk-ghost:hover{background:rgba(245,223,160,.07)}
+.bw{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22)}.bw:hover{background:rgba(255,255,255,.18)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:.5px solid var(--s2);transition:box-shadow .3s}
+.ni{display:flex;align-items:center;justify-content:space-between;height:72px}
+.pqlogo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.pqlogo-ic{width:42px;height:42px;background:var(--e);border-radius:10px;position:relative;overflow:hidden;flex-shrink:0}
+.pqlogo-ic::before{content:'';position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.pqlogo-ic::after{content:'';position:absolute;width:22px;height:22px;border:2.5px solid rgba(255,255,255,.82);border-radius:3px;transform:rotate(45deg);top:50%;left:50%;margin:-11px 0 0 -11px}
+.pqlogo-dot{position:absolute;width:7px;height:7px;background:var(--g);border-radius:50%;top:9px;right:9px}
+.pqlogo-t .ln{font-family:var(--pf);font-size:17px;font-weight:700;color:var(--e);line-height:1}
+.pqlogo-t .ls{font-size:10px;color:var(--s4);letter-spacing:.06em;font-family:var(--ps)}
+.navl{display:flex;align-items:center;gap:1px}
+.nl{padding:8px 13px;border-radius:8px;font-size:14px;font-weight:500;color:var(--s5);cursor:pointer;border:none;background:transparent;font-family:var(--ps);transition:all .2s}
+.nl:hover,.nl.act{color:var(--e);background:var(--ep)}
+/* NUURKIDS nav — "NUUR" gray, "KIDS" gold — light bg version */
+.nk-navbtn{display:flex;align-items:center;gap:1px;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid rgba(200,146,42,.28);background:transparent;transition:all .2s}
+.nk-navbtn:hover{background:var(--nk-cream);border-color:rgba(200,146,42,.5)}
+.nk-navbtn .nuur{font-family:var(--pf);font-size:14px;font-weight:700;color:#888;letter-spacing:.02em}
+.nk-navbtn .kids{font-family:var(--pf);font-size:14px;font-weight:700;color:var(--nk-gold);letter-spacing:.02em}
+.navc{display:flex;align-items:center;gap:10px}
+.mob{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
+.mob span{width:22px;height:2px;background:var(--s5);border-radius:2px;display:block}
+.mm{display:none;background:var(--w);border-top:.5px solid var(--s2);padding:14px;flex-direction:column;gap:4px}
+.mm.op{display:flex}
+
+/* ── PAGES ── */
+.pg{display:none}.pg.on{display:block}
+
+/* ── PAGE HERO ── */
+.phero{background:linear-gradient(148deg,var(--e) 0%,var(--ed) 100%);padding:80px 0 64px;position:relative;overflow:hidden}
+.phero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='.04'%3E%3Cpath d='M40 40L20 20v40l20-20zm0 0l20-20v40L40 40z'/%3E%3C/g%3E%3C/svg%3E")}
+.phc{position:relative;z-index:1;text-align:center}
+.bc{display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.48);margin-bottom:14px;font-family:var(--ps)}
+.bc span{color:rgba(200,146,42,.85);cursor:pointer}
+.phc h1{color:#fff;font-size:clamp(26px,5vw,44px);margin-bottom:10px}
+.phc p{color:rgba(255,255,255,.6);font-size:15px;max-width:500px;margin:0 auto;font-family:var(--ps)}
+
+/* ── HOME HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;overflow:hidden;position:relative;background:linear-gradient(148deg,#f9f9f6 0%,#e2f0e8 44%,#f5ede0 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230b5233' fill-opacity='.03'%3E%3Cpath d='M32 32L16 16v32l16-16zm0 0l16-16v32L32 32z'/%3E%3C/g%3E%3C/svg%3E")}
+.hg{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:72px;min-height:calc(100vh - 72px);padding:100px 0 80px;position:relative;z-index:1}
+.hlab{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:10px;margin-bottom:22px;font-family:var(--ps)}
+.hlab::before{content:'';width:28px;height:1.5px;background:var(--g)}
+.h1big{font-size:clamp(32px,5vw,56px);font-weight:900;color:var(--s6);line-height:1.12;margin-bottom:20px}
+.h1big em{font-style:normal;color:var(--e)}
+.hsub{font-family:var(--ps);font-size:16px;color:var(--s4);max-width:480px;margin-bottom:34px;line-height:1.88}
+.hbtns{display:flex;flex-wrap:wrap;gap:12px}
+.hst{display:flex;gap:36px;margin-top:36px;padding-top:32px;border-top:1px solid var(--s2);flex-wrap:wrap}
+.hstn{font-family:var(--pf);font-size:32px;font-weight:700;color:var(--e);line-height:1}
+.hstl{font-size:12px;color:var(--s4);margin-top:3px;font-family:var(--ps)}
+.bstackw{display:flex;justify-content:center;align-items:center}
+.bstack{display:flex;flex-direction:column;align-items:center;animation:float 5s ease-in-out infinite}
+.bkc{width:195px;border-radius:14px;overflow:hidden;box-shadow:var(--sh3)}
+.bkc:nth-child(1){transform:rotate(-7deg) translateX(-22px);z-index:1}
+.bkc:nth-child(2){transform:rotate(2deg);z-index:3;margin-top:-130px}
+.bkc:nth-child(3){transform:rotate(6deg) translateX(22px);z-index:2;margin-top:-130px}
+.bkci{height:256px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
+.bkct{color:rgba(255,255,255,.92);font-family:var(--pf);font-size:13px;font-weight:700;margin-top:10px;line-height:1.4}
+
+/* STATS BAR */
+.sbar{background:var(--e);padding:52px 0}
+.stg{display:grid;grid-template-columns:repeat(4,1fr)}
+.sti{text-align:center;padding:20px;border-right:.5px solid rgba(255,255,255,.12)}
+.sti:last-child{border-right:none}
+.stinum{font-family:var(--pf);font-size:46px;font-weight:700;color:#fff;line-height:1}
+.stilbl{font-size:13px;color:rgba(255,255,255,.58);margin-top:5px;font-family:var(--ps)}
+
+/* BOOK CARDS */
+.bcard{background:var(--w);border-radius:var(--rl);overflow:hidden;box-shadow:var(--sh1);border:.5px solid var(--s2);cursor:pointer;transition:all .3s}
+.bcard:hover{transform:translateY(-7px);box-shadow:var(--sh3)}
+.bcov{height:236px;display:flex;align-items:center;justify-content:center;padding:14px;position:relative}
+.bbadge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;font-family:var(--ps)}
+.bbs{background:var(--g);color:#160900}.bbn{background:var(--e);color:#fff}
+.bci{width:100%;height:100%;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
+.binf{padding:14px 16px}
+.bcat{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;color:var(--em);font-family:var(--ps)}
+.btit{font-size:13px;font-weight:700;color:var(--s6);line-height:1.42;margin-bottom:4px;font-family:var(--pf)}
+.baut{font-size:11px;color:var(--s4);margin-bottom:10px;font-family:var(--ps)}
+.blink{display:block;text-align:center;padding:8px;background:var(--ep);color:var(--e);border-radius:8px;font-size:12px;font-weight:600;font-family:var(--ps);transition:all .2s}
+.blink:hover{background:var(--e);color:#fff}
+
+/* ═══════════════════════════════════════════════
+   NUURKIDS — LIGHT AESTHETIC (Desert Cream base)
+   Sesuai brand PDF: background #FDF8F0, text #2A1C0A
+   Logo: NUUR gray, KIDS #C8922A
+   ═══════════════════════════════════════════════ */
+.nk-logo{display:inline-flex;align-items:baseline;font-family:var(--pf);font-weight:900;letter-spacing:.04em;line-height:1}
+.nk-logo .nuur{color:#888}
+.nk-logo .kids{color:var(--nk-gold)}
+/* on dark bg */
+.nk-logo-dk .nuur{color:rgba(255,255,255,.5)}
+.nk-logo-dk .kids{color:var(--nk-gold)}
+
+/* ── NUURKIDS HOME SECTION — Light / Cream aesthetic ── */
+.nk-home-sec{background:var(--nk-cream);position:relative;overflow:hidden;padding:100px 0}
+.nk-home-sec::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8922A' fill-opacity='.045'%3E%3Cpath d='M40 40L20 20v40l20-20zm0 0l20-20v40L40 40z'/%3E%3C/g%3E%3C/svg%3E")}
+/* warm glow */
+.nk-home-sec::after{content:'';position:absolute;top:-60px;right:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,.12) 0%,transparent 70%);pointer-events:none}
+.nk-sec-inner{position:relative;z-index:1}
+/* heading group */
+.nk-pre{font-family:var(--ps);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--nk-gold);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.nk-pre::before{content:'';width:24px;height:1px;background:var(--nk-gold)}
+.nk-home-h{font-family:var(--pf);font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--nk-brown);line-height:1.15;margin-bottom:12px}
+.nk-home-h em{font-style:italic;color:var(--nk-gold)}
+.nk-home-sub{font-family:var(--ps);font-size:16px;color:rgba(74,53,32,.62);max-width:520px;line-height:1.9;margin-bottom:0}
+/* tagline box — matches brand PDF style */
+.nk-tagline-box{display:inline-block;margin:20px 0;padding:14px 24px;border:1px solid rgba(200,146,42,.3);border-radius:var(--r);background:rgba(200,146,42,.04)}
+.nk-tagline-box .tl-main{font-family:var(--pf);font-size:18px;font-weight:900;color:var(--nk-gold);display:block;letter-spacing:.03em}
+.nk-tagline-box .tl-arab{font-family:var(--pa);font-size:15px;color:rgba(200,146,42,.55);direction:rtl;display:block;margin-top:4px;font-style:italic}
+/* book cards on cream */
+.nk-bcard-light{background:var(--w);border-radius:14px;overflow:hidden;box-shadow:var(--nsh);border:.5px solid rgba(200,146,42,.15);cursor:pointer;transition:all .3s}
+.nk-bcard-light:hover{transform:translateY(-8px);box-shadow:var(--nsh2)}
+.nk-bc-top{padding:14px 14px 0}
+.nk-bc-label{font-family:var(--ps);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--nk-gold);margin-bottom:4px}
+.nk-bc-seri{font-family:var(--ps);font-size:9px;color:rgba(74,53,32,.45);text-transform:uppercase;letter-spacing:.08em}
+.nk-bc-cover{height:168px;margin:10px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
+.nk-bc-title{font-family:var(--pf);font-size:12px;font-weight:700;color:rgba(255,255,255,.92);margin-top:8px;line-height:1.4}
+.nk-bc-foot{padding:10px 14px 14px}
+.nk-bc-ft{font-family:var(--pf);font-size:11px;color:var(--nk-brown);font-weight:600;line-height:1.4}
+.nk-bc-fa{font-family:var(--pa);font-size:12px;color:var(--nk-gold);direction:rtl;margin-top:2px}
+/* series other */
+.nk-seri-other{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.nk-so-card{padding:20px;border:1px solid rgba(200,146,42,.2);border-radius:var(--r);background:rgba(255,255,255,.6)}
+.nk-so-num{font-family:var(--ps);font-size:10px;font-weight:700;color:var(--nk-gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.nk-so-title{font-family:var(--pf);font-size:16px;font-weight:700;color:var(--nk-brown);margin-bottom:6px}
+.nk-so-desc{font-family:var(--ps);font-size:12px;color:rgba(74,53,32,.55);line-height:1.65}
+/* big quote */
+.nk-bquote{text-align:center;margin-top:64px;padding:40px;background:rgba(255,255,255,.55);border-radius:var(--rl);border:1px solid rgba(200,146,42,.18);position:relative}
+.nk-bquote-text{font-family:var(--pf);font-size:clamp(16px,2.5vw,22px);font-style:italic;color:var(--nk-brown);line-height:1.55;margin-bottom:8px}
+.nk-bquote-attr{font-family:var(--ps);font-size:11px;color:var(--nk-gold);text-transform:uppercase;letter-spacing:.14em}
+
+/* ── NUURKIDS PAGE — mixed light/dark ── */
+/* Hero = light (Desert Cream) */
+.nk-page-hero{min-height:100vh;background:var(--nk-cream);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:72px}
+.nk-page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8922A' fill-opacity='.04'%3E%3Cpath d='M40 40L20 20v40l20-20zm0 0l20-20v40L40 40z'/%3E%3C/g%3E%3C/svg%3E")}
+.nk-page-hero::after{content:'';position:absolute;top:-80px;left:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,.09) 0%,transparent 65%);pointer-events:none}
+.nk-phg{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:64px;min-height:calc(100vh - 72px);padding:80px 0;position:relative;z-index:1}
+.nk-ph-h{font-family:var(--pf);font-size:clamp(30px,5.5vw,54px);font-weight:900;color:var(--nk-brown);line-height:1.14;margin-bottom:18px}
+.nk-ph-h em{font-style:italic;color:var(--nk-gold)}
+.nk-ph-p{font-family:var(--ps);font-size:15px;color:rgba(74,53,32,.62);max-width:460px;line-height:1.9;margin-bottom:28px}
+.nk-phstats{display:flex;gap:32px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(200,146,42,.2)}
+.nk-phstn{font-family:var(--pf);font-size:28px;font-weight:700;color:var(--nk-brown);line-height:1}
+.nk-phstl{font-size:11px;color:rgba(74,53,32,.45);margin-top:3px;font-family:var(--ps)}
+/* hero book display — light cards */
+.nk-hbd{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nk-hbcard{border-radius:14px;overflow:hidden;box-shadow:var(--nsh2);cursor:pointer;transition:all .3s;border:.5px solid rgba(200,146,42,.18)}
+.nk-hbcard:hover{transform:translateY(-6px)}
+.nk-hbcov{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;position:relative}
+.nk-hbseri{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.9);color:var(--nk-gold);font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.05em;font-family:var(--ps)}
+.nk-hbtit{font-family:var(--pf);font-size:13px;font-weight:700;color:rgba(255,255,255,.92);margin-top:8px;line-height:1.4}
+.nk-hbfoot{padding:10px 14px;background:var(--w);border-top:1px solid rgba(200,146,42,.1)}
+.nk-hbfcat{font-size:9px;color:var(--nk-gold);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-family:var(--ps)}
+.nk-hbftit{font-size:11px;color:var(--nk-brown);margin-top:2px;font-family:var(--pf)}
+
+/* Philosophy section — warm/dark */
+.nk-philo{background:var(--nk-night);padding:88px 0;position:relative;overflow:hidden}
+.nk-philo::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8922A' fill-opacity='.055'%3E%3Cpath d='M40 40L20 20v40l20-20zm0 0l20-20v40L40 40z'/%3E%3C/g%3E%3C/svg%3E")}
+.nk-philo::after{content:'';position:absolute;top:-60px;right:-60px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,.09) 0%,transparent 68%)}
+.nk-philo-inner{position:relative;z-index:1}
+.nk-phquote{font-family:var(--pf);font-size:clamp(20px,3.5vw,28px);color:var(--nk-soft);line-height:1.52;font-style:italic;padding-left:24px;border-left:3px solid var(--nk-gold)}
+.nk-philo-p{font-family:var(--ps);font-size:14px;color:rgba(245,223,160,.58);line-height:1.92;margin-top:18px}
+.nk-pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.nk-pill{padding:16px;background:rgba(200,146,42,.07);border:1px solid rgba(200,146,42,.14);border-radius:var(--r);text-align:center}
+.nk-pilli{font-size:20px;margin-bottom:6px}
+.nk-pillt{font-size:12px;font-weight:700;color:var(--nk-gold);font-family:var(--pf)}
+.nk-pilld{font-size:11px;color:rgba(245,223,160,.42);margin-top:3px;line-height:1.5;font-family:var(--ps)}
+
+/* Koleksi section — light again */
+.nk-koleksi{background:var(--nk-cream);padding:88px 0;position:relative;overflow:hidden}
+.nk-koleksi::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8922A' fill-opacity='.04'%3E%3Cpath d='M40 40L20 20v40l20-20zm0 0l20-20v40L40 40z'/%3E%3C/g%3E%3C/svg%3E")}
+.nk-koleksi-inner{position:relative;z-index:1}
+.nk-seri-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.nk-sg-card{cursor:pointer;border-radius:var(--rl);overflow:hidden;box-shadow:var(--nsh);border:.5px solid rgba(200,146,42,.15);transition:all .3s}
+.nk-sg-card:hover{transform:translateY(-6px);box-shadow:var(--nsh2)}
+.nk-sg-cov{height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center;position:relative}
+.nk-sg-badge{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.9);color:var(--nk-gold);font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;letter-spacing:.04em;font-family:var(--ps)}
+.nk-sg-title{font-family:var(--pf);font-size:12px;font-weight:700;color:rgba(255,255,255,.92);margin-top:8px;line-height:1.4}
+.nk-sg-foot{padding:10px 14px;background:var(--w)}
+.nk-sg-fc{font-size:9px;color:var(--nk-gold);font-weight:700;text-transform:uppercase;letter-spacing:.09em;font-family:var(--ps)}
+.nk-sg-ft{font-size:11px;color:var(--nk-brown);margin-top:2px;font-family:var(--pf)}
+/* tab buttons */
+.nk-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;justify-content:center}
+.nk-tab{padding:8px 20px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid rgba(200,146,42,.28);background:transparent;color:rgba(74,53,32,.55);font-family:var(--ps);transition:all .2s}
+.nk-tab:hover,.nk-tab.on{background:var(--nk-gold);border-color:var(--nk-gold);color:#fff}
+.nk-tab-desc{font-family:var(--ps);font-size:14px;color:rgba(74,53,32,.55);text-align:center;max-width:520px;margin:0 auto 28px;line-height:1.7}
+
+/* NK Testi — light */
+.nk-testi-sec{background:var(--w);padding:80px 0;border-top:1px solid rgba(200,146,42,.12)}
+.nk-tti{background:var(--nk-cream);border-radius:var(--rl);padding:24px;border:1px solid rgba(200,146,42,.16);position:relative}
+.nk-tti-stars{display:flex;gap:3px;color:var(--nk-gold);margin-bottom:10px;font-size:14px}
+.nk-tti-txt{font-family:var(--ps);font-size:13px;color:rgba(74,53,32,.68);line-height:1.9;font-style:italic;margin-bottom:16px}
+.nk-tti-auth{display:flex;align-items:center;gap:10px}
+.nk-tti-av{width:36px;height:36px;border-radius:50%;background:var(--nk-gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;font-family:var(--pf)}
+.nk-tti-nm{font-size:13px;font-weight:700;color:var(--nk-brown);font-family:var(--pf)}
+.nk-tti-rl{font-size:11px;color:rgba(74,53,32,.45);font-family:var(--ps)}
+
+/* NK Closing dark */
+.nk-closing{background:var(--nk-night);padding:80px 0;text-align:center;position:relative;overflow:hidden}
+.nk-closing::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C8922A' fill-opacity='.055'%3E%3Cpath d='M40 40L20 20v40l20-20zm0 0l20-20v40L40 40z'/%3E%3C/g%3E%3C/svg%3E")}
+.nk-closing-inner{position:relative;z-index:1}
+.nk-closing-arabic{font-family:var(--pa);font-size:28px;color:var(--nk-gold);opacity:.62;direction:rtl;display:block;margin-bottom:20px}
+.nk-closing-h{font-family:var(--pf);font-size:clamp(22px,4vw,36px);font-weight:900;color:var(--nk-soft);margin-bottom:14px}
+.nk-closing-p{font-family:var(--ps);font-size:15px;color:rgba(245,223,160,.52);max-width:480px;margin:0 auto 32px;line-height:1.88}
+
+/* ABOUT */
+.aimg{height:400px;background:linear-gradient(148deg,var(--e),var(--el));border-radius:var(--rl);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.aimg::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='.06'%3E%3Cpath d='M30 30L15 15v30l15-15zm0 0l15-15v30L30 30z'/%3E%3C/g%3E%3C/svg%3E")}
+.abadge{position:absolute;bottom:-18px;right:-18px;background:var(--w);border-radius:var(--rl);padding:18px 22px;box-shadow:var(--sh3);border:.5px solid var(--s2)}
+.vm{display:flex;flex-direction:column;gap:13px;margin-top:20px}
+.vmi{padding:13px 17px;background:var(--s1);border-radius:var(--r);border-left:3px solid var(--e)}
+.vmi h4{font-size:12px;font-weight:700;color:var(--e);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em;font-family:var(--ps)}
+.vmi p{font-size:13px;color:var(--s5);line-height:1.65;font-family:var(--ps)}
+
+/* BRAND STRUCT */
+.bstruct{background:var(--s6);border-radius:var(--rl);padding:26px;margin-top:26px}
+.bsrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.bsic{width:44px;height:44px;background:var(--e);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.bstn{font-size:15px;font-weight:700;color:#fff;font-family:var(--pf)}
+.bsts{font-size:12px;color:rgba(255,255,255,.38);font-family:var(--ps)}
+.bssub{margin-left:58px;display:flex;align-items:center;gap:12px}
+.bssub::before{content:'└';color:rgba(255,255,255,.18);font-size:18px}
+
+/* FEATURES */
+.fcard{padding:26px 22px;background:var(--w);border-radius:var(--rl);border:.5px solid var(--s2);text-align:center;transition:all .3s}
+.fcard:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.fi{width:50px;height:50px;background:var(--ep);border-radius:12px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.ft{font-size:14px;font-weight:700;color:var(--s6);margin-bottom:6px;font-family:var(--pf)}
+.fd{font-size:12px;color:var(--s4);line-height:1.65;font-family:var(--ps)}
+
+/* LEGAL */
+.lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.lcard{background:var(--w);border-radius:var(--rl);padding:22px;border:.5px solid var(--s2);text-align:center}
+.lic{width:48px;height:48px;background:var(--ep);border-radius:10px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.lt2{font-size:11px;font-weight:700;color:var(--s4);text-transform:uppercase;letter-spacing:.07em;font-family:var(--ps);margin-bottom:4px}
+.lv{font-size:13px;color:var(--e);font-weight:600;font-family:var(--ps)}
+.ln2{font-size:11px;color:var(--s4);font-family:var(--ps);margin-top:2px}
+
+/* TESTI */
+.tcard{background:var(--w);border-radius:var(--rl);padding:26px;border:.5px solid var(--s2);position:relative}
+.tcard::before{content:'"';position:absolute;top:12px;right:18px;font-family:var(--pf);font-size:56px;color:var(--ep);line-height:1}
+.tstars{display:flex;gap:3px;color:var(--g);margin-bottom:12px;font-size:14px}
+.ttxt{font-family:var(--ps);font-size:13px;color:var(--s5);line-height:1.88;font-style:italic;margin-bottom:16px}
+.tauth{display:flex;align-items:center;gap:10px}
+.tav{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;flex-shrink:0;font-family:var(--pf)}
+.tnm{font-size:13px;font-weight:700;color:var(--s6);font-family:var(--pf)}
+.trl{font-size:11px;color:var(--s4);font-family:var(--ps)}
+
+/* SERVICE */
+.svc{background:var(--w);border-radius:var(--rl);padding:28px;border:.5px solid var(--s2);position:relative;overflow:hidden;transition:all .3s}
+.svc::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--e)}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
+.svn{font-family:var(--pf);font-size:38px;font-weight:900;color:var(--ep);line-height:1;margin-bottom:10px}
+.svi{font-size:26px;margin-bottom:10px}
+.svt{font-size:16px;font-weight:700;color:var(--s6);margin-bottom:8px;font-family:var(--pf)}
+.svd{font-size:13px;color:var(--s4);line-height:1.72;font-family:var(--ps)}
+
+/* CTA */
+.ctasec{background:linear-gradient(148deg,var(--e) 0%,var(--ed) 100%);padding:80px 0;position:relative;overflow:hidden}
+.ctasec::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='.04'%3E%3Cpath d='M50 50L25 25v50l25-25zm0 0l25-25v50L50 50z'/%3E%3C/g%3E%3C/svg%3E")}
+.ctac{text-align:center;position:relative;z-index:1}
+.ctac h2{font-family:var(--pf);font-size:clamp(22px,4vw,36px);color:#fff;margin-bottom:14px}
+.ctac p{font-family:var(--ps);color:rgba(255,255,255,.6);font-size:15px;max-width:500px;margin:0 auto 32px}
+.ctabtns{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+
+/* FORMS */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fgp{display:flex;flex-direction:column;gap:6px}.fgp.full{grid-column:1/-1}
+.flbl{font-size:13px;font-weight:600;color:var(--s5);font-family:var(--ps)}
+.finp,.fsel,.fta{width:100%;padding:10px 14px;border:1px solid var(--s2);border-radius:var(--r);font-family:var(--ps);font-size:14px;color:var(--s6);background:var(--w);outline:none;transition:border-color .2s}
+.finp:focus,.fsel:focus,.fta:focus{border-color:var(--e);box-shadow:0 0 0 3px rgba(11,82,51,.07)}
+.fta{resize:vertical;min-height:110px}
+
+/* KONTAK */
+.ci{display:flex;gap:14px;align-items:flex-start}
+.cicn{width:44px;height:44px;background:var(--ep);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cilbl{font-size:11px;font-weight:700;color:var(--s4);text-transform:uppercase;letter-spacing:.07em;font-family:var(--ps)}
+.cival{font-size:14px;color:var(--s6);margin-top:2px;line-height:1.55;font-family:var(--ps)}
+
+/* DETAIL */
+.dtg{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start}
+.dtmeta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;padding:16px;background:var(--s1);border-radius:var(--r)}
+.mi .ml{font-size:11px;color:var(--s4);text-transform:uppercase;letter-spacing:.05em;font-family:var(--ps)}
+.mi .mv{font-size:13px;font-weight:600;color:var(--s6);margin-top:2px;font-family:var(--ps)}
+
+/* FOOTER */
+footer{background:var(--s6);color:#fff;padding:64px 0 24px}
+.fogg{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:40px;margin-bottom:48px}
+.fodesc{font-family:var(--ps);font-size:13px;color:rgba(255,255,255,.42);line-height:1.85;margin-top:16px;max-width:280px}
+.fo-nk{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:5px 12px;border:1px solid rgba(200,146,42,.22);border-radius:8px;background:rgba(200,146,42,.08)}
+.foso{display:flex;gap:8px;margin-top:16px}
+.fos{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,.42);cursor:pointer;transition:all .2s}
+.fos:hover{background:var(--em);color:#fff}
+.foh4{font-family:var(--ps);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:18px}
+.foul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foul li span{font-family:var(--ps);font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;transition:color .2s}
+.foul li span:hover{color:rgba(200,146,42,.85)}
+.fobot{border-top:1px solid rgba(255,255,255,.07);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.focr{font-family:var(--ps);font-size:12px;color:rgba(255,255,255,.3)}
+
+/* KATALOG */
+.kfbtns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.kfb{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--s2);background:var(--w);color:var(--s5);font-family:var(--ps);transition:all .2s}
+.kfb:hover,.kfb.on{background:var(--e);border-color:var(--e);color:#fff}
+.kfb-nk{border-color:rgba(200,146,42,.35);color:var(--g)}
+.kfb-nk:hover,.kfb-nk.on{background:var(--nk-night);border-color:var(--nk-night);color:var(--nk-gold)}
+/* NK catalogue card — light version */
+.nkbc-light{background:var(--nk-cream);border:.5px solid rgba(200,146,42,.18)}
+.nkbc-light .bcat{color:var(--nk-gold)}
+.nkbc-light .btit{color:var(--nk-brown)}
+.nkbc-light .baut{color:rgba(74,53,32,.48)}
+.nkbc-light .blink{background:rgba(200,146,42,.12);color:var(--nk-gold)}
+.nkbc-light .blink:hover{background:var(--nk-gold);color:#fff}
+.srch{display:flex;gap:10px;margin-bottom:26px}
+.si2{flex:1;padding:10px 16px;border:1px solid var(--s2);border-radius:var(--r);font-family:var(--ps);font-size:14px;outline:none}
+.si2:focus{border-color:var(--e);box-shadow:0 0 0 3px rgba(11,82,51,.07)}
+.ss2{width:180px;padding:10px 14px;border:1px solid var(--s2);border-radius:var(--r);font-family:var(--ps);font-size:14px;outline:none}
+.pag{display:flex;justify-content:center;gap:8px;margin-top:36px}
+.pb{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--s2);background:var(--w);cursor:pointer;font-size:14px;font-weight:500;font-family:var(--ps)}
+.pb:hover,.pb.on{background:var(--e);border-color:var(--e);color:#fff}
+
+/* MODAL */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.mov.op{opacity:1;pointer-events:all}
+.mod{background:var(--w);border-radius:var(--rl);padding:36px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.94);transition:transform .25s}
+.mov.op .mod{transform:scale(1)}
+.mclose{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:8px;background:var(--s1);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--s5)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.hg,.g2,.nk-phg,.nk-philo .g2,.dtg,.fogg,.nk-hbd{grid-template-columns:1fr}
+.bstackw{display:none}
+.hst{flex-wrap:wrap;gap:16px}
+.stg{grid-template-columns:repeat(2,1fr)}
+.sti{border-right:none;border-bottom:.5px solid rgba(255,255,255,.12)}
+.fg{grid-template-columns:1fr}
+.nk-seri-grid{grid-template-columns:repeat(2,1fr)}
+.nk-seri-other{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+.navl,.navc .btn{display:none}
+.mob{display:flex}
+.stg{grid-template-columns:1fr}
+.fogg{grid-template-columns:1fr 1fr}
+.nk-seri-grid{grid-template-columns:1fr 1fr}
+.nk-pillars{grid-template-columns:1fr 1fr}
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+</style>
+
+<!-- NAV -->
+<nav id="nav">
+<div class="c"><div class="ni">
+  <div class="pqlogo" onclick="G('home')">
+    <div class="pqlogo-ic"><div class="pqlogo-dot"></div></div>
+    <div class="pqlogo-t"><div class="ln">Penerbit Quran</div><div class="ls">penerbitquran.com</div></div>
+  </div>
+  <div class="navl">
+    <button class="nl act" id="n-home" onclick="G('home')">Beranda</button>
+    <button class="nl" id="n-tentang" onclick="G('tentang')">Tentang</button>
+    <button class="nl" id="n-katalog" onclick="G('katalog')">Katalog</button>
+    <button class="nl" id="n-layanan" onclick="G('layanan')">Layanan</button>
+    <button class="nk-navbtn" onclick="G('nuurkids')"><span class="nuur">NUUR</span><span class="kids">KIDS</span></button>
+    <button class="nl" id="n-kontak" onclick="G('kontak')">Kontak</button>
+  </div>
+  <div class="navc">
+    <button class="btn bp" style="padding:9px 18px;font-size:13px" onclick="OM()">Ajukan Naskah</button>
+    <button class="mob" onclick="TM()"><span></span><span></span><span></span></button>
+  </div>
+</div></div>
+</nav>
+<div class="mm" id="mm">
+  <button class="nl" onclick="G('home');TM()">Beranda</button>
+  <button class="nl" onclick="G('tentang');TM()">Tentang Kami</button>
+  <button class="nl" onclick="G('katalog');TM()">Katalog Buku</button>
+  <button class="nl" onclick="G('layanan');TM()">Layanan</button>
+  <button class="nk-navbtn" style="width:fit-content;margin:4px 0;padding:12px 16px;border-radius:8px" onclick="G('nuurkids');TM()"><span class="nuur">NUUR</span><span class="kids">KIDS</span></button>
+  <button class="nl" onclick="G('penulis');TM()">Ajukan Naskah</button>
+  <button class="nl" onclick="G('kontak');TM()">Kontak</button>
+</div>
+
+<!-- ════════ HOME ════════ -->
+<div id="pg-home" class="pg on">
+
+<section class="hero">
+<div class="c"><div class="hg">
+  <div>
+    <div class="hlab">Penerbit Buku Islami Nasional</div>
+    <h1 class="h1big">Menerbitkan Buku yang <em>Menginspirasi</em> dan Mendidik</h1>
+    <p class="hsub">Penerbit profesional untuk buku Islami, pendidikan, Al-Qur'an, dan karya terbaik untuk generasi muslim Indonesia.</p>
+    <div class="hbtns">
+      <button class="btn bp" onclick="G('katalog')">Lihat Katalog</button>
+      <button class="btn bo" onclick="G('tentang')">Tentang Kami</button>
+    </div>
+    <div class="hst">
+      <div><div class="hstn">24+</div><div class="hstl">Judul Diterbitkan</div></div>
+      <div><div class="hstn">12+</div><div class="hstl">Penulis Bergabung</div></div>
+      <div><div class="hstn" style="font-size:22px">2024</div><div class="hstl">Tahun Berdiri</div></div>
+      <div><div class="hstn">15</div><div class="hstl">Kota Distribusi</div></div>
+    </div>
+  </div>
+  <div class="bstackw">
+    <div class="bstack">
+      <div class="bkc"><div class="bkci" style="background:#0b5233"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><polygon points="18,2 21,12 32,12 24,19 27,30 18,23 9,30 12,19 4,12 15,12" fill="rgba(255,255,255,.22)"/></svg><div class="bkct">Panduan Tahfidz Anak</div></div></div>
+      <div class="bkc"><div class="bkci" style="background:#2A1C0A"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="5" y="5" width="26" height="26" fill="none" stroke="rgba(200,146,42,.55)" stroke-width="2" transform="rotate(45 18 18)"/><circle cx="18" cy="18" r="4.5" fill="rgba(200,146,42,.38)"/></svg><div class="bkct" style="color:#F5DFA0">Mengenal Nabi Muhammad ﷺ</div><div style="font-size:9px;color:rgba(200,146,42,.62);margin-top:3px;font-family:var(--ps)">NUURKIDS</div></div></div>
+      <div class="bkc"><div class="bkci" style="background:#1a3a5c"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="18" cy="18" r="6" fill="rgba(255,255,255,.12)"/></svg><div class="bkct">Parenting Islami Era Digital</div></div></div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<div class="sbar"><div class="c"><div class="stg">
+  <div class="sti"><div class="stinum">24<span style="font-size:26px;color:rgba(200,146,42,.75)">+</span></div><div class="stilbl">Judul Diterbitkan</div></div>
+  <div class="sti"><div class="stinum">12<span style="font-size:26px;color:rgba(200,146,42,.75)">+</span></div><div class="stilbl">Penulis Bergabung</div></div>
+  <div class="sti"><div class="stinum" style="font-size:34px">2024</div><div class="stilbl">Tahun Berdiri</div></div>
+  <div class="sti"><div class="stinum">15</div><div class="stilbl">Kota Distribusi</div></div>
+</div></div></div>
+
+<!-- KATALOG UNGGULAN -->
+<section class="s iso">
+<div class="c">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px">
+    <div><span class="lbl le">Katalog Buku</span><h2 style="font-size:clamp(24px,4vw,38px);font-weight:900;color:var(--s6);margin-top:4px">Buku <span style="color:var(--e)">Unggulan</span> Kami</h2></div>
+    <button class="btn bo" onclick="G('katalog')">Lihat Semua Buku</button>
+  </div>
+  <div class="gbks" id="homeBooks"></div>
+</div>
+</section>
+
+<!-- NUURKIDS HOME SECTION — Desert Cream aesthetic, natural & elegant -->
+<section class="nk-home-sec">
+<div class="c nk-sec-inner">
+  <div class="g2" style="gap:64px;margin-bottom:64px">
+    <div>
+      <div class="nk-pre">Islamic Kids Collection</div>
+      <!-- Logo sesuai brand PDF: NUUR gray, KIDS gold -->
+      <div style="margin-bottom:16px">
+        <div style="font-family:var(--pf);font-size:48px;font-weight:900;line-height:.95;letter-spacing:.02em"><span style="color:#888">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></div>
+        <div style="font-family:var(--ps);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(74,53,32,.4);margin-top:6px">ANAK ADALAH AMANAH</div>
+      </div>
+      <h2 class="nk-home-h">Cahaya untuk <em>Generasi Terbaik.</em></h2>
+      <p class="nk-home-sub">Buku premium islami yang hadir sebagai jembatan cinta antara hati kecil anak-anak dan nilai-nilai Islam yang indah.</p>
+      <div class="nk-tagline-box">
+        <span class="tl-main">Anak Adalah Amanah.</span>
+        <span class="tl-arab">الْأَوْلَادُ أَمَانَةٌ</span>
+        <div style="font-family:var(--ps);font-size:11px;color:rgba(74,53,32,.38);font-style:italic;margin-top:3px">Al-awlādu amānah</div>
+      </div>
+      <p style="font-family:var(--ps);font-size:14px;color:rgba(74,53,32,.58);line-height:1.88;max-width:440px;margin-bottom:28px">Yuk kenalkan si kecil dengan Nabi kesayangan kita. Dirancang bersama ahli pendidikan usia dini, setiap buku adalah cahaya yang menerangi tumbuh kembang mereka.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <button class="btn bnk-light" onclick="G('nuurkids')">Jelajahi NUURKIDS</button>
+        <button class="btn bnk-outline" onclick="setKF('NUURKIDS');G('katalog')">Lihat Koleksi</button>
+      </div>
+    </div>
+    <!-- 5 book cards light -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px" id="nkHomeBooks"></div>
+  </div>
+
+  <!-- Other series -->
+  <div class="nk-seri-other">
+    <div class="nk-so-card">
+      <div class="nk-so-num">SERI 2</div>
+      <div class="nk-so-title">Seri Akhlak Mulia</div>
+      <div class="nk-so-desc">Nilai-nilai akhlak Islam: jujur, sabar, dermawan, bersih — dikemas dalam cerita anak yang menggemaskan.</div>
+    </div>
+    <div class="nk-so-card">
+      <div class="nk-so-num">SERI 3</div>
+      <div class="nk-so-title">Seri Ibadah Si Kecil</div>
+      <div class="nk-so-desc">Sholat, puasa, sedekah, doa — dijelaskan dengan bahasa anak 3–6 tahun yang hangat dan visual premium.</div>
+    </div>
+    <div class="nk-so-card">
+      <div class="nk-so-num">SERI 4</div>
+      <div class="nk-so-title">Seri Sahabat Nabi</div>
+      <div class="nk-so-desc">Kisah inspiratif Abu Bakar, Umar, Utsman, Ali — teladan hidup terbaik untuk generasi kecil.</div>
+    </div>
+  </div>
+
+  <div class="nk-bquote">
+    <div style="margin-bottom:16px"><span style="font-family:var(--pf);font-size:22px;font-weight:900"><span style="color:#888">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></span><span style="font-family:var(--ps);font-size:10px;color:rgba(74,53,32,.38);letter-spacing:.18em;text-transform:uppercase;margin-left:12px">ANAK ADALAH AMANAH</span></div>
+    <div class="nk-bquote-text">"Setiap buku yang kamu berikan adalah cahaya yang akan menerangi hidupnya."</div>
+    <div class="nk-bquote-attr">NUURKIDS · Premium · Islami · Anak</div>
+  </div>
+</div>
+</section>
+
+<!-- TENTANG SINGKAT -->
+<section class="s sa">
+<div class="c"><div class="g2">
+  <div class="aimg" style="position:relative">
+    <div style="text-align:center;position:relative;z-index:1;padding:32px">
+      <div style="width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.12);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px">📖</div>
+      <p style="color:rgba(255,255,255,.9);font-family:var(--pf);font-size:17px;font-style:italic;max-width:240px;line-height:1.65">"Iqra' — Bacalah dengan menyebut nama Tuhanmu"</p>
+      <p style="color:rgba(255,255,255,.4);font-size:12px;margin-top:8px;font-family:var(--ps)">Q.S. Al-'Alaq: 1</p>
+    </div>
+    <div class="abadge"><div style="font-family:var(--pf);font-size:26px;font-weight:700;color:var(--e)">2024</div><div style="font-size:11px;color:var(--s4);font-family:var(--ps)">Tahun Berdiri</div></div>
+  </div>
+  <div>
+    <span class="lbl le">Tentang Kami</span>
+    <h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:900;color:var(--s6);margin-bottom:14px">Penerbit dengan <span style="color:var(--e)">Misi Mulia</span></h2>
+    <p style="color:var(--s4);font-size:15px;line-height:1.88;margin-bottom:14px;font-family:var(--ps)">PT Penerbit Quran Indonesia adalah perusahaan penerbitan buku Islami profesional yang berdiri pada 2024 di Semarang, Jawa Tengah. Kami hadir dengan tekad menjadi penerbit terpercaya yang menghadirkan karya-karya berkualitas tinggi untuk umat.</p>
+    <p style="color:var(--s4);font-size:15px;line-height:1.88;margin-bottom:22px;font-family:var(--ps)">Di bawah naungan kami, lahir <span style="font-family:var(--pf);font-weight:700"><span style="color:#888">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></span> — lini buku anak premium islami sebagai cahaya untuk generasi terbaik Indonesia.</p>
+    <div class="vm">
+      <div class="vmi"><h4>Visi</h4><p>Menjadi penerbit buku Islami terdepan yang memberikan manfaat nyata bagi umat dalam meningkatkan literasi dan keimanan.</p></div>
+      <div class="vmi"><h4>Misi</h4><p>Menerbitkan karya berkualitas, mendukung penulis Muslim, dan menyebarkan ilmu bermanfaat ke seluruh nusantara.</p></div>
+    </div>
+    <button class="btn bp" style="margin-top:22px" onclick="G('tentang')">Selengkapnya →</button>
+  </div>
+</div></div>
+</section>
+
+<!-- KEUNGGULAN -->
+<section class="s iso">
+<div class="c">
+  <div style="text-align:center;margin-bottom:44px"><span class="lbl le">Keunggulan</span><h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:900;color:var(--s6)">Mengapa <span style="color:var(--e)">Penerbit Quran?</span></h2></div>
+  <div class="g4">
+    <div class="fcard"><div class="fi">✏️</div><div class="ft">Editing Profesional</div><div class="fd">Tim editor memastikan naskah Anda sempurna sebelum diterbitkan.</div></div>
+    <div class="fcard"><div class="fi">🎨</div><div class="ft">Desain Berkualitas</div><div class="fd">Layout dan cover buku yang estetis sesuai karakter konten.</div></div>
+    <div class="fcard"><div class="fi">🚚</div><div class="ft">Distribusi Nasional</div><div class="fd">Jaringan distribusi ke berbagai kota di seluruh Indonesia.</div></div>
+    <div class="fcard"><div class="fi">🖨️</div><div class="ft">Cetak Premium</div><div class="fd">Percetakan modern menghasilkan buku berkualitas tinggi.</div></div>
+    <div class="fcard"><div class="fi">👥</div><div class="ft">Tim Berpengalaman</div><div class="fd">Didukung tim profesional berpengalaman di dunia penerbitan.</div></div>
+    <div class="fcard" onclick="G('nuurkids')" style="cursor:pointer;background:var(--nk-cream);border-color:rgba(200,146,42,.2)">
+      <div class="fi" style="background:rgba(200,146,42,.1);font-size:18px"><span style="font-family:var(--pf);font-weight:900;font-size:14px"><span style="color:#888">NK</span></span></div>
+      <div class="ft" style="color:var(--nk-brown)">NUURKIDS</div>
+      <div class="fd" style="color:rgba(74,53,32,.5)">Lini buku anak muslim premium berkualitas internasional.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="s sa">
+<div class="c">
+  <div style="text-align:center;margin-bottom:40px"><span class="lbl le">Testimoni</span><h2 style="font-size:clamp(22px,3.5vw,34px);font-weight:900;color:var(--s6)">Apa Kata <span style="color:var(--e)">Mereka</span></h2></div>
+  <div class="g3">
+    <div class="tcard"><div class="tstars">★★★★★</div><p class="ttxt">"Penerbit Quran sangat profesional dan responsif. Proses penerbitan berjalan lancar. Barakallahu fiikum!"</p><div class="tauth"><div class="tav" style="background:var(--e)">AH</div><div><div class="tnm">Ust. Ahmad Hidayat, M.Pd.I</div><div class="trl">Penulis – Buku Tahfidz, Semarang</div></div></div></div>
+    <div class="tcard"><div class="tstars">★★★★★</div><p class="ttxt">"Buku NUURKIDS anak saya langsung suka! Tiap malam minta dibacakan. Narasi yang lembut seperti pelukan hangat."</p><div class="tauth"><div class="tav" style="background:#8b5e3c">RA</div><div><div class="tnm">Ummu Raihana</div><div class="trl">Ibu Rumah Tangga, Semarang</div></div></div></div>
+    <div class="tcard"><div class="tstars">★★★★★</div><p class="ttxt">"Desain cover sangat memuaskan. Tim kreatif penuh dedikasi. Sangat merekomendasikan Penerbit Quran!"</p><div class="tauth"><div class="tav" style="background:#1a6b6b">FA</div><div><div class="tnm">Fatimah Aini, S.Pd</div><div class="trl">Penulis – Parenting Islami</div></div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="ctasec"><div class="c"><div class="ctac">
+  <span class="lbl lg" style="margin-bottom:18px">Untuk Para Penulis</span>
+  <h2>Terbitkan Buku Anda Bersama Penerbit Quran</h2>
+  <p>Miliki karya buku yang profesional, elegan, dan terdistribusi nasional.</p>
+  <div class="ctabtns"><button class="btn bg2" onclick="G('penulis')">Ajukan Naskah Sekarang</button><button class="btn bw" onclick="G('kontak')">Hubungi Kami</button></div>
+</div></div></section>
+
+</div><!-- /home -->
+
+<!-- ════════ NUURKIDS PAGE ════════ -->
+<div id="pg-nuurkids" class="pg">
+
+<!-- HERO — Light Desert Cream -->
+<section class="nk-page-hero">
+<div class="c"><div class="nk-phg">
+  <div>
+    <div class="nk-pre">Premium Islamic Kids Publisher</div>
+    <!-- NUURKIDS logo persis brand PDF -->
+    <div style="margin-bottom:16px">
+      <div style="font-family:var(--pf);font-size:52px;font-weight:900;line-height:.95;letter-spacing:.02em"><span style="color:#888">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></div>
+      <div style="font-family:var(--pa);font-size:16px;color:rgba(200,146,42,.52);direction:rtl;margin-top:6px;font-style:italic">نُـوْر كِـيـدْز</div>
+    </div>
+    <h1 class="nk-ph-h">Cahaya Islam untuk <em>Hati Si Kecil</em></h1>
+    <div style="margin-bottom:20px">
+      <div style="font-family:var(--pf);font-size:20px;font-weight:900;color:var(--nk-gold)">Anak Adalah Amanah.</div>
+      <div style="font-family:var(--pa);font-size:15px;color:rgba(200,146,42,.5);direction:rtl;margin-top:3px">الْأَوْلَادُ أَمَانَةٌ</div>
+    </div>
+    <p class="nk-ph-p">NUURKIDS hadir sebagai sumber cahaya (nuur) yang menerangi perjalanan tumbuh kembang anak-anak Muslim Indonesia. Dirancang bersama ahli pendidikan usia dini, setiap buku adalah jembatan cinta untuk si kecil.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <button class="btn bnk-light" onclick="setKF('NUURKIDS');G('katalog')">Lihat Koleksi Buku</button>
+      <button class="btn bnk-outline" onclick="G('kontak')">Hubungi Kami</button>
+    </div>
+    <div class="nk-phstats">
+      <div><div class="nk-phstn">4</div><div class="nk-phstl">Seri Aktif</div></div>
+      <div><div class="nk-phstn">25</div><div class="nk-phstl">Judul / Seri</div></div>
+      <div><div class="nk-phstn">3–6</div><div class="nk-phstl">Usia Target</div></div>
+      <div><div class="nk-phstn">2025</div><div class="nk-phstl">Cetakan Pertama</div></div>
+    </div>
+  </div>
+  <div><div class="nk-hbd" id="nkHeroBooks"></div></div>
+</div></div>
+</section>
+
+<!-- PHILOSOPHY — Dark -->
+<section class="nk-philo">
+<div class="c nk-philo-inner"><div class="g2" style="gap:56px;align-items:start">
+  <div>
+    <span class="lbl" style="color:var(--nk-gold);background:rgba(200,146,42,.14)">Filosofi Brand</span>
+    <div class="nk-phquote" style="margin-top:16px">"NUURKIDS hadir sebagai sumber cahaya (nuur) yang menerangi perjalanan tumbuh kembang anak-anak Muslim Indonesia. Setiap buku yang kami hadirkan adalah jembatan cinta antara hati kecil anak-anak dan nilai-nilai Islam yang indah."</div>
+    <p class="nk-philo-p">Kata <em style="color:var(--nk-gold)">Nuur</em> berarti cahaya. Sebuah nama yang bukan sekadar merek — ia adalah misi: menghadirkan cahaya dalam setiap tahap tumbuh kembang anak muslim Indonesia.</p>
+    <p class="nk-philo-p" style="margin-top:12px">Anak belajar paling baik ketika merasa dicintai dan aman. Itulah mengapa semua konten NUURKIDS dibalut kasih sayang, narasi yang lembut, dan visual yang hangat.</p>
+    <div style="margin-top:22px;padding:18px;background:rgba(200,146,42,.08);border:1px solid rgba(200,146,42,.16);border-radius:var(--r)">
+      <div style="font-family:var(--ps);font-size:11px;font-weight:700;color:var(--nk-gold);text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px">Dirancang bersama ahli</div>
+      <p style="font-family:var(--ps);font-size:13px;color:rgba(245,223,160,.58);line-height:1.75">Setiap buku dikembangkan bersama ahli pendidikan usia dini, ilustrator premium, dan ulama yang memahami psikologi anak.</p>
+    </div>
+  </div>
+  <div>
+    <div class="nk-pillars">
+      <div class="nk-pill"><div class="nk-pilli">✨</div><div class="nk-pillt">١ Nuur — Cahaya</div><div class="nk-pilld">Setiap buku adalah cahaya yang menerangi akal dan hati anak. Konten yang jernih dan bercahaya.</div></div>
+      <div class="nk-pill"><div class="nk-pilli">🤲</div><div class="nk-pillt">٢ Amanah</div><div class="nk-pilld">Anak adalah titipan Allah. Kami hadir membantu orang tua menunaikan amanah mulia ini.</div></div>
+      <div class="nk-pill"><div class="nk-pilli">❤️</div><div class="nk-pillt">٣ Cinta</div><div class="nk-pilld">Semua konten dibalut kasih sayang. Anak belajar paling baik ketika merasa dicintai.</div></div>
+      <div class="nk-pill"><div class="nk-pilli">🏆</div><div class="nk-pillt">٤ Premium</div><div class="nk-pilld">Standar internasional dalam setiap halaman. Anak-anak Indonesia berhak mendapat yang terbaik.</div></div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- KOLEKSI — Light again -->
+<section class="nk-koleksi">
+<div class="c nk-koleksi-inner">
+  <div style="text-align:center;margin-bottom:44px">
+    <div class="nk-pre" style="justify-content:center">Koleksi Premium</div>
+    <h2 style="font-family:var(--pf);font-size:clamp(22px,4vw,34px);font-weight:900;color:var(--nk-brown);margin-bottom:10px">Seri <em style="color:var(--nk-gold)">Kisah Para Nabi</em></h2>
+    <div style="font-family:var(--ps);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(74,53,32,.45);margin-bottom:4px">UNTUK SI KECIL · 25 BUKU · KOLEKSI LENGKAP</div>
+    <p style="font-family:var(--ps);font-size:14px;color:rgba(74,53,32,.55);max-width:500px;margin:0 auto 28px">Satu seri, 25 kisah Nabi yang menakjubkan. Dirancang premium untuk anak usia 3–6 tahun dengan ilustrasi berkualitas internasional dan narasi penuh kasih sayang.</p>
+    <div class="nk-tabs">
+      <button class="nk-tab on" onclick="showSeri(0,this)">Seri Kisah Para Nabi</button>
+      <button class="nk-tab" onclick="showSeri(1,this)">Seri Akhlak Mulia</button>
+      <button class="nk-tab" onclick="showSeri(2,this)">Seri Ibadah Si Kecil</button>
+      <button class="nk-tab" onclick="showSeri(3,this)">Seri Sahabat Nabi</button>
+    </div>
+    <div class="nk-tab-desc" id="seriDesc">Satu seri, 25 kisah Nabi yang menakjubkan. Dirancang premium untuk anak usia 3–6 tahun dengan ilustrasi berkualitas internasional dan narasi penuh kasih sayang.</div>
+  </div>
+  <div class="nk-seri-grid" id="seriGrid"></div>
+  <div style="text-align:center;margin-top:36px">
+    <button class="btn bnk-light" onclick="setKF('NUURKIDS');G('katalog')">Lihat Semua Koleksi NUURKIDS</button>
+  </div>
+</div>
+</section>
+
+<!-- TESTI — on white -->
+<section class="nk-testi-sec">
+<div class="c">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="nk-pre" style="justify-content:center">Kata Orang Tua</div>
+    <h2 style="font-family:var(--pf);font-size:26px;font-weight:700;color:var(--nk-brown)">Mereka yang Merasakan <em style="color:var(--nk-gold)">Manfaatnya</em></h2>
+  </div>
+  <div class="g3">
+    <div class="nk-tti"><div class="nk-tti-stars">★★★★★</div><p class="nk-tti-txt">"Anak saya usia 4 tahun langsung jatuh cinta! Setiap malam minta dibacakan kisah Nabi. Narasi yang lembut seperti pelukan hangat untuk hati kecilnya."</p><div class="nk-tti-auth"><div class="nk-tti-av">SR</div><div><div class="nk-tti-nm">Ummu Syafira Ramadhani</div><div class="nk-tti-rl">Ibu 2 anak, Semarang</div></div></div></div>
+    <div class="nk-tti"><div class="nk-tti-stars">★★★★★</div><p class="nk-tti-txt">"Ilustrasinya sangat indah. Si kecil betah mendengarkan kisah Nabi Yusuf sampai habis. Alhamdulillah, buku yang benar-benar menerangi hatinya."</p><div class="nk-tti-auth"><div class="nk-tti-av">FA</div><div><div class="nk-tti-nm">Bunda Fatimah Al-Anshari</div><div class="nk-tti-rl">Ibu 3 anak, Yogyakarta</div></div></div></div>
+    <div class="nk-tti"><div class="nk-tti-stars">★★★★★</div><p class="nk-tti-txt">"Kami rekomendasikan NUURKIDS ke semua orang tua di komunitas kami. Buku ini benar-benar menanamkan cinta Islam sejak dini dengan cara yang indah."</p><div class="nk-tti-auth"><div class="nk-tti-av">MZ</div><div><div class="nk-tti-nm">Ustadzah Maisyarah Zahra</div><div class="nk-tti-rl">Guru TK Islam, Semarang</div></div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- CLOSING — Dark -->
+<section class="nk-closing">
+<div class="c nk-closing-inner">
+  <div style="margin-bottom:24px">
+    <div style="font-family:var(--pf);font-size:clamp(28px,4vw,36px);font-weight:900;line-height:1"><span style="color:rgba(255,255,255,.45)">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></div>
+    <div style="font-family:var(--ps);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,223,160,.35);margin-top:4px">ANAK ADALAH AMANAH</div>
+  </div>
+  <div class="nk-closing-arabic">الْأَوْلَادُ أَمَانَةٌ</div>
+  <h2 class="nk-closing-h">Anak adalah amanah terbesar <br>yang Allah titipkan kepada kita.</h2>
+  <p class="nk-closing-p">Berikan yang terbaik. Hadirkan NUURKIDS sebagai teman perjalanan si kecil mengenal Islam.</p>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+    <button class="btn bnk-dark" onclick="setKF('NUURKIDS');G('katalog')">Jelajahi Koleksi NUURKIDS</button>
+    <button class="btn bnk-ghost" onclick="G('kontak')">Hubungi Kami</button>
+  </div>
+</div>
+</section>
+
+</div><!-- /nuurkids -->
+
+<!-- ════════ TENTANG ════════ -->
+<div id="pg-tentang" class="pg">
+<div class="phero"><div class="c"><div class="phc">
+  <div class="bc"><span onclick="G('home')">Beranda</span> › Tentang Kami</div>
+  <h1>Tentang PT Penerbit Quran Indonesia</h1>
+  <p>Mengenal lebih dekat perusahaan penerbitan buku Islami profesional kami</p>
+</div></div></div>
+<section class="s"><div class="c"><div class="g2">
+  <div>
+    <span class="lbl le">Profil Perusahaan</span>
+    <h2 style="font-size:clamp(24px,3.5vw,36px);font-weight:900;color:var(--s6);margin-bottom:14px">Lebih dari Sekadar <span style="color:var(--e)">Penerbit Buku</span></h2>
+    <p style="color:var(--s4);font-size:15px;line-height:1.88;margin-bottom:14px;font-family:var(--ps)">PT Penerbit Quran Indonesia adalah perusahaan penerbitan buku Islami profesional yang didirikan pada 2024 di Semarang, Jawa Tengah. Kami hadir dengan tekad menghadirkan karya-karya berkualitas tinggi dan bermakna untuk umat muslim Indonesia.</p>
+    <p style="color:var(--s4);font-size:15px;line-height:1.88;margin-bottom:22px;font-family:var(--ps)">Fokus kami meliputi buku Al-Qur'an, pendidikan Islam, tahfidz, parenting, motivasi, dan buku anak muslim. Di bawah naungan kami, lahir <span style="font-family:var(--pf);font-weight:700"><span style="color:#888">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></span> — cahaya untuk generasi terbaik.</p>
+    <div class="vm">
+      <div class="vmi"><h4>Visi</h4><p>Menjadi penerbit buku Islami terdepan yang memberikan manfaat nyata bagi umat dalam meningkatkan kualitas literasi dan keimanan.</p></div>
+      <div class="vmi"><h4>Misi</h4><p>• Menerbitkan buku-buku Islam berkualitas tinggi<br>• Mendukung dan memberdayakan penulis Muslim Indonesia<br>• Menyebarluaskan ilmu yang bermanfaat secara luas<br>• Menghadirkan konten Islami premium untuk anak melalui NUURKIDS</p></div>
+      <div class="vmi"><h4>Nilai Perusahaan</h4><p>Amanah · Profesional · Berkualitas · Berdampak · Islami</p></div>
+    </div>
+  </div>
+  <div>
+    <div class="aimg" style="position:relative;margin-bottom:24px">
+      <div style="text-align:center;position:relative;z-index:1;padding:32px">
+        <div style="font-size:40px;margin-bottom:14px">🏢</div>
+        <p style="color:rgba(255,255,255,.9);font-family:var(--pf);font-size:18px;font-weight:700">PT Penerbit Quran Indonesia</p>
+        <p style="color:rgba(255,255,255,.48);font-size:13px;margin-top:6px;font-family:var(--ps)">Kota Semarang, Jawa Tengah</p>
+      </div>
+      <div class="abadge"><div style="font-family:var(--pf);font-size:26px;font-weight:700;color:var(--e)">2024</div><div style="font-size:11px;color:var(--s4);font-family:var(--ps)">Tahun Berdiri</div></div>
+    </div>
+    <div class="bstruct">
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.1em;font-family:var(--ps);margin-bottom:18px">Struktur Brand</div>
+      <div class="bsrow">
+        <div class="bsic">📚</div>
+        <div><div class="bstn">PT Penerbit Quran Indonesia</div><div class="bsts">Brand Utama — penerbitquran.com</div></div>
+      </div>
+      <div class="bssub">
+        <div style="width:36px;height:36px;background:var(--nk-gold);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-family:var(--pf);font-size:11px;font-weight:900;color:#fff">NK</span></div>
+        <div><div style="font-family:var(--pf);font-size:14px;font-weight:900"><span style="color:rgba(255,255,255,.48)">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></div><div style="font-size:11px;color:rgba(255,255,255,.32);font-family:var(--ps)">Premium Islamic Kids Product Line</div></div>
+      </div>
+    </div>
+  </div>
+</div></div></section>
+<section class="s sa"><div class="c">
+  <div style="text-align:center;margin-bottom:40px"><span class="lbl le">Data Perusahaan</span><h2 style="font-size:clamp(22px,3.5vw,34px);font-weight:900;color:var(--s6)">Identitas &amp; <span style="color:var(--e)">Legalitas Usaha</span></h2></div>
+  <div class="lgrid">
+    <div class="lcard"><div class="lic">🏛️</div><div class="lt2">Nama Perusahaan</div><div class="lv">PT Penerbit Quran Indonesia</div><div class="ln2">Perseroan Terbatas</div></div>
+    <div class="lcard"><div class="lic">📅</div><div class="lt2">Tahun Pendirian</div><div class="lv">2024</div><div class="ln2">Akta Pendirian Perusahaan</div></div>
+    <div class="lcard"><div class="lic">🏢</div><div class="lt2">Bentuk Usaha</div><div class="lv">Perseroan Terbatas (PT)</div><div class="ln2">Badan Hukum Resmi</div></div>
+    <div class="lcard"><div class="lic">📍</div><div class="lt2">Domisili</div><div class="lv">Kota Semarang</div><div class="ln2">Jawa Tengah 50115</div></div>
+    <div class="lcard"><div class="lic">💼</div><div class="lt2">Bidang Usaha</div><div class="lv">Penerbitan Buku</div><div class="ln2">Penerbitan & Percetakan</div></div>
+    <div class="lcard"><div class="lic">🌐</div><div class="lt2">Website</div><div class="lv">penerbitquran.com</div><div class="ln2">Domain Profesional</div></div>
+    <div class="lcard"><div class="lic">📧</div><div class="lt2">Email Resmi</div><div class="lv" style="font-size:11px;word-break:break-all">penerbitquranindonesia@gmail.com</div><div class="ln2">Kontak Resmi</div></div>
+    <div class="lcard"><div class="lic">📱</div><div class="lt2">WhatsApp</div><div class="lv">0821-3674-1135</div><div class="ln2">Customer Service</div></div>
+  </div>
+  <div style="margin-top:24px;background:var(--e);border-radius:var(--rl);padding:24px 28px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div><div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.08em;font-family:var(--ps);margin-bottom:10px">Alamat Kantor</div><p style="font-family:var(--ps);font-size:13px;color:rgba(255,255,255,.82);line-height:1.72">Jl. Ngablak Indah II No.24A, RT 008/RW 004<br>Kel. Bangetayu Kulon, Kec. Genuk<br>Kota Semarang, Jawa Tengah 50115</p></div>
+      <div><div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.08em;font-family:var(--ps);margin-bottom:10px">Jam Operasional</div><div style="font-family:var(--ps);font-size:13px;color:rgba(255,255,255,.82);line-height:2"><div>Senin – Kamis : 08.00 – 16.00 WIB</div><div>Jumat : 08.00 – 17.00 WIB</div><div>Sabtu : 08.00 – 15.00 WIB</div><div style="color:rgba(255,255,255,.42);font-size:12px;margin-top:3px">Ahad & Hari Libur: Tutup</div></div></div>
+    </div>
+  </div>
+</div></section>
+</div><!-- /tentang -->
+
+<!-- ════════ KATALOG ════════ -->
+<div id="pg-katalog" class="pg">
+<div class="phero"><div class="c"><div class="phc">
+  <div class="bc"><span onclick="G('home')">Beranda</span> › Katalog Buku</div>
+  <h1>Katalog Buku</h1><p>Koleksi terbaik — termasuk seri premium NUURKIDS</p>
+</div></div></div>
+<section class="s"><div class="c">
+  <div class="srch">
+    <input type="text" class="si2" placeholder="Cari judul, penulis, atau kategori..." id="srchEl" oninput="rKat()">
+    <select class="ss2" id="sortEl" onchange="rKat()"><option>Terbaru</option><option>Populer</option><option>A–Z</option></select>
+  </div>
+  <div class="kfbtns" id="kfEl">
+    <button class="kfb on" onclick="setKF('Semua',this)">Semua</button>
+    <button class="kfb" onclick="setKF('Al-Quran',this)">Al-Qur'an</button>
+    <button class="kfb" onclick="setKF('Tahfidz',this)">Tahfidz</button>
+    <button class="kfb" onclick="setKF('Parenting',this)">Parenting</button>
+    <button class="kfb" onclick="setKF('Sirah',this)">Sirah</button>
+    <button class="kfb" onclick="setKF('Motivasi',this)">Motivasi Islami</button>
+    <button class="kfb" onclick="setKF('Fiqih',this)">Fiqih</button>
+    <button class="kfb kfb-nk" onclick="setKF('NUURKIDS',this)">✦ NUURKIDS Collection</button>
+  </div>
+  <div class="gbks" id="katBooks"></div>
+  <div class="pag"><button class="pb on">1</button><button class="pb">2</button><button class="pb">3</button><button class="pb">›</button></div>
+</div></section>
+</div><!-- /katalog -->
+
+<!-- ════════ LAYANAN ════════ -->
+<div id="pg-layanan" class="pg">
+<div class="phero"><div class="c"><div class="phc">
+  <div class="bc"><span onclick="G('home')">Beranda</span> › Layanan</div>
+  <h1>Layanan Penerbitan</h1><p>Solusi lengkap dari naskah hingga buku di tangan pembaca</p>
+</div></div></div>
+<section class="s"><div class="c">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+    <div class="svc"><div class="svn">01</div><div class="svi">📝</div><div class="svt">Penerbitan Buku Lengkap</div><div class="svd">Layanan end-to-end dari naskah, editing, desain, hingga buku siap edar ke seluruh Indonesia.</div></div>
+    <div class="svc"><div class="svn">02</div><div class="svi">✏️</div><div class="svt">Editing Naskah</div><div class="svd">Penyuntingan substantif, copy editing, dan proofreading profesional oleh editor berpengalaman.</div></div>
+    <div class="svc"><div class="svn">03</div><div class="svi">🎨</div><div class="svt">Layout &amp; Desain</div><div class="svd">Desain cover premium dan layout isi yang rapi sesuai standar penerbitan nasional.</div></div>
+    <div class="svc"><div class="svn">04</div><div class="svi">🖨️</div><div class="svt">Cetak Buku</div><div class="svd">Percetakan dengan mesin modern, kertas berkualitas, hasil tajam dan tahan lama.</div></div>
+    <div class="svc"><div class="svn">05</div><div class="svi">🌐</div><div class="svt">Distribusi Buku</div><div class="svd">Distribusi ke toko buku, marketplace, dan lembaga pendidikan Islam se-Indonesia.</div></div>
+    <div class="svc" style="background:var(--nk-cream);border-color:rgba(200,146,42,.2)" onclick="G('nuurkids')">
+      <div class="svn" style="color:rgba(200,146,42,.1)">✦</div><div class="svi">📚</div>
+      <div class="svt" style="color:var(--nk-brown)">Penerbitan NUURKIDS</div>
+      <div class="svd" style="color:rgba(74,53,32,.52)">Layanan khusus penerbitan buku anak muslim premium dengan standar kualitas internasional.</div>
+    </div>
+  </div>
+</div></section>
+<section class="ctasec"><div class="c"><div class="ctac">
+  <h2>Siap Menerbitkan Buku Anda?</h2>
+  <p>Konsultasikan naskah Anda dengan tim kami secara gratis.</p>
+  <div class="ctabtns"><button class="btn bg2" onclick="G('penulis')">Ajukan Naskah</button><button class="btn bw" onclick="G('kontak')">Konsultasi Gratis</button></div>
+</div></div></section>
+</div><!-- /layanan -->
+
+<!-- ════════ PENULIS ════════ -->
+<div id="pg-penulis" class="pg">
+<div class="phero"><div class="c"><div class="phc">
+  <div class="bc"><span onclick="G('home')">Beranda</span> › Ajukan Naskah</div>
+  <h1>Ajukan Naskah Anda</h1><p>Langkah pertama mewujudkan impian menjadi penulis buku profesional</p>
+</div></div></div>
+<section class="s"><div class="c">
+  <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start">
+    <div>
+      <span class="lbl le">Panduan Pengiriman</span>
+      <h2 style="font-size:24px;font-weight:700;margin-bottom:22px;color:var(--s6)">Cara <span style="color:var(--e)">Mengajukan</span></h2>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:14px"><div style="width:30px;height:30px;min-width:30px;background:var(--e);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px">1</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;font-family:var(--pf)">Isi Formulir Online</div><div style="font-size:13px;color:var(--s4);line-height:1.6;font-family:var(--ps)">Lengkapi semua data dengan valid.</div></div></div>
+        <div style="display:flex;gap:14px"><div style="width:30px;height:30px;min-width:30px;background:var(--e);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px">2</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;font-family:var(--pf)">Kirim Naskah via Email</div><div style="font-size:13px;color:var(--s4);line-height:1.6;font-family:var(--ps)">Format .docx/.pdf ke penerbitquranindonesia@gmail.com</div></div></div>
+        <div style="display:flex;gap:14px"><div style="width:30px;height:30px;min-width:30px;background:var(--e);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px">3</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;font-family:var(--pf)">Review Tim Editorial</div><div style="font-size:13px;color:var(--s4);line-height:1.6;font-family:var(--ps)">Tim kami mereview dalam 7–14 hari kerja.</div></div></div>
+        <div style="display:flex;gap:14px"><div style="width:30px;height:30px;min-width:30px;background:var(--e);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px">4</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;font-family:var(--pf)">Penawaran &amp; Kontrak</div><div style="font-size:13px;color:var(--s4);line-height:1.6;font-family:var(--ps)">Negosiasi dan penandatanganan MOU.</div></div></div>
+        <div style="display:flex;gap:14px"><div style="width:30px;height:30px;min-width:30px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#160900;font-weight:700;font-size:12px">5</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;font-family:var(--pf)">Produksi &amp; Terbit!</div><div style="font-size:13px;color:var(--s4);line-height:1.6;font-family:var(--ps)">Buku Anda siap edar ke seluruh Indonesia.</div></div></div>
+      </div>
+      <div style="margin-top:24px;padding:18px;background:var(--ep);border-radius:var(--r);border-left:3px solid var(--e)">
+        <div style="font-size:12px;font-weight:700;color:var(--e);font-family:var(--ps);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Persyaratan Naskah</div>
+        <ul style="font-size:12px;color:var(--s5);line-height:2;padding-left:16px;font-family:var(--ps)"><li>Naskah orisinal, belum pernah diterbitkan</li><li>Min. 80 halaman A5</li><li>Format .docx atau .pdf</li><li>Tema Islami sesuai lini produk kami</li><li>Sertakan sinopsis 1–2 halaman</li></ul>
+      </div>
+    </div>
+    <div style="background:var(--w);border-radius:var(--rl);padding:36px;box-shadow:var(--sh1);border:.5px solid var(--s2)">
+      <h3 style="font-family:var(--pf);font-size:20px;margin-bottom:6px">Formulir Pengajuan Naskah</h3>
+      <p style="font-family:var(--ps);font-size:13px;color:var(--s4);margin-bottom:24px">Email: penerbitquranindonesia@gmail.com · WA: 0821-3674-1135</p>
+      <div class="fg">
+        <div class="fgp"><label class="flbl">Nama Lengkap *</label><input type="text" class="finp" placeholder="Nama Anda"></div>
+        <div class="fgp"><label class="flbl">Email *</label><input type="email" class="finp" placeholder="email@domain.com"></div>
+        <div class="fgp"><label class="flbl">WhatsApp *</label><input type="tel" class="finp" placeholder="0821-xxxx-xxxx"></div>
+        <div class="fgp"><label class="flbl">Kota Domisili</label><input type="text" class="finp" placeholder="Kota Anda"></div>
+        <div class="fgp full"><label class="flbl">Judul Naskah *</label><input type="text" class="finp" placeholder="Judul naskah Anda"></div>
+        <div class="fgp"><label class="flbl">Kategori *</label><select class="fsel"><option>Pilih Kategori</option><option>Al-Qur'an & Tajwid</option><option>Tahfidz</option><option>Parenting Islami</option><option>Sirah & Sejarah</option><option>Fiqih</option><option>Motivasi Islami</option><option>NUURKIDS Series</option></select></div>
+        <div class="fgp"><label class="flbl">Estimasi Halaman</label><input type="number" class="finp" placeholder="contoh: 120"></div>
+        <div class="fgp full"><label class="flbl">Sinopsis Singkat *</label><textarea class="fta" placeholder="Ceritakan isi naskah Anda..."></textarea></div>
+        <div class="fgp full"><label class="flbl">Upload Naskah (opsional)</label><input type="file" class="finp" accept=".pdf,.docx" style="padding:8px"></div>
+      </div>
+      <button class="btn bp" style="width:100%;margin-top:18px;justify-content:center;padding:14px" onclick="alert('Jazakallahu khairan! Formulir terkirim.\n\nEmail: penerbitquranindonesia@gmail.com\nWhatsApp: 0821-3674-1135\n\nBarakallahu fiikum 🌿')">Kirim Pengajuan Naskah</button>
+    </div>
+  </div>
+</div></section>
+</div><!-- /penulis -->
+
+<!-- ════════ KONTAK ════════ -->
+<div id="pg-kontak" class="pg">
+<div class="phero"><div class="c"><div class="phc">
+  <div class="bc"><span onclick="G('home')">Beranda</span> › Kontak</div>
+  <h1>Hubungi Kami</h1><p>PT Penerbit Quran Indonesia — Semarang, Jawa Tengah</p>
+</div></div></div>
+<section class="s"><div class="c">
+  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start">
+    <div>
+      <span class="lbl le">Informasi Kontak</span>
+      <h2 style="font-size:24px;font-weight:700;margin-bottom:20px;color:var(--s6)">Kami <span style="color:var(--e)">Siap Membantu</span></h2>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="ci"><div class="cicn">📍</div><div><div class="cilbl">Alamat Kantor</div><div class="cival">Jl. Ngablak Indah II No.24A, RT 008/RW 004<br>Kel. Bangetayu Kulon, Kec. Genuk<br>Kota Semarang, Jawa Tengah 50115</div></div></div>
+        <div class="ci"><div class="cicn">📧</div><div><div class="cilbl">Email Resmi</div><div class="cival">penerbitquranindonesia@gmail.com</div></div></div>
+        <div class="ci"><div class="cicn">📱</div><div><div class="cilbl">WhatsApp</div><div class="cival">0821-3674-1135</div></div></div>
+        <div class="ci"><div class="cicn">🕐</div><div><div class="cilbl">Jam Operasional</div><div class="cival">Sen–Kam: 08.00–16.00 WIB<br>Jum: 08.00–17.00 WIB<br>Sab: 08.00–15.00 WIB</div></div></div>
+      </div>
+      <div style="height:188px;background:var(--ep);border-radius:var(--rl);display:flex;align-items:center;justify-content:center;margin-top:22px;border:.5px solid var(--s2);position:relative;overflow:hidden">
+        <div style="text-align:center;position:relative;z-index:1"><div style="font-size:28px;margin-bottom:8px">📍</div><div style="font-family:var(--pf);font-size:14px;font-weight:700;color:var(--e)">PT Penerbit Quran Indonesia</div><div style="font-family:var(--ps);font-size:12px;color:var(--s4);margin-top:4px">Kec. Genuk, Kota Semarang 50115</div></div>
+      </div>
+    </div>
+    <div style="background:var(--w);border-radius:var(--rl);padding:36px;box-shadow:var(--sh1);border:.5px solid var(--s2)">
+      <h3 style="font-family:var(--pf);font-size:20px;margin-bottom:6px">Kirim Pesan</h3>
+      <p style="font-family:var(--ps);font-size:13px;color:var(--s4);margin-bottom:24px">Kami merespons dalam 1×24 jam kerja.</p>
+      <div class="fg">
+        <div class="fgp"><label class="flbl">Nama *</label><input type="text" class="finp" placeholder="Nama Anda"></div>
+        <div class="fgp"><label class="flbl">Email *</label><input type="email" class="finp" placeholder="email@domain.com"></div>
+        <div class="fgp full"><label class="flbl">WhatsApp</label><input type="tel" class="finp" placeholder="0821-xxxx-xxxx"></div>
+        <div class="fgp full"><label class="flbl">Subjek *</label><select class="fsel"><option>Pilih Subjek</option><option>Pengajuan Naskah</option><option>Pemesanan Buku</option><option>NUURKIDS Order</option><option>Kerjasama Distribusi</option><option>Pertanyaan Umum</option></select></div>
+        <div class="fgp full"><label class="flbl">Pesan *</label><textarea class="fta" placeholder="Tulis pesan Anda..."></textarea></div>
+      </div>
+      <button class="btn bp" style="width:100%;margin-top:18px;justify-content:center;padding:14px" onclick="alert('Pesan terkirim!\nWA: 0821-3674-1135\nEmail: penerbitquranindonesia@gmail.com\nJazakallahu khairan 🌿')">Kirim Pesan</button>
+      <div style="margin-top:16px;padding:14px;background:var(--ep);border-radius:var(--r);text-align:center">
+        <div style="font-family:var(--ps);font-size:12px;color:var(--s5);margin-bottom:8px">Atau langsung via WhatsApp</div>
+        <button class="btn" style="background:#25d366;color:#fff;justify-content:center;width:100%;font-size:13px;padding:10px" onclick="alert('Mengarahkan ke WhatsApp 0821-3674-1135...')">WhatsApp 0821-3674-1135</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+</div><!-- /kontak -->
+
+<!-- DETAIL PAGE -->
+<div id="pg-detail" class="pg"></div>
+
+<!-- FOOTER -->
+<footer>
+<div class="c">
+  <div class="fogg">
+    <div>
+      <div class="pqlogo" style="cursor:default"><div class="pqlogo-ic"><div class="pqlogo-dot"></div></div><div class="pqlogo-t"><div class="ln" style="color:#fff">Penerbit Quran</div><div class="ls">penerbitquran.com</div></div></div>
+      <p class="fodesc">PT Penerbit Quran Indonesia — penerbit buku Islami profesional di Semarang. Menerbitkan karya yang menginspirasi dan mendidik.</p>
+      <div class="fo-nk"><span style="font-family:var(--pf);font-size:12px;font-weight:900"><span style="color:rgba(255,255,255,.48)">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></span><span style="font-family:var(--ps);font-size:11px;color:rgba(245,223,160,.38)">Sub-brand Premium</span></div>
+      <div class="foso"><div class="fos">ig</div><div class="fos">fb</div><div class="fos">yt</div><div class="fos">wa</div></div>
+    </div>
+    <div><div class="foh4">Navigasi</div><ul class="foul"><li><span onclick="G('home')">Beranda</span></li><li><span onclick="G('tentang')">Tentang Kami</span></li><li><span onclick="G('katalog')">Katalog Buku</span></li><li><span onclick="G('layanan')">Layanan</span></li><li><span onclick="G('penulis')">Ajukan Naskah</span></li><li><span onclick="G('kontak')">Kontak</span></li><li><span onclick="G('nuurkids')"><span style="font-family:var(--pf);font-weight:900"><span style="color:rgba(255,255,255,.45)">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></span></span></li></ul></div>
+    <div><div class="foh4">Kategori Buku</div><ul class="foul"><li><span>Al-Qur'an & Tajwid</span></li><li><span>Tahfidz Anak</span></li><li><span>Parenting Islami</span></li><li><span onclick="setKF('NUURKIDS');G('katalog')"><span style="font-family:var(--pf);font-weight:900"><span style="color:rgba(255,255,255,.45)">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></span> Collection</span></li><li><span>Sirah Nabawiyah</span></li><li><span>Motivasi Islami</span></li></ul></div>
+    <div><div class="foh4">Kontak</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:8px"><span style="font-size:13px;flex-shrink:0">📍</span><span style="font-family:var(--ps);font-size:12px;color:rgba(255,255,255,.42);line-height:1.6">Jl. Ngablak Indah II No.24A, Kec. Genuk, Semarang 50115</span></div>
+        <div style="display:flex;gap:8px"><span style="font-size:13px;flex-shrink:0">📧</span><span style="font-family:var(--ps);font-size:12px;color:rgba(255,255,255,.42)">penerbitquranindonesia@gmail.com</span></div>
+        <div style="display:flex;gap:8px"><span style="font-size:13px;flex-shrink:0">📱</span><span style="font-family:var(--ps);font-size:12px;color:rgba(255,255,255,.42)">0821-3674-1135</span></div>
+        <div style="display:flex;gap:8px"><span style="font-size:13px;flex-shrink:0">🕐</span><span style="font-family:var(--ps);font-size:12px;color:rgba(255,255,255,.42);line-height:1.7">Sen–Kam: 08.00–16.00<br>Jum: 08.00–17.00<br>Sab: 08.00–15.00</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="fobot">
+    <div class="focr">© 2025 PT Penerbit Quran Indonesia. Hak Cipta Dilindungi.</div>
+    <div style="display:flex;gap:16px"><span class="focr" style="cursor:pointer">Kebijakan Privasi</span><span class="focr" style="cursor:pointer">Syarat & Ketentuan</span></div>
+  </div>
+</div>
+</footer>
+
+<!-- MODAL -->
+<div class="mov" id="mOv" onclick="if(event.target===this)CM()">
+<div class="mod">
+  <button class="mclose" onclick="CM()">✕</button>
+  <h3 style="font-family:var(--pf);font-size:20px;margin-bottom:6px">Ajukan Naskah</h3>
+  <p style="font-family:var(--ps);font-size:13px;color:var(--s4);margin-bottom:22px">WA: 0821-3674-1135 · Email: penerbitquranindonesia@gmail.com</p>
+  <div class="fg">
+    <div class="fgp"><label class="flbl">Nama</label><input type="text" class="finp" placeholder="Nama Anda"></div>
+    <div class="fgp"><label class="flbl">WhatsApp</label><input type="tel" class="finp" placeholder="0821-xxxx-xxxx"></div>
+    <div class="fgp full"><label class="flbl">Judul Naskah</label><input type="text" class="finp" placeholder="Judul naskah Anda"></div>
+    <div class="fgp full"><label class="flbl">Kategori</label><select class="fsel"><option>Pilih Kategori</option><option>Al-Qur'an</option><option>Tahfidz</option><option>Parenting</option><option>NUURKIDS Series</option></select></div>
+  </div>
+  <button class="btn bp" style="width:100%;margin-top:16px;justify-content:center" onclick="alert('Terima kasih! WA: 0821-3674-1135\nBarakallahu fiikum! 🌿');CM()">Kirim Pengajuan</button>
+</div>
+</div>
+
+<script>
+const BD=[
+  {id:1,t:"Panduan Lengkap Tahfidz Anak",a:"Ust. Ahmad Fauzi, M.Pd.I",cat:"Tahfidz",y:2024,p:184,badge:"Best Seller",bg:"#0b5233",ic:"🌟",syn:"Panduan komprehensif bagi orang tua dan guru membimbing anak menghafal Al-Qur'an dengan metode menyenangkan dan efektif."},
+  {id:2,t:"Belajar Tajwid itu Mudah",a:"Ustadzah Maryam Sholihah",cat:"Al-Quran",y:2024,p:156,badge:"Terbaru",bg:"#1a3a5c",ic:"📖",syn:"Metode belajar tajwid sistematis yang mudah dipahami anak dan pemula."},
+  {id:3,t:"Parenting Islami Era Digital",a:"Ustadzah Nurul Hidayah, M.Psi",cat:"Parenting",y:2024,p:228,badge:"Best Seller",bg:"#5a2d82",ic:"👨‍👩‍👧‍👦",syn:"Panduan mendidik anak di era digital sesuai nilai-nilai Islam dan membangun karakter muslim kuat."},
+  {id:4,t:"Sirah Nabawiyah Populer",a:"Dr. Hasan Al-Ayyubi, Ph.D",cat:"Sirah",y:2024,p:260,badge:"",bg:"#8b3a0f",ic:"☪️",syn:"Kisah perjalanan Nabi Muhammad ﷺ ditulis dengan pendekatan modern, mudah dipahami semua kalangan."},
+  {id:5,t:"Bangkit dengan Kekuatan Iman",a:"KH. Mahmud Zuhri, Lc.",cat:"Motivasi",y:2024,p:198,badge:"",bg:"#1a6b6b",ic:"💪",syn:"Buku motivasi Islami mengajak pembaca menemukan semangat hidup melalui keimanan yang kuat."},
+  {id:6,t:"Fiqih Praktis Keluarga Muslim",a:"Ust. Ridwan Hakim, M.H.I",cat:"Fiqih",y:2024,p:218,badge:"",bg:"#2c3e50",ic:"📿",syn:"Panduan praktis hukum fiqih kehidupan sehari-hari dengan bahasa mudah dipahami."},
+  // NUURKIDS — exact from brand PDF, light card style
+  {id:7,t:"Aku Cinta Nabi Muhammad ﷺ",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:75,badge:"✦ Baru Terbit",bg:"#4A3520",ic:"☀️",syn:"Kenalkan si kecil dengan Nabi kesayangan kita. Buku premium full color 75 halaman, dirancang khusus untuk anak usia 3–6 tahun dengan ilustrasi berkualitas internasional dan narasi penuh kasih sayang.",nk:true,age:"3–6 tahun",seri:"Seri Kisah Para Nabi",al:"ﷺ"},
+  {id:8,t:"Aku Cinta Nabi Ibrahim ﷺ",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:40,badge:"",bg:"#6b4520",ic:"🔥",syn:"Kisah ketaatan Nabi Ibrahim ﷺ yang mengajarkan keberanian dan keimanan. Narasi hangat penuh kasih sayang untuk si kecil.",nk:true,age:"3–6 tahun",seri:"Seri Kisah Para Nabi",al:"عليه السلام"},
+  {id:9,t:"Aku Cinta Nabi Musa ﷺ",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:40,badge:"",bg:"#1a4a3a",ic:"🌊",syn:"Kisah Nabi Musa penuh keberanian dan keajaiban, disampaikan dengan bahasa anak yang lembut dan penuh kasih.",nk:true,age:"3–6 tahun",seri:"Seri Kisah Para Nabi",al:"عليه السلام"},
+  {id:10,t:"Aku Cinta Nabi Yusuf ﷺ",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:40,badge:"",bg:"#3a2a60",ic:"⭐",syn:"Kisah Nabi Yusuf mengajarkan kesabaran dan kemuliaan akhlak dengan narasi menyentuh hati si kecil.",nk:true,age:"3–6 tahun",seri:"Seri Kisah Para Nabi",al:"عليه السلام"},
+  {id:11,t:"Aku Cinta Nabi Yunus ﷺ",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:40,badge:"",bg:"#1a3a5a",ic:"🐳",syn:"Kisah Nabi Yunus penuh hikmah tentang pertobatan dan kasih sayang Allah, untuk hati si kecil.",nk:true,age:"3–6 tahun",seri:"Seri Kisah Para Nabi",al:"عليه السلام"},
+  {id:12,t:"Akhlak Mulia: Jujur",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:36,badge:"",bg:"#2E6B4A",ic:"🌸",syn:"Belajar tentang kejujuran melalui cerita yang lembut dan ilustrasi premium untuk anak usia dini.",nk:true,age:"3–6 tahun",seri:"Seri Akhlak Mulia",al:""},
+  {id:13,t:"Sholat Si Kecil",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:36,badge:"",bg:"#1a4a2e",ic:"🕌",syn:"Panduan sholat dengan narasi hangat, membuat si kecil mencintai ibadah sejak dini.",nk:true,age:"3–6 tahun",seri:"Seri Ibadah Si Kecil",al:""},
+  {id:14,t:"Abu Bakar As-Shiddiq RA",a:"Tim NUURKIDS",cat:"NUURKIDS",y:2025,p:40,badge:"",bg:"#4a2a0a",ic:"🌙",syn:"Mengenal sahabat Nabi paling mulia melalui kisah penuh keteladanan untuk anak.",nk:true,age:"3–6 tahun",seri:"Seri Sahabat Nabi",al:"رضي الله عنه"}
+];
+
+const SERI=[
+  {key:0,desc:"Satu seri, 25 kisah Nabi yang menakjubkan. Dirancang premium untuk anak usia 3–6 tahun dengan ilustrasi berkualitas internasional dan narasi penuh kasih sayang.",books:[
+    {t:"Aku Cinta Nabi Muhammad ﷺ",bg:"#4A3520",ic:"☀️",al:"ﷺ"},
+    {t:"Aku Cinta Nabi Ibrahim ﷺ",bg:"#6b4520",ic:"🔥",al:"عليه السلام"},
+    {t:"Aku Cinta Nabi Musa ﷺ",bg:"#1a4a3a",ic:"🌊",al:"عليه السلام"},
+    {t:"Aku Cinta Nabi Yusuf ﷺ",bg:"#3a2a60",ic:"⭐",al:"عليه السلام"},
+    {t:"Aku Cinta Nabi Yunus ﷺ",bg:"#1a3a5a",ic:"🐳",al:"عليه السلام"}
+  ]},
+  {key:1,desc:"Seri tentang nilai-nilai akhlak Islam: jujur, sabar, dermawan, bersih — dikemas dalam cerita anak yang menggemaskan.",books:[
+    {t:"Akhlak Mulia: Jujur",bg:"#2E6B4A",ic:"🌸",al:""},
+    {t:"Akhlak Mulia: Sabar",bg:"#3a4a1a",ic:"🌿",al:""},
+    {t:"Akhlak Mulia: Dermawan",bg:"#4a2a3a",ic:"💛",al:""},
+    {t:"Akhlak Mulia: Bersih",bg:"#1a3a4a",ic:"✨",al:""}
+  ]},
+  {key:2,desc:"Sholat, puasa, sedekah, doa — dijelaskan dengan bahasa anak 3–6 tahun yang hangat, visual premium, dan sangat menyenangkan.",books:[
+    {t:"Sholat Si Kecil",bg:"#1a4a2e",ic:"🕌",al:""},
+    {t:"Puasa Si Kecil",bg:"#2a1a4a",ic:"🌙",al:""},
+    {t:"Sedekah Si Kecil",bg:"#4a2a00",ic:"💛",al:""},
+    {t:"Doa Si Kecil",bg:"#0a2a3a",ic:"🤲",al:""}
+  ]},
+  {key:3,desc:"Kisah inspiratif Abu Bakar, Umar, Utsman, Ali, dan sahabat-sahabat mulia lainnya — teladan hidup terbaik untuk generasi kecil.",books:[
+    {t:"Abu Bakar As-Shiddiq RA",bg:"#4a2a0a",ic:"🌙",al:"رضي الله عنه"},
+    {t:"Umar bin Khattab RA",bg:"#2a3a0a",ic:"⚔️",al:"رضي الله عنه"},
+    {t:"Utsman bin Affan RA",bg:"#1a1a3a",ic:"📜",al:"رضي الله عنه"},
+    {t:"Ali bin Abi Thalib RA",bg:"#0a3a1a",ic:"🌿",al:"رضي الله عنه"}
+  ]}
+];
+
+let cF='Semua';
+
+// Light NUURKIDS card (cream aesthetic, like brand PDF)
+function mkCard(b){
+  if(b.nk) return mkNKCard(b);
+  return`<div class="bcard" onclick="showD(${b.id})">
+    <div class="bcov">${b.badge?`<span class="bbadge ${b.badge==='Best Seller'?'bbs':'bbn'}">${b.badge}</span>`:''}
+      <div class="bci" style="background:${b.bg}">
+        <div style="font-size:34px">${b.ic}</div>
+        <div style="color:rgba(255,255,255,.92);font-family:var(--pf);font-size:12px;font-weight:700;margin-top:8px;line-height:1.4">${b.t}</div>
+        <div style="color:rgba(255,255,255,.46);font-size:10px;margin-top:4px;font-family:var(--ps)">${b.a.split(',')[0]}</div>
+      </div>
+    </div>
+    <div class="binf"><div class="bcat">${b.cat}</div><div class="btit">${b.t}</div><div class="baut">${b.a}</div><div class="blink">Lihat Detail →</div></div>
+  </div>`;
+}
+
+function mkNKCard(b){
+  return`<div class="bcard nkbc-light" onclick="showD(${b.id})">
+    <div class="bcov">
+      ${b.badge?`<span class="bbadge bbs" style="background:var(--nk-gold);color:#fff;font-size:9px">${b.badge}</span>`:''}
+      <div style="width:100%;height:100%;border-radius:10px;background:${b.bg};display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;text-align:center">
+        <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);font-family:var(--ps);margin-bottom:4px">NUURKIDS</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.4);font-family:var(--ps);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">${b.seri}</div>
+        <div style="font-size:32px">${b.ic}</div>
+        <div style="color:rgba(255,255,255,.92);font-family:var(--pf);font-size:12px;font-weight:700;margin-top:8px;line-height:1.4">${b.t}</div>
+        ${b.al?`<div style="font-family:var(--pa);font-size:12px;color:rgba(200,146,42,.75);margin-top:5px;direction:rtl">${b.al}</div>`:''}
+      </div>
+    </div>
+    <div class="binf"><div class="bcat">${b.seri} · ${b.age}</div><div class="btit" style="color:var(--nk-brown)">${b.t}</div><div class="baut">${b.a}</div><div class="blink">Lihat Detail →</div></div>
+  </div>`;
+}
+
+// Mini card for home NK section (light)
+function mkNKMini(b){
+  return`<div class="nk-bcard-light" onclick="showD(${b.id})">
+    <div class="nk-bc-top"><div class="nk-bc-label">NUURKIDS</div><div class="nk-bc-seri">${b.seri}</div></div>
+    <div class="nk-bc-cover" style="background:${b.bg}">
+      <div style="font-size:28px">${b.ic}</div>
+      <div class="nk-bc-title">${b.t}</div>
+      ${b.al?`<div style="font-family:var(--pa);font-size:11px;color:rgba(200,146,42,.75);margin-top:4px;direction:rtl">${b.al}</div>`:''}
+    </div>
+    <div class="nk-bc-foot"><div class="nk-bc-ft">${b.t}</div></div>
+  </div>`;
+}
+
+// Hero big card (light)
+function mkNKHeroBig(b){
+  return`<div class="nk-hbcard" onclick="showD(${b.id})" style="position:relative">
+    <div class="nk-hbcov" style="background:${b.bg}">
+      <div class="nk-hbseri">${b.seri}</div>
+      <div style="font-size:44px">${b.ic}</div>
+      <div class="nk-hbtit">${b.t}</div>
+      ${b.al?`<div style="font-family:var(--pa);font-size:12px;color:rgba(200,146,42,.7);margin-top:5px;direction:rtl">${b.al}</div>`:''}
+    </div>
+    <div class="nk-hbfoot"><div class="nk-hbfcat">NUURKIDS · ${b.age}</div><div class="nk-hbftit">${b.t}</div></div>
+  </div>`;
+}
+
+// Seri grid card (light)
+function mkSeriCard(s){
+  return`<div class="nk-sg-card" onclick="setKF('NUURKIDS');G('katalog')">
+    <div class="nk-sg-cov" style="background:${s.bg}">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);font-family:var(--ps);margin-bottom:4px">NUURKIDS</div>
+      <div style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);font-family:var(--ps);margin-bottom:8px">SERI KISAH PARA NABI</div>
+      <div style="font-size:28px">${s.ic}</div>
+      <div class="nk-sg-title">${s.t}</div>
+      ${s.al?`<div style="font-family:var(--pa);font-size:12px;color:rgba(200,146,42,.7);margin-top:4px;direction:rtl">${s.al}</div>`:''}
+    </div>
+    <div class="nk-sg-foot"><div class="nk-sg-fc">${s.seri||'NUURKIDS'}</div><div class="nk-sg-ft">${s.t}</div></div>
+  </div>`;
+}
+
+function rHome(){const el=document.getElementById('homeBooks');if(el)el.innerHTML=BD.filter(b=>!b.nk).slice(0,8).map(mkCard).join('')}
+function rNKHome(){const el=document.getElementById('nkHomeBooks');if(el)el.innerHTML=BD.filter(b=>b.nk).slice(0,5).map(mkNKMini).join('')}
+function rNKHero(){const el=document.getElementById('nkHeroBooks');if(el)el.innerHTML=BD.filter(b=>b.nk).slice(0,4).map(mkNKHeroBig).join('')}
+
+function showSeri(idx,el){
+  document.querySelectorAll('.nk-tab').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  const s=SERI[idx];
+  document.getElementById('seriDesc').textContent=s.desc;
+  const g=document.getElementById('seriGrid');
+  if(g)g.innerHTML=s.books.map(b=>mkSeriCard({...b,seri:'SERI '+(idx+1)})).join('');
+}
+
+function rKat(){
+  const q=(document.getElementById('srchEl')||{}).value?.toLowerCase()||'';
+  const el=document.getElementById('katBooks');if(!el)return;
+  const f=BD.filter(b=>{
+    const mf=cF==='Semua'||b.cat===cF;
+    const ms=!q||b.t.toLowerCase().includes(q)||b.a.toLowerCase().includes(q)||b.cat.toLowerCase().includes(q);
+    return mf&&ms;
+  });
+  el.innerHTML=f.length?f.map(mkCard).join(''):`<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--s4)"><div style="font-size:36px;margin-bottom:12px">📚</div><div style="font-family:var(--pf);font-size:18px">Tidak ada buku ditemukan.</div></div>`;
+}
+
+function setKF(cat,el){
+  cF=cat;
+  if(el){document.querySelectorAll('.kfb').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+  else{const btn=[...document.querySelectorAll('.kfb')].find(b=>(cat==='Semua'&&b.textContent.trim()==='Semua')||(b.textContent.includes('NUURKIDS')&&cat==='NUURKIDS'));if(btn){document.querySelectorAll('.kfb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}}
+  rKat();
+}
+
+function showD(id){
+  const b=BD.find(x=>x.id===id);if(!b)return;
+  const rel=BD.filter(x=>x.id!==id&&x.cat===b.cat).slice(0,4);
+  const isNK=b.nk;
+  const heroStyle=isNK?`background:var(--nk-cream);padding:80px 0 64px;`:'';
+  document.getElementById('pg-detail').innerHTML=`
+    <div class="${isNK?'':'phero'}" style="${isNK?heroStyle:''}">
+      ${isNK?`<div class="c"><div class="phc" style="text-align:left">
+        <div class="bc" style="justify-content:flex-start"><span onclick="G('home')" style="color:rgba(74,53,32,.45)">Beranda</span><span style="color:rgba(74,53,32,.3)">›</span><span onclick="G('katalog')" style="color:var(--nk-gold);cursor:pointer">Katalog</span></div>
+        <h1 style="color:var(--nk-brown);font-size:clamp(22px,4vw,36px)">${b.t}</h1>
+        ${b.al?`<div style="font-family:var(--pa);font-size:18px;color:var(--nk-gold);direction:rtl;margin-top:8px">${b.al}</div>`:''}
+      </div></div>`:`<div class="c"><div class="phc">
+        <div class="bc"><span onclick="G('home')">Beranda</span> › <span onclick="G('katalog')">Katalog</span></div>
+        <h1>${b.t}</h1>
+      </div></div>`}
+    </div>
+    <section class="s" style="${isNK?'background:var(--nk-cream);':''}">
+      <div class="c">
+        <div class="dtg">
+          <div>
+            <div style="border-radius:var(--rl);overflow:hidden;border:.5px solid ${isNK?'rgba(200,146,42,.18)':'var(--s2)'}">
+              <div style="height:336px;background:${b.bg};display:flex;align-items:center;justify-content:center;padding:20px">
+                <div style="text-align:center">
+                  <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.52);font-family:var(--ps);margin-bottom:4px">${isNK?'NUURKIDS':''}</div>
+                  <div style="font-size:9px;color:rgba(255,255,255,.38);font-family:var(--ps);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">${isNK?b.seri:''}</div>
+                  <div style="font-size:52px;margin-bottom:14px">${b.ic}</div>
+                  <div style="color:rgba(255,255,255,.92);font-family:var(--pf);font-size:15px;font-weight:700;line-height:1.4;max-width:160px;margin:0 auto">${b.t}</div>
+                  ${b.al?`<div style="font-family:var(--pa);font-size:14px;color:rgba(200,146,42,.75);margin-top:8px;direction:rtl">${b.al}</div>`:''}
+                  <div style="color:rgba(255,255,255,.42);font-size:11px;margin-top:6px;font-family:var(--ps)">${b.a}</div>
+                </div>
+              </div>
+            </div>
+            ${isNK?`<div style="background:var(--w);border:1px solid rgba(200,146,42,.18);border-radius:var(--r);padding:12px;text-align:center;margin-top:10px"><div style="font-family:var(--pf);font-size:13px;font-weight:900"><span style="color:#888">NUUR</span><span style="color:var(--nk-gold)">KIDS</span></div><div style="font-family:var(--ps);font-size:11px;color:rgba(74,53,32,.52);margin-top:2px">${b.seri} · ${b.age}</div></div>`:''}
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+              <button class="btn ${isNK?'bnk-light':'bp'}" style="justify-content:center" onclick="alert('WA: 0821-3674-1135\nEmail: penerbitquranindonesia@gmail.com')">Hubungi Admin</button>
+              <button class="btn" style="justify-content:center;background:transparent;border:1.5px solid ${isNK?'rgba(200,146,42,.35)':'var(--e)'};color:${isNK?'var(--nk-gold)':'var(--e)'};" onclick="alert('Mengunduh katalog PDF...')">Download Katalog</button>
+              <button class="btn" style="background:var(--s1);color:var(--s6);border:1px solid var(--s2);justify-content:center;font-family:var(--ps)" onclick="G('penulis')">Ajukan Kerjasama</button>
+            </div>
+          </div>
+          <div>
+            <span class="lbl ${isNK?'':'le'}" style="${isNK?'color:var(--nk-gold);background:rgba(200,146,42,.1);':''}">
+              ${isNK?`${b.seri} · NUURKIDS`:b.cat}
+            </span>
+            <h1 style="font-family:var(--pf);font-size:clamp(20px,3vw,28px);font-weight:900;margin-bottom:8px;color:${isNK?'var(--nk-brown)':'var(--s6)'}">${b.t}</h1>
+            <p style="font-family:var(--ps);font-size:14px;color:${isNK?'rgba(74,53,32,.52)':'var(--s4)'};margin-bottom:18px">oleh <strong style="color:${isNK?'var(--nk-gold)':'var(--e)'};">${b.a}</strong></p>
+            <div class="dtmeta" style="${isNK?'background:rgba(200,146,42,.07);':''}">
+              <div class="mi"><div class="ml">Tahun Terbit</div><div class="mv" style="${isNK?'color:var(--nk-brown)':''}">${b.y}</div></div>
+              <div class="mi"><div class="ml">Halaman</div><div class="mv" style="${isNK?'color:var(--nk-brown)':''}">${b.p} hlm</div></div>
+              <div class="mi"><div class="ml">Status</div><div class="mv" style="color:var(--em)">✅ Tersedia</div></div>
+              ${isNK?`<div class="mi"><div class="ml">Target Usia</div><div class="mv" style="color:var(--nk-brown)">${b.age}</div></div>`:`<div class="mi"><div class="ml">Kategori</div><div class="mv">${b.cat}</div></div>`}
+            </div>
+            <h2 style="font-family:var(--pf);font-size:18px;font-weight:700;margin-bottom:10px;color:${isNK?'var(--nk-brown)':'var(--s6)'}">Sinopsis</h2>
+            <p style="font-family:var(--ps);font-size:14px;color:${isNK?'rgba(74,53,32,.6)':'var(--s5)'};line-height:1.9">${b.syn}</p>
+            ${isNK?`
+            <div style="margin-top:20px;padding:20px 24px;border-radius:var(--r);border:1px solid rgba(200,146,42,.2);background:rgba(255,255,255,.7)">
+              <div style="font-family:var(--pf);font-size:18px;font-weight:900;color:var(--nk-gold);margin-bottom:6px">Anak Adalah Amanah.</div>
+              <p style="font-family:var(--ps);font-size:13px;color:rgba(74,53,32,.6);line-height:1.75">Dirancang bersama ahli pendidikan usia dini. Setiap kata, setiap ilustrasi, dihadirkan dengan penuh kasih sayang agar si kecil mencintai Islam sejak dini.</p>
+            </div>`:`<div style="margin-top:18px;padding:16px;background:var(--ep);border-radius:var(--r)"><h4 style="font-family:var(--pf);font-size:14px;color:var(--e);margin-bottom:6px">Tentang Penulis</h4><p style="font-family:var(--ps);font-size:13px;color:var(--s5);line-height:1.75">${b.a} adalah penulis berpengalaman di bidang ${b.cat.toLowerCase()} yang aktif berkontribusi dalam literasi Islam Indonesia.</p></div>`}
+          </div>
+        </div>
+        ${rel.length?`<div style="margin-top:56px"><div style="margin-bottom:28px"><span class="lbl le">Rekomendasi</span><h2 style="font-family:var(--pf);font-size:26px;font-weight:700;color:var(--s6)">Buku <span style="color:var(--e)">Terkait</span></h2></div><div class="gbks">${rel.map(mkCard).join('')}</div></div>`:''}
+      </div>
+    </section>`;
+  G('detail');
+}
+
+function G(n){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nl').forEach(l=>l.classList.remove('act'));
+  document.getElementById('pg-'+n)?.classList.add('on');
+  const nb=document.getElementById('n-'+n);if(nb)nb.classList.add('act');
+  if(n==='katalog')rKat();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function OM(){document.getElementById('mOv').classList.add('op')}
+function CM(){document.getElementById('mOv').classList.remove('op')}
+function TM(){document.getElementById('mm').classList.toggle('op')}
+
+rHome();rNKHome();rNKHero();
+showSeri(0,document.querySelector('.nk-tab'));
+rKat();
+window.addEventListener('scroll',()=>{
+  const n=document.getElementById('nav');
+  n.style.boxShadow=window.scrollY>20?'0 2px 20px rgba(11,82,51,.1)':'none';
+});
+</script>

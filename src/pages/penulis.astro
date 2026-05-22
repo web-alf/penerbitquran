@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Base title="Ajukan Naskah — Penerbit Quran Indonesia">
+
+<PageHero
+  title="Ajukan Naskah Anda"
+  subtitle="Langkah pertama mewujudkan impian menjadi penulis buku profesional"
+  breadcrumb="Ajukan Naskah"
+/>
+
+<section class="py-[88px] bg-bg">
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-14">
+
+      <div>
+        <div class="font-sans text-[11px] font-semibold tracking-[.18em] uppercase text-emerald flex items-center gap-2.5 mb-3">
+          <span class="w-6 h-px bg-emerald"></span>
+          Panduan Pengiriman
+        </div>
+        <h2 class="font-display text-[clamp(24px,4vw,34px)] font-black text-surface-6 mb-8">Cara Mengajukan</h2>
+
+        <div class="space-y-5 mb-10">
+          {[
+            { n: '1', color: 'bg-emerald', t: 'Isi Formulir Online', d: 'Lengkapi semua data dengan valid' },
+            { n: '2', color: 'bg-emerald', t: 'Kirim Naskah via Email', d: 'Format .docx/.pdf ke penerbitquranindonesia@gmail.com' },
+            { n: '3', color: 'bg-emerald', t: 'Review Tim Editorial', d: 'Tim kami mereview dalam 7–14 hari kerja' },
+            { n: '4', color: 'bg-emerald', t: 'Penawaran & Kontrak', d: 'Negosiasi dan penandatanganan MOU' },
+            { n: '5', color: 'bg-gold', t: 'Produksi & Terbit!', d: 'Buku Anda siap edar ke seluruh Indonesia' },
+          ].map(s => (
+            <div class="flex items-start gap-4">
+              <div class={`${s.color} text-white w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold font-sans shrink-0`}>{s.n}</div>
+              <div>
+                <div class="font-display text-[15px] font-bold text-surface-6">{s.t}</div>
+                <div class="font-sans text-[13px] text-surface-4 mt-0.5">{s.d}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="bg-emerald-pale rounded border-l-[3px] border-emerald p-5">
+          <div class="font-display text-sm font-bold text-emerald mb-3">Persyaratan Naskah</div>
+          <ul class="space-y-2">
+            {['Naskah orisinal', 'Min. 80 halaman A5', 'Format .docx/.pdf', 'Tema Islami', 'Sertakan sinopsis 1–2 halaman'].map(r => (
+              <li class="flex items-center gap-2.5 font-sans text-[13px] text-surface-5">
+                <svg class="w-4 h-4 text-emerald shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {r}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg p-9 shadow-soft border border-surface-2/50">
+        <h3 class="font-display text-[22px] font-black text-surface-6 mb-1.5">Formulir Pengajuan Naskah</h3>
+        <p class="font-sans text-[13px] text-surface-4 mb-7">Kirim juga naskah ke <a href="mailto:penerbitquranindonesia@gmail.com" class="text-emerald hover:underline">penerbitquranindonesia@gmail.com</a></p>
+
+        <form class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Nama Lengkap</label>
+              <input type="text" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+            </div>
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Email</label>
+              <input type="email" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+            </div>
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">WhatsApp</label>
+              <input type="tel" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+            </div>
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Kota Domisili</label>
+              <input type="text" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Judul Naskah</label>
+            <input type="text" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Kategori</label>
+              <select required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition bg-white">
+                <option value="" disabled selected>Pilih kategori</option>
+                <option>Al-Qur'an & Tajwid</option>
+                <option>Tahfidz</option>
+                <option>Parenting Islami</option>
+                <option>Sirah & Sejarah</option>
+                <option>Fiqih</option>
+                <option>Motivasi Islami</option>
+                <option>NUURKIDS Series</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Estimasi Halaman</label>
+              <input type="number" min="80" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Sinopsis</label>
+            <textarea rows="5" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition resize-y" placeholder="Tuliskan sinopsis naskah Anda (1–2 halaman)"></textarea>
+          </div>
+
+          <div>
+            <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Upload Naskah</label>
+            <div class="w-full p-6 border-2 border-dashed border-surface-2 rounded text-center hover:border-emerald/40 transition cursor-pointer">
+              <svg class="w-8 h-8 text-surface-3 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" /></svg>
+              <div class="font-sans text-sm text-surface-4">Seret file atau <span class="text-emerald font-semibold">klik untuk upload</span></div>
+              <div class="font-sans text-[11px] text-surface-3 mt-1">.docx atau .pdf (maks. 25MB)</div>
+              <input type="file" accept=".docx,.pdf" class="hidden" />
+            </div>
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-emerald text-white font-display text-sm font-bold rounded hover:bg-emerald-light hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300">
+            Kirim Pengajuan Naskah
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</Base>

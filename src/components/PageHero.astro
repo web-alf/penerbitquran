@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  breadcrumb: string;
+}
+
+const { title, subtitle, breadcrumb } = Astro.props;
+---
+
+<div class="bg-gradient-to-br from-emerald to-emerald-dark py-20 pb-16 relative overflow-hidden">
+  <div class="absolute inset-0 iso-pattern-white"></div>
+  <div class="relative z-10 text-center max-w-[1180px] mx-auto px-7">
+    <div class="flex justify-center items-center gap-2 text-[13px] text-white/50 mb-3.5 font-sans">
+      <a href="/" class="text-gold/85 hover:text-gold transition-colors">Beranda</a>
+      <span>›</span>
+      <span>{breadcrumb}</span>
+    </div>
+    <h1 class="text-white text-[clamp(26px,5vw,44px)] font-black mb-2.5">{title}</h1>
+    <p class="text-white/60 text-[15px] max-w-[500px] mx-auto font-sans">{subtitle}</p>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+---
+import Base from '../../layouts/Base.astro';
+import BookCard from '../../components/BookCard.astro';
+import NKBookCard from '../../components/NKBookCard.astro';
+import { books } from '../../data/books';
+import type { Book } from '../../data/books';
+
+export function getStaticPaths() {
+  return books.map(b => ({ params: { id: String(b.id) } }));
+}
+
+const { id } = Astro.params;
+const book = books.find(b => b.id === Number(id))!;
+const isNK = !!book.nk;
+const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(0, 4);
+---
+
+<Base title={`${book.t} — Penerbit Quran`}>
+
+<!-- Hero -->
+{isNK ? (
+  <div class="bg-nk-cream py-20 pb-16">
+    <div class="max-w-[1180px] mx-auto px-7 text-left">
+      <div class="flex items-center gap-2 text-[13px] font-sans mb-3.5">
+        <a href="/" class="text-nk-brown/45 hover:text-nk-brown transition-colors">Beranda</a>
+        <span class="text-nk-brown/30">›</span>
+        <a href="/katalog" class="text-nk-gold hover:text-nk-brown transition-colors cursor-pointer">Katalog</a>
+      </div>
+      <h1 class="text-nk-brown text-[clamp(22px,4vw,36px)] font-black">{book.t}</h1>
+      {book.al && <div class="font-arabic text-lg text-nk-gold mt-2" dir="rtl">{book.al}</div>}
+    </div>
+  </div>
+) : (
+  <div class="bg-gradient-to-br from-emerald to-emerald-dark py-20 pb-16 relative overflow-hidden">
+    <div class="absolute inset-0 iso-pattern-white"></div>
+    <div class="relative z-10 text-center max-w-[1180px] mx-auto px-7">
+      <div class="flex justify-center items-center gap-2 text-[13px] text-white/50 mb-3.5 font-sans">
+        <a href="/" class="text-gold/85 hover:text-gold transition-colors">Beranda</a>
+        <span>›</span>
+        <a href="/katalog" class="text-gold/85 hover:text-gold transition-colors">Katalog</a>
+      </div>
+      <h1 class="text-white text-[clamp(26px,5vw,44px)] font-black mb-2.5">{book.t}</h1>
+    </div>
+  </div>
+)}
+
+<!-- Detail -->
+<section class:list={['py-[88px]', isNK && 'bg-nk-cream']}>
+  <div class="max-w-[1180px] mx-auto px-7">
+    <div class="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 items-start">
+      <!-- Cover -->
+      <div>
+        <div class:list={['rounded-lg overflow-hidden border', isNK ? 'border-gold/20' : 'border-surface-2/50']}>
+          <div class="h-[336px] flex items-center justify-center p-5" style={`background:${book.bg}`}>
+            <div class="text-center">
+              {isNK && <div class="text-[9px] font-bold tracking-[.12em] uppercase text-white/50 font-sans mb-1">NUURKIDS</div>}
+              {isNK && <div class="text-[9px] text-white/40 font-sans tracking-wider uppercase mb-2.5">{book.seri}</div>}
+              <div class="text-[52px] mb-3.5">{book.ic}</div>
+              <div class="text-white/90 font-display text-[15px] font-bold leading-snug max-w-[160px] mx-auto">{book.t}</div>
+              {book.al && <div class="font-arabic text-sm text-gold/75 mt-2" dir="rtl">{book.al}</div>}
+              <div class="text-white/40 text-[11px] mt-1.5 font-sans">{book.a}</div>
+            </div>
+          </div>
+        </div>
+        {isNK && (
+          <div class="bg-white border border-gold/20 rounded p-3 text-center mt-2.5">
+            <div class="font-display text-[13px] font-black"><span class="text-gray-400">NUUR</span><span class="text-nk-gold">KIDS</span></div>
+            <div class="font-sans text-[11px] text-nk-brown/50 mt-0.5">{book.seri} · {book.age}</div>
+          </div>
+        )}
+        <div class="flex flex-col gap-2.5 mt-3.5">
+          <button class:list={['inline-flex items-center justify-center gap-2 px-[26px] py-3 rounded text-sm font-bold transition-all duration-300', isNK ? 'bg-nk-gold text-white font-display hover:bg-[#b8822a]' : 'bg-emerald text-white font-sans hover:bg-emerald-light']} onclick="alert('WA: 0821-3674-1135\nEmail: penerbitquranindonesia@gmail.com')">
+            Hubungi Admin
+          </button>
+          <button class:list={['inline-flex items-center justify-center gap-2 px-[26px] py-3 rounded text-sm font-semibold border-[1.5px] transition-all duration-300', isNK ? 'border-gold/35 text-nk-gold' : 'border-emerald text-emerald']} onclick="alert('Mengunduh katalog PDF...')">
+            Download Katalog
+          </button>
+          <a href="/penulis" class="inline-flex items-center justify-center gap-2 px-[26px] py-3 rounded bg-surface-1 text-surface-6 border border-surface-2 text-sm font-sans hover:bg-surface-2 transition-all duration-300">
+            Ajukan Kerjasama
+          </a>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <span class:list={['inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full mb-4', isNK ? 'text-nk-gold bg-gold/10' : 'text-emerald-medium bg-emerald-pale']}>
+          {isNK ? `${book.seri} · NUURKIDS` : book.cat}
+        </span>
+        <h1 class:list={['font-display text-[clamp(20px,3vw,28px)] font-black mb-2', isNK ? 'text-nk-brown' : 'text-surface-6']}>
+          {book.t}
+        </h1>
+        <p class:list={['font-sans text-sm mb-[18px]', isNK ? 'text-nk-brown/50' : 'text-surface-4']}>
+          oleh <strong class:list={[isNK ? 'text-nk-gold' : 'text-emerald']}>{book.a}</strong>
+        </p>
+
+        <!-- Meta -->
+        <div class:list={['grid grid-cols-2 gap-2.5 my-5 p-4 rounded', isNK ? 'bg-gold/5' : 'bg-surface-1']}>
+          <div><div class="text-[11px] text-surface-4 uppercase tracking-wider font-sans">Tahun Terbit</div><div class:list={['text-[13px] font-semibold mt-0.5 font-sans', isNK ? 'text-nk-brown' : 'text-surface-6']}>{book.y}</div></div>
+          <div><div class="text-[11px] text-surface-4 uppercase tracking-wider font-sans">Halaman</div><div class:list={['text-[13px] font-semibold mt-0.5 font-sans', isNK ? 'text-nk-brown' : 'text-surface-6']}>{book.p} hlm</div></div>
+          <div><div class="text-[11px] text-surface-4 uppercase tracking-wider font-sans">Status</div><div class="text-[13px] font-semibold mt-0.5 font-sans text-emerald-medium">✅ Tersedia</div></div>
+          {isNK ? (
+            <div><div class="text-[11px] text-surface-4 uppercase tracking-wider font-sans">Target Usia</div><div class="text-[13px] font-semibold mt-0.5 font-sans text-nk-brown">{book.age}</div></div>
+          ) : (
+            <div><div class="text-[11px] text-surface-4 uppercase tracking-wider font-sans">Kategori</div><div class="text-[13px] font-semibold mt-0.5 font-sans text-surface-6">{book.cat}</div></div>
+          )}
+        </div>
+
+        <h2 class:list={['font-display text-lg font-bold mb-2.5', isNK ? 'text-nk-brown' : 'text-surface-6']}>Sinopsis</h2>
+        <p class:list={['font-sans text-sm leading-[1.9]', isNK ? 'text-nk-brown/60' : 'text-surface-5']}>{book.syn}</p>
+
+        {isNK ? (
+          <div class="mt-5 p-5 px-6 rounded border border-gold/20 bg-white/70">
+            <div class="font-display text-lg font-black text-nk-gold mb-1.5">Anak Adalah Amanah.</div>
+            <p class="font-sans text-[13px] text-nk-brown/60 leading-[1.75]">Dirancang bersama ahli pendidikan usia dini. Setiap kata, setiap ilustrasi, dihadirkan dengan penuh kasih sayang agar si kecil mencintai Islam sejak dini.</p>
+          </div>
+        ) : (
+          <div class="mt-[18px] p-4 bg-emerald-pale rounded">
+            <h4 class="font-display text-sm text-emerald font-bold mb-1.5">Tentang Penulis</h4>
+            <p class="font-sans text-[13px] text-surface-5 leading-[1.75]">{book.a} adalah penulis berpengalaman di bidang {book.cat.toLowerCase()} yang aktif berkontribusi dalam literasi Islam Indonesia.</p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Related -->
+    {related.length > 0 && (
+      <div class="mt-14">
+        <div class="mb-7">
+          <span class="inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full text-emerald-medium bg-emerald-pale mb-4">Rekomendasi</span>
+          <h2 class="font-display text-[26px] font-bold text-surface-6">Buku <span class="text-emerald">Terkait</span></h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[22px]">
+          {related.map(b => b.nk ? <NKBookCard book={b} variant="catalog" /> : <BookCard book={b} />)}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+</Base>
