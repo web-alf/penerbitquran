@@ -163,7 +163,10 @@ import PageHero from '../components/PageHero.astro';
 </section>
 
 <script>
-  const ENDPOINT = import.meta.env.PUBLIC_SHEET_ENDPOINT;
+  // URL Web App Apps Script. Bukan rahasia (ter-embed di HTML publik), jadi aman
+  // sebagai fallback di repo. Bisa di-override lewat .env PUBLIC_SHEET_ENDPOINT.
+  const ENDPOINT = import.meta.env.PUBLIC_SHEET_ENDPOINT
+    || 'https://script.google.com/macros/s/AKfycbzK3uOv4wIPFWVzLhVhWzK2q1byiRhlChAtyI_kpaU_Bbe_E4YGHIrVbuHwkYL1cy1lHQ/exec';
   const MAX_FILE_BYTES = 8 * 1024 * 1024; // 8 MB
 
   const form = document.getElementById('naskah-form') as HTMLFormElement | null;
