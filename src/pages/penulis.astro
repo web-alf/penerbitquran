@@ -54,77 +54,229 @@ import PageHero from '../components/PageHero.astro';
       </div>
 
       <div class="bg-white rounded-lg p-9 shadow-soft border border-surface-2/50">
-        <h3 class="font-display text-[22px] font-black text-surface-6 mb-1.5">Formulir Pengajuan Naskah</h3>
-        <p class="font-sans text-[13px] text-surface-4 mb-7">Kirim juga naskah ke <a href="mailto:penerbitquranindonesia@gmail.com" class="text-emerald hover:underline">penerbitquranindonesia@gmail.com</a></p>
 
-        <form class="space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Nama Lengkap</label>
-              <input type="text" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
-            </div>
-            <div>
-              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Email</label>
-              <input type="email" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
-            </div>
-            <div>
-              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">WhatsApp</label>
-              <input type="tel" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
-            </div>
-            <div>
-              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Kota Domisili</label>
-              <input type="text" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+        <!-- KARTU SUKSES (tersembunyi sampai submit berhasil) -->
+        <div id="naskah-success" class="hidden text-center py-6">
+          <div class="bg-gradient-to-br from-emerald to-emerald-dark rounded-2xl p-9 relative overflow-hidden">
+            <div class="absolute inset-0 iso-pattern-white"></div>
+            <div class="relative z-10">
+              <div class="mx-auto mb-5 inline-flex items-center justify-center w-[68px] h-[68px] rounded-full bg-gold shadow-medium">
+                <svg class="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              </div>
+              <h3 class="font-display text-white text-[24px] font-black mb-2.5">Jazākallāhu Khairan!</h3>
+              <p class="font-sans text-white/70 text-sm leading-relaxed max-w-[360px] mx-auto mb-1.5">
+                Pengajuan naskah Anda telah kami terima. Tim editorial akan mereview dalam 7–14 hari kerja.
+              </p>
+              <p class="font-sans text-white/45 text-[12px] leading-relaxed max-w-[360px] mx-auto">
+                Jangan lupa kirim file naskah ke
+                <a href="mailto:penerbitquranindonesia@gmail.com" class="text-gold-light hover:text-gold underline">penerbitquranindonesia@gmail.com</a>
+                bila belum terlampir.
+              </p>
             </div>
           </div>
+        </div>
 
-          <div>
-            <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Judul Naskah</label>
-            <input type="text" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
-          </div>
+        <!-- FORM -->
+        <div id="naskah-wrap">
+          <h3 class="font-display text-[22px] font-black text-surface-6 mb-1.5">Formulir Pengajuan Naskah</h3>
+          <p class="font-sans text-[13px] text-surface-4 mb-7">Kirim juga naskah ke <a href="mailto:penerbitquranindonesia@gmail.com" class="text-emerald hover:underline">penerbitquranindonesia@gmail.com</a></p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form id="naskah-form" class="space-y-4" novalidate>
+            <!-- Honeypot anti-spam: harus tetap kosong (disembunyikan dari user) -->
+            <div class="absolute w-px h-px overflow-hidden -left-[9999px]" aria-hidden="true">
+              <label>Jangan isi kolom ini
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Nama Lengkap</label>
+                <input type="text" name="nama" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+              </div>
+              <div>
+                <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Email</label>
+                <input type="email" name="email" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+              </div>
+              <div>
+                <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">WhatsApp</label>
+                <input type="tel" name="whatsapp" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+              </div>
+              <div>
+                <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Kota Domisili</label>
+                <input type="text" name="kota" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+              </div>
+            </div>
+
             <div>
-              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Kategori</label>
-              <select required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition bg-white">
-                <option value="" disabled selected>Pilih kategori</option>
-                <option>Al-Qur'an & Tajwid</option>
-                <option>Tahfidz</option>
-                <option>Parenting Islami</option>
-                <option>Sirah & Sejarah</option>
-                <option>Fiqih</option>
-                <option>Motivasi Islami</option>
-                <option>NUURKIDS Series</option>
-              </select>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Judul Naskah</label>
+              <input type="text" name="judul" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
             </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Kategori</label>
+                <select name="kategori" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition bg-white">
+                  <option value="" disabled selected>Pilih kategori</option>
+                  <option>Al-Qur'an & Tajwid</option>
+                  <option>Tahfidz</option>
+                  <option>Parenting Islami</option>
+                  <option>Sirah & Sejarah</option>
+                  <option>Fiqih</option>
+                  <option>Motivasi Islami</option>
+                  <option>NUURKIDS Series</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Estimasi Halaman</label>
+                <input type="number" name="halaman" min="80" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+              </div>
+            </div>
+
             <div>
-              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Estimasi Halaman</label>
-              <input type="number" min="80" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition" />
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Sinopsis</label>
+              <textarea name="sinopsis" rows="5" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition resize-y" placeholder="Tuliskan sinopsis naskah Anda (1–2 halaman)"></textarea>
             </div>
-          </div>
 
-          <div>
-            <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Sinopsis</label>
-            <textarea rows="5" required class="w-full p-2.5 px-3.5 border border-surface-2 rounded font-sans text-sm focus:border-emerald focus:ring-2 focus:ring-emerald/10 outline-none transition resize-y" placeholder="Tuliskan sinopsis naskah Anda (1–2 halaman)"></textarea>
-          </div>
-
-          <div>
-            <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Upload Naskah</label>
-            <div class="w-full p-6 border-2 border-dashed border-surface-2 rounded text-center hover:border-emerald/40 transition cursor-pointer">
-              <svg class="w-8 h-8 text-surface-3 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" /></svg>
-              <div class="font-sans text-sm text-surface-4">Seret file atau <span class="text-emerald font-semibold">klik untuk upload</span></div>
-              <div class="font-sans text-[11px] text-surface-3 mt-1">.docx atau .pdf (maks. 25MB)</div>
-              <input type="file" accept=".docx,.pdf" class="hidden" />
+            <div>
+              <label class="block font-sans text-[13px] font-semibold text-surface-5 mb-1.5">Upload Naskah <span class="font-normal text-surface-3">(opsional)</span></label>
+              <label for="naskah-file" class="block w-full p-6 border-2 border-dashed border-surface-2 rounded text-center hover:border-emerald/40 transition cursor-pointer">
+                <svg class="w-8 h-8 text-surface-3 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" /></svg>
+                <div id="naskah-file-label" class="font-sans text-sm text-surface-4">Seret file atau <span class="text-emerald font-semibold">klik untuk upload</span></div>
+                <div class="font-sans text-[11px] text-surface-3 mt-1">.docx atau .pdf (maks. 8MB; lebih besar kirim via email)</div>
+                <input id="naskah-file" type="file" name="file" accept=".docx,.pdf,.doc" class="hidden" />
+              </label>
             </div>
-          </div>
 
-          <button type="submit" class="w-full py-3 bg-emerald text-white font-display text-sm font-bold rounded hover:bg-emerald-light hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300">
-            Kirim Pengajuan Naskah
-          </button>
-        </form>
+            <!-- Pesan error inline -->
+            <p id="naskah-error" class="hidden font-sans text-[13px] text-red-600 bg-red-50 border border-red-200 rounded px-3.5 py-2.5"></p>
+
+            <button id="naskah-submit" type="submit" class="w-full py-3 bg-emerald text-white font-display text-sm font-bold rounded hover:bg-emerald-light hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
+              Kirim Pengajuan Naskah
+            </button>
+          </form>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
+
+<script>
+  const ENDPOINT = import.meta.env.PUBLIC_SHEET_ENDPOINT;
+  const MAX_FILE_BYTES = 8 * 1024 * 1024; // 8 MB
+
+  const form = document.getElementById('naskah-form') as HTMLFormElement | null;
+  const wrap = document.getElementById('naskah-wrap');
+  const success = document.getElementById('naskah-success');
+  const errorBox = document.getElementById('naskah-error');
+  const submitBtn = document.getElementById('naskah-submit') as HTMLButtonElement | null;
+  const fileInput = document.getElementById('naskah-file') as HTMLInputElement | null;
+  const fileLabel = document.getElementById('naskah-file-label');
+
+  function showError(msg: string) {
+    if (!errorBox) return;
+    errorBox.textContent = msg;
+    errorBox.classList.remove('hidden');
+  }
+  function clearError() {
+    errorBox?.classList.add('hidden');
+  }
+
+  // Update label saat file dipilih + validasi ukuran
+  fileInput?.addEventListener('change', () => {
+    const f = fileInput.files?.[0];
+    if (!fileLabel) return;
+    if (!f) {
+      fileLabel.innerHTML = 'Seret file atau <span class="text-emerald font-semibold">klik untuk upload</span>';
+      return;
+    }
+    if (f.size > MAX_FILE_BYTES) {
+      fileLabel.innerHTML = '<span class="text-red-600 font-semibold">' + f.name + '</span> — terlalu besar, akan dikirim via email';
+    } else {
+      fileLabel.innerHTML = '<span class="text-emerald font-semibold">' + f.name + '</span> terlampir';
+    }
+  });
+
+  function readFileAsBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(new Error('Gagal membaca file'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (!ENDPOINT) {
+      showError('Pengiriman online belum dikonfigurasi. Mohon kirim naskah Anda via email ke penerbitquranindonesia@gmail.com.');
+      return;
+    }
+
+    const fd = new FormData(form);
+    const payload: Record<string, string> = {
+      nama: String(fd.get('nama') || ''),
+      email: String(fd.get('email') || ''),
+      whatsapp: String(fd.get('whatsapp') || ''),
+      kota: String(fd.get('kota') || ''),
+      judul: String(fd.get('judul') || ''),
+      kategori: String(fd.get('kategori') || ''),
+      halaman: String(fd.get('halaman') || ''),
+      sinopsis: String(fd.get('sinopsis') || ''),
+      website: String(fd.get('website') || ''), // honeypot
+    };
+
+    // Lampirkan file hanya bila ada & ≤ 8MB
+    const file = fileInput?.files?.[0];
+    if (file && file.size <= MAX_FILE_BYTES) {
+      try {
+        payload.fileData = await readFileAsBase64(file);
+        payload.fileName = file.name;
+        payload.fileMime = file.type || 'application/octet-stream';
+      } catch {
+        // Abaikan kegagalan baca file — tetap kirim metadata
+      }
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Mengirim…';
+    }
+
+    try {
+      // Body sebagai text/plain → "simple request", hindari CORS preflight ke Apps Script.
+      // JANGAN ganti ke application/json: Apps Script tidak bisa menjawab preflight OPTIONS,
+      // jadi semua submit akan gagal. Endpoint mem-parse body sebagai JSON via JSON.parse.
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json().catch(() => ({ ok: res.ok }));
+
+      if (result && result.ok) {
+        wrap?.classList.add('hidden');
+        success?.classList.remove('hidden');
+        success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error((result && result.error) || 'Pengiriman gagal');
+      }
+    } catch (err) {
+      showError('Maaf, terjadi kendala saat mengirim. Coba lagi, atau kirim naskah via email ke penerbitquranindonesia@gmail.com.');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Kirim Pengajuan Naskah';
+      }
+    }
+  });
+</script>
 
 </Base>
