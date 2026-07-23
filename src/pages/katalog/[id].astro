@@ -51,16 +51,32 @@ const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(
       <!-- Cover -->
       <div>
         <div class:list={['rounded-lg overflow-hidden border', isNK ? 'border-gold/20' : 'border-surface-2/50']}>
-          <div class="h-[336px] flex items-center justify-center p-5" style={`background:${book.bg}`}>
-            <div class="text-center">
-              {isNK && <div class="text-[9px] font-bold tracking-[.12em] uppercase text-white/50 font-sans mb-1">NUURKIDS</div>}
-              {isNK && <div class="text-[9px] text-white/40 font-sans tracking-wider uppercase mb-2.5">{book.seri}</div>}
-              <div class="text-[52px] mb-3.5">{book.ic}</div>
-              <div class="text-white/90 font-display text-[15px] font-bold leading-snug max-w-[160px] mx-auto">{book.t}</div>
-              {book.al && <div class="font-arabic text-sm text-gold/75 mt-2" dir="rtl">{book.al}</div>}
-              <div class="text-white/40 text-[11px] mt-1.5 font-sans">{book.a}</div>
+          {book.cover ? (
+            <div class="relative overflow-hidden">
+              <img
+                src={book.cover}
+                alt=""
+                aria-hidden="true"
+                class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-50"
+              />
+              <img
+                src={book.cover}
+                alt={`Sampul buku ${book.t}`}
+                class="relative w-full object-contain p-3 drop-shadow-xl"
+              />
             </div>
-          </div>
+          ) : (
+            <div class="h-[336px] flex items-center justify-center p-5" style={`background:${book.bg}`}>
+              <div class="text-center">
+                {isNK && <div class="text-[9px] font-bold tracking-[.12em] uppercase text-white/50 font-sans mb-1">NUURKIDS</div>}
+                {isNK && <div class="text-[9px] text-white/40 font-sans tracking-wider uppercase mb-2.5">{book.seri}</div>}
+                <div class="text-[52px] mb-3.5">{book.ic}</div>
+                <div class="text-white/90 font-display text-[15px] font-bold leading-snug max-w-[160px] mx-auto">{book.t}</div>
+                {book.al && <div class="font-arabic text-sm text-gold/75 mt-2" dir="rtl">{book.al}</div>}
+                <div class="text-white/40 text-[11px] mt-1.5 font-sans">{book.a}</div>
+              </div>
+            </div>
+          )}
         </div>
         {isNK && (
           <div class="bg-white border border-gold/20 rounded p-3 text-center mt-2.5">
@@ -116,7 +132,7 @@ const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(
         ) : (
           <div class="mt-[18px] p-4 bg-emerald-pale rounded">
             <h4 class="font-display text-sm text-emerald font-bold mb-1.5">Tentang Penulis</h4>
-            <p class="font-sans text-[13px] text-surface-5 leading-[1.75]">{book.a} adalah penulis berpengalaman di bidang {book.cat.toLowerCase()} yang aktif berkontribusi dalam literasi Islam Indonesia.</p>
+            <p class="font-sans text-[13px] text-surface-5 leading-[1.75]">{book.bio ?? `${book.a} adalah penulis berpengalaman di bidang ${book.cat.toLowerCase()} yang aktif berkontribusi dalam literasi Islam Indonesia.`}</p>
           </div>
         )}
       </div>

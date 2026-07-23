@@ -18,14 +18,32 @@ const { book } = Astro.props;
         {book.badge}
       </span>
     )}
-    <div
-      class="w-full h-full rounded flex flex-col items-center justify-center p-4 text-center"
-      style={`background:${book.bg}`}
-    >
-      <div class="text-[34px]">{book.ic}</div>
-      <div class="text-white/90 font-display text-xs font-bold mt-2 leading-snug">{book.t}</div>
-      <div class="text-white/45 text-[10px] mt-1 font-sans">{book.a.split(',')[0]}</div>
-    </div>
+    {book.cover ? (
+      <div class="relative w-full h-full rounded overflow-hidden">
+        <img
+          src={book.cover}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          class="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-55"
+        />
+        <img
+          src={book.cover}
+          alt={`Sampul buku ${book.t}`}
+          loading="lazy"
+          class="relative w-full h-full object-contain drop-shadow-lg"
+        />
+      </div>
+    ) : (
+      <div
+        class="w-full h-full rounded flex flex-col items-center justify-center p-4 text-center"
+        style={`background:${book.bg}`}
+      >
+        <div class="text-[34px]">{book.ic}</div>
+        <div class="text-white/90 font-display text-xs font-bold mt-2 leading-snug">{book.t}</div>
+        <div class="text-white/45 text-[10px] mt-1 font-sans">{book.a.split(',')[0]}</div>
+      </div>
+    )}
   </div>
   <div class="p-3.5 pt-3">
     <div class="text-[10px] font-semibold uppercase tracking-wider mb-1 text-emerald-medium font-sans">{book.cat}</div>
