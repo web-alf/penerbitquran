@@ -102,10 +102,7 @@ const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(
         <span class:list={['inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full mb-4', isNK ? 'text-nk-gold bg-gold/10' : 'text-emerald-medium bg-emerald-pale']}>
           {isNK ? `${book.seri} · NUURKIDS` : book.cat}
         </span>
-        <h1 class:list={['font-display text-[clamp(20px,3vw,28px)] font-black mb-2', isNK ? 'text-nk-brown' : 'text-surface-6']}>
-          {book.t}
-        </h1>
-        <p class:list={['font-sans text-sm mb-[18px]', isNK ? 'text-nk-brown/50' : 'text-surface-4']}>
+        <p class:list={['font-sans text-sm mb-[18px] mt-2', isNK ? 'text-nk-brown/50' : 'text-surface-4']}>
           oleh <strong class:list={[isNK ? 'text-nk-gold' : 'text-emerald']}>{book.a}</strong>
         </p>
 
