@@ -1,5 +1,6 @@
 ---
 import type { Book } from '../data/books';
+import { getBookUrl } from '../data/books';
 
 interface Props {
   book: Book;
@@ -10,7 +11,7 @@ const { book, variant = 'catalog' } = Astro.props;
 ---
 
 {variant === 'mini' ? (
-  <a href={`/katalog/${book.id}`} class="block bg-white rounded-[14px] overflow-hidden shadow-nk border border-gold/15 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-nk-heavy">
+  <a href={getBookUrl(book)} class="block bg-white rounded-[14px] overflow-hidden shadow-nk border border-gold/15 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-nk-heavy">
     <div class="px-3.5 pt-3.5">
       <div class="font-sans text-[9px] font-bold tracking-[.12em] uppercase text-nk-gold mb-1">NUURKIDS</div>
       <div class="font-sans text-[9px] text-nk-brown/45 uppercase tracking-wider">{book.seri}</div>
@@ -25,7 +26,7 @@ const { book, variant = 'catalog' } = Astro.props;
     </div>
   </a>
 ) : variant === 'hero' ? (
-  <a href={`/katalog/${book.id}`} class="block rounded-[14px] overflow-hidden shadow-nk-heavy cursor-pointer transition-all duration-300 hover:-translate-y-1.5 border border-gold/20 relative">
+  <a href={getBookUrl(book)} class="block rounded-[14px] overflow-hidden shadow-nk-heavy cursor-pointer transition-all duration-300 hover:-translate-y-1.5 border border-gold/20 relative">
     <div class="h-[240px] flex flex-col items-center justify-center p-5 text-center relative" style={`background:${book.bg}`}>
       <span class="absolute top-2.5 left-2.5 bg-white/90 text-nk-gold text-[9px] font-bold px-2 py-0.5 rounded-[10px] tracking-wider font-sans">{book.seri}</span>
       <div class="text-[44px]">{book.ic}</div>
@@ -38,7 +39,7 @@ const { book, variant = 'catalog' } = Astro.props;
     </div>
   </a>
 ) : (
-  <a href={`/katalog/${book.id}`} class="group block bg-nk-cream rounded-lg overflow-hidden shadow-soft border border-gold/20 cursor-pointer transition-all duration-300 hover:-translate-y-[7px] hover:shadow-heavy">
+  <a href={getBookUrl(book)} class="group block bg-nk-cream rounded-lg overflow-hidden shadow-soft border border-gold/20 cursor-pointer transition-all duration-300 hover:-translate-y-[7px] hover:shadow-heavy">
     <div class="h-[236px] flex items-center justify-center p-3.5 relative">
       {book.badge && (
         <span class="absolute top-2.5 left-2.5 bg-nk-gold text-white text-[9px] font-semibold px-2.5 py-[3px] rounded-[10px] font-sans">

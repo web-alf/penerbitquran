@@ -3,14 +3,14 @@ import Base from '../../layouts/Base.astro';
 import BookCard from '../../components/BookCard.astro';
 import NKBookCard from '../../components/NKBookCard.astro';
 import { books } from '../../data/books';
-import type { Book } from '../../data/books';
+import { getBookSlug } from '../../data/books';
 
 export function getStaticPaths() {
-  return books.map(b => ({ params: { id: String(b.id) } }));
+  return books.map(b => ({ params: { slug: getBookSlug(b) } }));
 }
 
-const { id } = Astro.params;
-const book = books.find(b => b.id === Number(id))!;
+const { slug } = Astro.params;
+const book = books.find(b => getBookSlug(b) === slug)!;
 const isNK = !!book.nk;
 const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(0, 4);
 ---

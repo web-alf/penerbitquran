@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Samakan dengan nama Worker di dashboard Cloudflare (Workers & Pages)
+  "name": "penerbitquran",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-04-15",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  // Aktifkan subdomain workers.dev + URL preview per versi/branch
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,3 +1,5 @@
+import { eksperimenDanCeritaAnak } from './eksperimen_dan_cerita_anak';
+
 export interface Book {
   id: number;
   t: string;
@@ -32,7 +34,22 @@ export const books: Book[] = [
   { id: 12, t: "Akhlak Mulia: Jujur", a: "Tim NUURKIDS", cat: "NUURKIDS", y: 2025, p: 36, badge: "", bg: "#2E6B4A", ic: "\u{1F338}", syn: "Belajar tentang kejujuran melalui cerita yang lembut dan ilustrasi premium untuk anak usia dini.", nk: true, age: "3–6 tahun", seri: "Seri Akhlak Mulia", al: "" },
   { id: 13, t: "Sholat Si Kecil", a: "Tim NUURKIDS", cat: "NUURKIDS", y: 2025, p: 36, badge: "", bg: "#1a4a2e", ic: "\u{1F54C}", syn: "Panduan sholat dengan narasi hangat, membuat si kecil mencintai ibadah sejak dini.", nk: true, age: "3–6 tahun", seri: "Seri Ibadah Si Kecil", al: "" },
   { id: 14, t: "Abu Bakar As-Shiddiq RA", a: "Tim NUURKIDS", cat: "NUURKIDS", y: 2025, p: 40, badge: "", bg: "#4a2a0a", ic: "\u{1F319}", syn: "Mengenal sahabat Nabi paling mulia melalui kisah penuh keteladanan untuk anak.", nk: true, age: "3–6 tahun", seri: "Seri Sahabat Nabi", al: "رضي الله عنه" },
+  ...eksperimenDanCeritaAnak,
 ];
+
+export function getBookSlug(book: Book): string {
+  return book.t
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function getBookUrl(book: Book): string {
+  return `/katalog/${getBookSlug(book)}`;
+}
 
 export function getBooksByCategory(cat: string): Book[] {
   if (cat === 'Semua') return books;

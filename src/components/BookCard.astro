@@ -1,5 +1,6 @@
 ---
 import type { Book } from '../data/books';
+import { getBookUrl } from '../data/books';
 
 interface Props {
   book: Book;
@@ -8,7 +9,7 @@ interface Props {
 const { book } = Astro.props;
 ---
 
-<a href={`/katalog/${book.id}`} class="group bg-white rounded-lg overflow-hidden shadow-soft border border-surface-2/50 cursor-pointer transition-all duration-300 hover:-translate-y-[7px] hover:shadow-heavy block">
+<a href={getBookUrl(book)} class="group bg-white rounded-lg overflow-hidden shadow-soft border border-surface-2/50 cursor-pointer transition-all duration-300 hover:-translate-y-[7px] hover:shadow-heavy block">
   <div class="h-[236px] flex items-center justify-center p-3.5 relative">
     {book.badge && (
       <span class:list={[
