@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import BookCard from '../../components/BookCard.astro';
 import NKBookCard from '../../components/NKBookCard.astro';
+import BuyPanel from '../../components/BuyPanel.astro';
 import { books } from '../../data/books';
 import { getBookSlug } from '../../data/books';
 
@@ -13,6 +14,9 @@ const { slug } = Astro.params;
 const book = books.find(b => getBookSlug(b) === slug)!;
 const isNK = !!book.nk;
 const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(0, 4);
+const variants = book.seri && book.jilid
+  ? books.filter(b => b.seri === book.seri && b.jilid).sort((a, b) => a.jilid! - b.jilid!)
+  : [];
 ---
 
 <Base title={`${book.t} — Penerbit Quran`}>
@@ -81,6 +85,9 @@ const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(
           </div>
         )}
         <div class="flex flex-col gap-2.5 mt-3.5">
+          <button type="button" data-buy-open class:list={['inline-flex items-center justify-center gap-2 px-[26px] py-3 rounded text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-medium', isNK ? 'bg-nk-green text-white font-display hover:bg-emerald-light' : 'bg-[#33a651] text-white font-sans hover:bg-[#2b8f45]']}>
+            🛒 Beli Sekarang
+          </button>
           <button class:list={['inline-flex items-center justify-center gap-2 px-[26px] py-3 rounded text-sm font-bold transition-all duration-300', isNK ? 'bg-nk-gold text-white font-display hover:bg-[#b8822a]' : 'bg-emerald text-white font-sans hover:bg-emerald-light']} onclick="alert('WA: 0821-3674-1108\nEmail: penerbitquranindonesia@gmail.com')">
             Hubungi Admin
           </button>
@@ -95,6 +102,8 @@ const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(
 
       <!-- Info -->
       <div>
+        <BuyPanel book={book} variants={variants} isNK={isNK} />
+        <div data-book-info>
         <span class:list={['inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full mb-4', isNK ? 'text-nk-gold bg-gold/10' : 'text-emerald-medium bg-emerald-pale']}>
           {isNK ? `${book.seri} · NUURKIDS` : book.cat}
         </span>
@@ -132,6 +141,7 @@ const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(
             <p class="font-sans text-[13px] text-surface-5 leading-[1.75]">{book.bio ?? `${book.a} adalah penulis berpengalaman di bidang ${book.cat.toLowerCase()} yang aktif berkontribusi dalam literasi Islam Indonesia.`}</p>
           </div>
         )}
+        </div>
       </div>
     </div>
 

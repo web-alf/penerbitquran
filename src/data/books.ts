@@ -17,6 +17,17 @@ export interface Book {
   al?: string;
   cover?: string;
   bio?: string;
+  price?: number;
+  priceOld?: number;
+  jilid?: number;
+  pakets?: Paket[];
+}
+
+export interface Paket {
+  name: string;
+  detail: string;
+  price: number;
+  priceOld: number;
 }
 
 export const books: Book[] = [

@@ -1,0 +1,165 @@
+---
+import type { Book } from '../data/books';
+import { getBookUrl } from '../data/books';
+
+interface Props {
+  book: Book;
+  variants?: Book[];
+  isNK?: boolean;
+}
+
+const { book, variants = [], isNK = false } = Astro.props;
+const WA_NUMBER = '6282136741108';
+
+const rupiah = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
+const pakets = book.pakets ?? [];
+// Default paket mengikuti jilid halaman ini (Jilid 2 → Paket 2 buku, dst.)
+const activePaket = pakets.length ? pakets[Math.min((book.jilid ?? 1) - 1, pakets.length - 1)] : undefined;
+const price = activePaket?.price ?? book.price;
+const priceOld = activePaket?.priceOld ?? book.priceOld;
+const hemat = price && priceOld && priceOld > price ? priceOld - price : 0;
+---
+
+<div id="buy-panel" class="hidden" data-title={book.t} data-wa={WA_NUMBER} data-paket={activePaket ? `${activePaket.name} (${activePaket.detail})` : ''}>
+  <button type="button" data-buy-close class:list={['inline-flex items-center gap-1.5 font-sans text-[13px] mb-5 transition-colors', isNK ? 'text-nk-brown/50 hover:text-nk-brown' : 'text-surface-4 hover:text-emerald']}>
+    ← Lihat detail buku
+  </button>
+
+  <div class="flex flex-wrap items-center gap-2.5 mb-3">
+    <span class:list={['inline-block font-sans text-[11px] font-semibold tracking-[.12em] uppercase px-3.5 py-1 rounded-full', isNK ? 'text-nk-gold bg-gold/10' : 'text-emerald-medium bg-emerald-pale']}>
+      {book.cat}
+    </span>
+    {book.seri && <span class:list={['font-sans text-[13px]', isNK ? 'text-nk-brown/50' : 'text-surface-4']}>{book.seri}</span>}
+  </div>
+
+  <h1 class:list={['font-display text-[clamp(22px,3.5vw,34px)] font-black mb-5 leading-tight', isNK ? 'text-nk-brown' : 'text-surface-6']}>
+    {book.t}
+  </h1>
+
+  <!-- Harga -->
+  <div class:list={['bg-white border rounded-lg p-5 px-6 mb-5', isNK ? 'border-gold/20' : 'border-surface-2']}>
+    {price ? (
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <span data-price class:list={['font-display text-[clamp(28px,4vw,38px)] font-black', isNK ? 'text-nk-brown' : 'text-emerald']}>{rupiah(price)}</span>
+        <span data-price-old class:list={['font-sans text-base text-surface-4 line-through', !hemat && 'hidden']}>{priceOld ? rupiah(priceOld) : ''}</span>
+        <span data-hemat class:list={['font-sans text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#33a651] text-white', !hemat && 'hidden']}>Hemat {rupiah(hemat)}</span>
+      </div>
+    ) : (
+      <div class:list={['font-display text-xl font-bold', isNK ? 'text-nk-brown' : 'text-surface-6']}>Hubungi admin untuk info harga</div>
+    )}
+    <div class="flex items-center gap-2 mt-3 font-sans text-[13px] font-semibold text-emerald-medium">
+      <span class="w-2 h-2 rounded-full bg-emerald-medium"></span>
+      Tersedia · Siap dikirim
+    </div>
+  </div>
+
+  <!-- Pilihan paket -->
+  {pakets.length > 0 && (
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
+      {pakets.map(p => (
+        <button
+          type="button"
+          data-paket-option
+          data-name={`${p.name} (${p.detail})`}
+          data-price={p.price}
+          data-price-old={p.priceOld}
+          aria-pressed={p === activePaket ? 'true' : 'false'}
+          class="text-left px-4 py-3 rounded border-[1.5px] bg-white border-surface-2 transition-all duration-200 hover:border-emerald aria-pressed:border-emerald aria-pressed:bg-emerald-pale"
+        >
+          <div class="font-sans text-sm font-bold text-surface-6">{p.name}</div>
+          <div class="font-sans text-xs text-surface-4 mt-0.5">{p.detail}</div>
+          <div class="font-sans text-[13px] font-bold text-emerald mt-1.5">{rupiah(p.price)} <span class="font-normal text-surface-4 line-through ml-1">{rupiah(p.priceOld)}</span></div>
+        </button>
+      ))}
+    </div>
+  )}
+
+  <!-- Pilihan jilid -->
+  {pakets.length === 0 && variants.length > 1 && (
+    <div class="flex flex-wrap gap-2.5 mb-5">
+      {variants.map(v => (
+        <a
+          href={`${getBookUrl(v)}?beli=1`}
+          class:list={[
+            'px-5 py-2.5 rounded font-sans text-sm font-semibold border-[1.5px] transition-all duration-200',
+            v.id === book.id
+              ? (isNK ? 'bg-nk-gold border-nk-gold text-white' : 'bg-emerald border-emerald text-white')
+              : (isNK ? 'bg-white border-gold/25 text-nk-brown hover:border-nk-gold' : 'bg-white border-surface-2 text-surface-6 hover:border-emerald hover:text-emerald'),
+          ]}
+        >
+          Jilid {v.jilid}
+        </a>
+      ))}
+    </div>
+  )}
+
+  <!-- Jumlah + Beli -->
+  <div class="flex flex-col sm:flex-row gap-2.5 mb-5">
+    <div class:list={['flex items-center justify-between bg-white border rounded sm:w-[150px] h-[50px]', isNK ? 'border-gold/25' : 'border-surface-2']}>
+      <button type="button" data-qty-minus aria-label="Kurangi jumlah" class="w-12 h-full text-xl text-surface-5 hover:text-emerald transition-colors">−</button>
+      <span data-qty class="font-sans text-[15px] font-bold text-surface-6">1</span>
+      <button type="button" data-qty-plus aria-label="Tambah jumlah" class="w-12 h-full text-xl text-surface-5 hover:text-emerald transition-colors">+</button>
+    </div>
+    <a
+      data-wa-link
+      href="#"
+      target="_blank"
+      rel="noopener"
+      class="flex-1 inline-flex items-center justify-center gap-2 h-[50px] px-6 rounded bg-[#25d366] text-white font-sans text-[15px] font-bold hover:bg-[#20bd5a] hover:-translate-y-0.5 hover:shadow-medium transition-all duration-300"
+    >
+      <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.01c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82s.7-2 .95-2.27c.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.94.86 2.08.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.33Z"/></svg>
+      Beli via WhatsApp
+    </a>
+  </div>
+
+  <div class:list={['flex items-start gap-2.5 p-4 rounded font-sans text-[13px] leading-[1.7]', isNK ? 'bg-gold/10 text-nk-brown/70' : 'bg-emerald-pale text-emerald']}>
+    <span aria-hidden="true">💬</span>
+    Pembayaran dan pengiriman akan dibantu langsung oleh admin Penerbit Quran melalui WhatsApp.
+  </div>
+</div>
+
+<script>
+  const panel = document.getElementById('buy-panel');
+  const info = document.querySelector('[data-book-info]');
+
+  if (panel) {
+    const qtyEl = panel.querySelector('[data-qty]')!;
+    const waLink = panel.querySelector('[data-wa-link]') as HTMLAnchorElement;
+    let qty = 1;
+
+    const updateWaLink = () => {
+      qtyEl.textContent = String(qty);
+      const paket = panel.dataset.paket;
+      const item = paket ? `*${paket}* — ${panel.dataset.title}` : `buku *${panel.dataset.title}*`;
+      const msg = `Assalamu'alaikum, saya ingin membeli ${item} sebanyak ${qty} ${paket ? 'paket' : 'eksemplar'}. Mohon info pembayaran dan pengirimannya. Terima kasih.`;
+      waLink.href = `https://wa.me/${panel.dataset.wa}?text=${encodeURIComponent(msg)}`;
+    };
+
+    const toggle = (open: boolean) => {
+      panel.classList.toggle('hidden', !open);
+      info?.classList.toggle('hidden', open);
+      if (open && window.innerWidth < 1024) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    panel.querySelector('[data-qty-minus]')?.addEventListener('click', () => { qty = Math.max(1, qty - 1); updateWaLink(); });
+    panel.querySelector('[data-qty-plus]')?.addEventListener('click', () => { qty = Math.min(99, qty + 1); updateWaLink(); });
+    panel.querySelector('[data-buy-close]')?.addEventListener('click', () => toggle(false));
+    const rupiah = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
+    const paketOptions = panel.querySelectorAll('[data-paket-option]') as NodeListOf<HTMLElement>;
+    paketOptions.forEach(opt => opt.addEventListener('click', () => {
+      paketOptions.forEach(o => o.setAttribute('aria-pressed', String(o === opt)));
+      const price = Number(opt.dataset.price);
+      const priceOld = Number(opt.dataset.priceOld);
+      panel.querySelector('[data-price]')!.textContent = rupiah(price);
+      panel.querySelector('[data-price-old]')!.textContent = rupiah(priceOld);
+      panel.querySelector('[data-hemat]')!.textContent = `Hemat ${rupiah(priceOld - price)}`;
+      panel.dataset.paket = opt.dataset.name;
+      updateWaLink();
+    }));
+
+    document.querySelectorAll('[data-buy-open]').forEach(btn => btn.addEventListener('click', () => toggle(true)));
+
+    updateWaLink();
+    if (new URLSearchParams(window.location.search).get('beli') === '1') toggle(true);
+  }
+</script>

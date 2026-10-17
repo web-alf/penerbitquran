@@ -8,7 +8,8 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "wrangler": "^4.151.1"
   },
   "peerDependencies": {
     "typescript": "^5"
