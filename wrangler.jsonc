@@ -11,6 +11,17 @@
   // Aktifkan subdomain workers.dev + URL preview per versi/branch
   "workers_dev": true,
   "preview_urls": true,
+  // Binding sesi Astro. ID eksplisit agar build branch (preview) tidak gagal
+  // dengan error 10021 "must have a namespace_id specified"
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "a3d5910219db4ccba864a18949359d19"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
   "observability": {
     "enabled": true
   }
