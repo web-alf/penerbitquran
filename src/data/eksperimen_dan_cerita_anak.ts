@@ -14,6 +14,7 @@ const eksperimenSyn = "Buku edukatif, activity book, sekaligus buku interaksi or
 const eksperimenJilid = [1, 2, 3, 4].map((jilid, i): Book => ({
   id: 15 + i,
   t: `30 Pertanyaan dan Eksperimen Untuk Orang Tua dan Anak Jilid ${jilid}`,
+  slug: `30-pertanyaan-dan-eksperimen-jilid-${jilid}`,
   a: "Penerbit Quran",
   cat: CAT,
   y: 2026,

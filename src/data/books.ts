@@ -21,6 +21,8 @@ export interface Book {
   priceOld?: number;
   jilid?: number;
   pakets?: Paket[];
+  /** URL kustom; default dibuat dari judul */
+  slug?: string;
 }
 
 export interface Paket {
@@ -49,6 +51,7 @@ export const books: Book[] = [
 ];
 
 export function getBookSlug(book: Book): string {
+  if (book.slug) return book.slug;
   return book.t
     .normalize('NFKD')
     .replace(/[̀-ͯ]/g, '')
