@@ -12,15 +12,11 @@ const { book, variants = [], isNK = false } = Astro.props;
 const WA_NUMBER = '6282136741108';
 
 const rupiah = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
-const pakets = book.pakets ?? [];
-// Default paket mengikuti jilid halaman ini (Jilid 2 → Paket 2 buku, dst.)
-const activePaket = pakets.length ? pakets[Math.min((book.jilid ?? 1) - 1, pakets.length - 1)] : undefined;
-const price = activePaket?.price ?? book.price;
-const priceOld = activePaket?.priceOld ?? book.priceOld;
+const { price, priceOld } = book;
 const hemat = price && priceOld && priceOld > price ? priceOld - price : 0;
 ---
 
-<div id="buy-panel" class="hidden" data-title={book.t} data-wa={WA_NUMBER} data-paket={activePaket ? `${activePaket.name} (${activePaket.detail})` : ''}>
+<div id="buy-panel" class="hidden" data-title={book.t} data-wa={WA_NUMBER}>
   <button type="button" data-buy-close class:list={['inline-flex items-center gap-1.5 font-sans text-[13px] mb-5 transition-colors', isNK ? 'text-nk-brown/50 hover:text-nk-brown' : 'text-surface-4 hover:text-emerald']}>
     ← Lihat detail buku
   </button>
@@ -40,9 +36,9 @@ const hemat = price && priceOld && priceOld > price ? priceOld - price : 0;
   <div class:list={['bg-white border rounded-lg p-5 px-6 mb-5', isNK ? 'border-gold/20' : 'border-surface-2']}>
     {price ? (
       <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-        <span data-price class:list={['font-display text-[clamp(28px,4vw,38px)] font-black', isNK ? 'text-nk-brown' : 'text-emerald']}>{rupiah(price)}</span>
-        <span data-price-old class:list={['font-sans text-base text-surface-4 line-through', !hemat && 'hidden']}>{priceOld ? rupiah(priceOld) : ''}</span>
-        <span data-hemat class:list={['font-sans text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#33a651] text-white', !hemat && 'hidden']}>Hemat {rupiah(hemat)}</span>
+        <span class:list={['font-display text-[clamp(28px,4vw,38px)] font-black', isNK ? 'text-nk-brown' : 'text-emerald']}>{rupiah(price)}</span>
+        {hemat > 0 && <span class="font-sans text-base text-surface-4 line-through">{rupiah(priceOld!)}</span>}
+        {hemat > 0 && <span class="font-sans text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#33a651] text-white">Hemat {rupiah(hemat)}</span>}
       </div>
     ) : (
       <div class:list={['font-display text-xl font-bold', isNK ? 'text-nk-brown' : 'text-surface-6']}>Hubungi admin untuk info harga</div>
@@ -53,43 +49,27 @@ const hemat = price && priceOld && priceOld > price ? priceOld - price : 0;
     </div>
   </div>
 
-  <!-- Pilihan paket -->
-  {pakets.length > 0 && (
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
-      {pakets.map(p => (
-        <button
-          type="button"
-          data-paket-option
-          data-name={`${p.name} (${p.detail})`}
-          data-price={p.price}
-          data-price-old={p.priceOld}
-          aria-pressed={p === activePaket ? 'true' : 'false'}
-          class="text-left px-4 py-3 rounded border-[1.5px] bg-white border-surface-2 transition-all duration-200 hover:border-emerald aria-pressed:border-emerald aria-pressed:bg-emerald-pale"
-        >
-          <div class="font-sans text-sm font-bold text-surface-6">{p.name}</div>
-          <div class="font-sans text-xs text-surface-4 mt-0.5">{p.detail}</div>
-          <div class="font-sans text-[13px] font-bold text-emerald mt-1.5">{rupiah(p.price)} <span class="font-normal text-surface-4 line-through ml-1">{rupiah(p.priceOld)}</span></div>
-        </button>
-      ))}
-    </div>
-  )}
-
-  <!-- Pilihan jilid -->
-  {pakets.length === 0 && variants.length > 1 && (
-    <div class="flex flex-wrap gap-2.5 mb-5">
-      {variants.map(v => (
-        <a
-          href={`${getBookUrl(v)}?beli=1`}
-          class:list={[
-            'px-5 py-2.5 rounded font-sans text-sm font-semibold border-[1.5px] transition-all duration-200',
-            v.id === book.id
-              ? (isNK ? 'bg-nk-gold border-nk-gold text-white' : 'bg-emerald border-emerald text-white')
-              : (isNK ? 'bg-white border-gold/25 text-nk-brown hover:border-nk-gold' : 'bg-white border-surface-2 text-surface-6 hover:border-emerald hover:text-emerald'),
-          ]}
-        >
-          Jilid {v.jilid}
-        </a>
-      ))}
+  <!-- Pilihan lain dalam seri -->
+  {variants.length > 0 && (
+    <div class="mb-5">
+      <div class="font-sans text-[13px] text-surface-4 mb-2.5">Pilihan lainnya:</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        {variants.map(v => (
+          <a
+            href={`${getBookUrl(v)}?beli=1`}
+            class="block px-4 py-3 rounded border-[1.5px] bg-white border-surface-2 transition-all duration-200 hover:border-emerald hover:bg-emerald-pale"
+          >
+            <div class="font-sans text-sm font-bold text-surface-6">{v.variant!.label}</div>
+            <div class="font-sans text-xs text-surface-4 mt-0.5">{v.variant!.detail}</div>
+            {v.price && (
+              <div class="font-sans text-[13px] font-bold text-emerald mt-1.5">
+                {rupiah(v.price)}
+                {v.priceOld && v.priceOld > v.price && <span class="font-normal text-surface-4 line-through ml-1">{rupiah(v.priceOld)}</span>}
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
     </div>
   )}
 
@@ -129,9 +109,7 @@ const hemat = price && priceOld && priceOld > price ? priceOld - price : 0;
 
     const updateWaLink = () => {
       qtyEl.textContent = String(qty);
-      const paket = panel.dataset.paket;
-      const item = paket ? `*${paket}* — ${panel.dataset.title}` : `buku *${panel.dataset.title}*`;
-      const msg = `Assalamu'alaikum, saya ingin membeli ${item} sebanyak ${qty} ${paket ? 'paket' : 'eksemplar'}. Mohon info pembayaran dan pengirimannya. Terima kasih.`;
+      const msg = `Assalamu'alaikum, saya ingin membeli *${panel.dataset.title}* (jumlah: ${qty}). Mohon info pembayaran dan pengirimannya. Terima kasih.`;
       waLink.href = `https://wa.me/${panel.dataset.wa}?text=${encodeURIComponent(msg)}`;
     };
 
@@ -144,19 +122,6 @@ const hemat = price && priceOld && priceOld > price ? priceOld - price : 0;
     panel.querySelector('[data-qty-minus]')?.addEventListener('click', () => { qty = Math.max(1, qty - 1); updateWaLink(); });
     panel.querySelector('[data-qty-plus]')?.addEventListener('click', () => { qty = Math.min(99, qty + 1); updateWaLink(); });
     panel.querySelector('[data-buy-close]')?.addEventListener('click', () => toggle(false));
-    const rupiah = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
-    const paketOptions = panel.querySelectorAll('[data-paket-option]') as NodeListOf<HTMLElement>;
-    paketOptions.forEach(opt => opt.addEventListener('click', () => {
-      paketOptions.forEach(o => o.setAttribute('aria-pressed', String(o === opt)));
-      const price = Number(opt.dataset.price);
-      const priceOld = Number(opt.dataset.priceOld);
-      panel.querySelector('[data-price]')!.textContent = rupiah(price);
-      panel.querySelector('[data-price-old]')!.textContent = rupiah(priceOld);
-      panel.querySelector('[data-hemat]')!.textContent = `Hemat ${rupiah(priceOld - price)}`;
-      panel.dataset.paket = opt.dataset.name;
-      updateWaLink();
-    }));
-
     document.querySelectorAll('[data-buy-open]').forEach(btn => btn.addEventListener('click', () => toggle(true)));
 
     updateWaLink();

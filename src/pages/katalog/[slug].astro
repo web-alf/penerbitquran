@@ -14,8 +14,9 @@ const { slug } = Astro.params;
 const book = books.find(b => getBookSlug(b) === slug)!;
 const isNK = !!book.nk;
 const related = books.filter(b => b.id !== book.id && b.cat === book.cat).slice(0, 4);
-const variants = book.seri && book.jilid
-  ? books.filter(b => b.seri === book.seri && b.jilid).sort((a, b) => a.jilid! - b.jilid!)
+// Pilihan lain dalam seri yang sama (tanpa buku yang sedang dibuka)
+const variants = book.variant
+  ? books.filter(b => b.id !== book.id && b.seri === book.seri && b.variant)
   : [];
 ---
 
@@ -45,7 +46,7 @@ const variants = book.seri && book.jilid
 )}
 
 <!-- Detail -->
-<section class:list={['py-[88px]', isNK && 'bg-nk-cream']}>
+<section class:list={['pb-[88px] pt-[13px]', isNK && 'bg-nk-cream']}>
   <div class="max-w-[1180px] mx-auto px-7">
     <div class="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 items-start">
       <!-- Cover -->

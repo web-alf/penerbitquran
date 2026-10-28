@@ -20,17 +20,10 @@ export interface Book {
   bio?: string;
   price?: number;
   priceOld?: number;
-  jilid?: number;
-  pakets?: Paket[];
+  /** Label pilihan di panel beli; buku satu seri yang punya variant saling ditampilkan */
+  variant?: { label: string; detail: string };
   /** URL kustom; default dibuat dari judul */
   slug?: string;
-}
-
-export interface Paket {
-  name: string;
-  detail: string;
-  price: number;
-  priceOld: number;
 }
 
 export const books: Book[] = [

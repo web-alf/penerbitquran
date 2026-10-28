@@ -1,13 +1,7 @@
-import type { Book, Paket } from './books';
+import type { Book } from './books';
 
 const CAT = "Eksperimen dan cerita anak";
-
-const eksperimenPakets: Paket[] = [
-  { name: "Paket Mulai Belajar", detail: "1 buku · Jilid 1", price: 145000, priceOld: 199000 },
-  { name: "Paket Pintar", detail: "2 buku · Jilid 1 & 2", price: 250000, priceOld: 398000 },
-  { name: "Paket Juara", detail: "3 buku · Jilid 1, 2 & 3", price: 315000, priceOld: 597000 },
-  { name: "Paket Cerdas Lengkap", detail: "4 buku · Jilid 1, 2, 3 & 4", price: 390000, priceOld: 796000 },
-];
+const EKS_SERI = "30 Pertanyaan dan Eksperimen";
 
 const eksperimenSyn = "Buku edukatif, activity book, sekaligus buku interaksi orang tua dan anak berukuran A4 untuk anak usia 5–14 tahun (TK, SD, SMP dan sederajat). Total 70 halaman: 2 halaman cover, 30 halaman isi, 30 halaman notebook, dan 8 halaman pendukung. Buku ini menjadi salah satu media untuk belajar melalui praktik, dilengkapi catatan di tiap halaman eksperimen agar anak dapat menuliskan pengalamannya serta evaluasi untuk orang tua. Isinya berupa eksperimen yang menjawab pertanyaan acak anak di fase penasarannya, sehingga menjadi bahan komunikasi dan interaksi orang tua dan anak sekaligus quality time bagi keluarga. Dilengkapi ilustrasi sederhana, buku ini menjadi bahan stimulasi pemikiran, praktikal, serta teori untuk anak.";
 
@@ -23,17 +17,35 @@ const eksperimenJilid = [1, 2, 3, 4].map((jilid, i): Book => ({
   bg: "#1a4a5c",
   ic: "\u{1F52C}",
   age: "5–14 tahun",
-  seri: "30 Pertanyaan dan Eksperimen",
-  jilid,
+  seri: EKS_SERI,
+  variant: { label: `Jilid ${jilid}`, detail: "1 buku" },
   price: 145000,
   priceOld: 199000,
-  pakets: eksperimenPakets,
   cover: `/covers/Eksperimen_dan_cerita_anak/EKS_JILID_${jilid}.webp`,
   syn: eksperimenSyn,
 }));
 
 export const eksperimenDanCeritaAnak: Book[] = [
   ...eksperimenJilid,
+  {
+    id: 22,
+    t: "Paket Cerdas Lengkap: 30 Pertanyaan dan Eksperimen Untuk Orang Tua dan Anak Jilid 1–4",
+    slug: "30-pertanyaan-dan-eksperimen-paket-cerdas-lengkap",
+    a: "Penerbit Quran",
+    cat: CAT,
+    y: 2026,
+    p: 280,
+    badge: "",
+    bg: "#1a4a5c",
+    ic: "\u{1F52C}",
+    age: "5–14 tahun",
+    seri: EKS_SERI,
+    variant: { label: "Paket Cerdas Lengkap", detail: "4 buku · Jilid 1, 2, 3 & 4" },
+    price: 390000,
+    priceOld: 796000,
+    cover: "/covers/Eksperimen_dan_cerita_anak/paket_cerdas_lengkap.webp",
+    syn: `Paket lengkap berisi 4 buku: Jilid 1, 2, 3, dan 4. ${eksperimenSyn}`,
+  },
   {
     id: 19,
     t: "Arka si Hiu",
