@@ -1,5 +1,6 @@
 import { eksperimenDanCeritaAnak } from './eksperimen_dan_cerita_anak';
 import { edukasi } from './edukasi';
+import { tahfidz } from './tahfidz';
 
 export interface Book {
   id: number;
@@ -43,6 +44,7 @@ export const books: Book[] = [
   { id: 14, t: "Abu Bakar As-Shiddiq RA", a: "Tim NUURKIDS", cat: "NUURKIDS", y: 2025, p: 40, badge: "", bg: "#4a2a0a", ic: "\u{1F319}", syn: "Mengenal sahabat Nabi paling mulia melalui kisah penuh keteladanan untuk anak.", nk: true, age: "3–6 tahun", seri: "Seri Sahabat Nabi", al: "رضي الله عنه" },
   ...eksperimenDanCeritaAnak,
   ...edukasi,
+  ...tahfidz,
 ];
 
 export function getBookSlug(book: Book): string {
